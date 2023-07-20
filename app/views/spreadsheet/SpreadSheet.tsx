@@ -1,32 +1,36 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import jspreadsheet from "jspreadsheet-ce";
 
 import "../../../node_modules/jspreadsheet-ce/dist/jspreadsheet.css";
-import { FileUploadUI } from "./FileUploadUI";
+import CSVReader from "./CSVReader";
 
 export default function SpreadSheet() {
   const jRef = useRef(null);
+
   const options = {
     data: [[]],
     minDimensions: [10, 10],
   };
 
+  const [data, setData] = useState([[]]);
+
+  const myTable = useRef(null);
+
   useEffect(() => {
     if (!jRef.current.jspreadsheet) {
-      jspreadsheet(jRef.current, options);
+      myTable.current = jspreadsheet(jRef.current, options);
+    } else {
+      if (myTable.current) {
+        myTable.current.setData(data);
+      }
     }
-  }, [options]);
-
-  const addRow = () => {
-    jRef.current.jexcel.insertRow();
-  };
+  }, [options, data]);
 
   return (
     <div>
       <div ref={jRef} />
       <br />
-      <input type="button" onClick={addRow} value="Add new row" />
-      <FileUploadUI />
+      <CSVReader setData={setData} />
     </div>
   );
 }
