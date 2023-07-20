@@ -1,6 +1,28 @@
 AllCops:
   NewCops: enable
+  Exclude:
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - app/views/**/*
+    - config/**/*
+    - config.ru
+    - node_modules/**/*
+    - db/migrate/*
+    - db/schema.rb
+    - storage/**/*
+    - tmp/**/*
+    - bin/**/*
+
 Style/Documentation:
   Enabled: false
 Style/NestedModifier:
   Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - test/**/*
+
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*
