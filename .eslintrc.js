@@ -4,6 +4,11 @@ module.exports = {
     es2021: true,
     node: true
   },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   extends: ['plugin:react/recommended', 'standard'],
   overrides: [],
   parserOptions: {
@@ -11,6 +16,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'no-extra-semi': false
+    'no-extra-semi': 0,
+    semi: 0
   }
 };

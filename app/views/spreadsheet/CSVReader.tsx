@@ -1,97 +1,97 @@
-import React, { useState, CSSProperties } from "react";
+import React, { useState, CSSProperties } from 'react';
 
 import {
   useCSVReader,
   lightenDarkenColor,
-  formatFileSize,
-} from "react-papaparse";
+  formatFileSize
+} from 'react-papaparse';
 
-const GREY = "#CCC";
-const GREY_LIGHT = "rgba(255, 255, 255, 0.4)";
-const DEFAULT_REMOVE_HOVER_COLOR = "#A01919";
+const GREY = '#CCC';
+const GREY_LIGHT = 'rgba(255, 255, 255, 0.4)';
+const DEFAULT_REMOVE_HOVER_COLOR = '#A01919';
 const REMOVE_HOVER_COLOR_LIGHT = lightenDarkenColor(
   DEFAULT_REMOVE_HOVER_COLOR,
-  40,
+  40
 );
-const GREY_DIM = "#686868";
+const GREY_DIM = '#686868';
 
 const styles = {
   zone: {
-    alignItems: "center",
+    alignItems: 'center',
     border: `2px dashed ${GREY}`,
     borderRadius: 20,
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-    justifyContent: "center",
-    padding: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    justifyContent: 'center',
+    padding: 20
   } as CSSProperties,
   file: {
-    background: "linear-gradient(to bottom, #EEE, #DDD)",
+    background: 'linear-gradient(to bottom, #EEE, #DDD)',
     borderRadius: 20,
-    display: "flex",
+    display: 'flex',
     height: 120,
     width: 120,
-    position: "relative",
+    position: 'relative',
     zIndex: 10,
-    flexDirection: "column",
-    justifyContent: "center",
+    flexDirection: 'column',
+    justifyContent: 'center'
   } as CSSProperties,
   info: {
-    alignItems: "center",
-    display: "flex",
-    flexDirection: "column",
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   } as CSSProperties,
   size: {
     backgroundColor: GREY_LIGHT,
     borderRadius: 3,
-    marginBottom: "0.5em",
-    justifyContent: "center",
-    display: "flex",
+    marginBottom: '0.5em',
+    justifyContent: 'center',
+    display: 'flex'
   } as CSSProperties,
   name: {
     backgroundColor: GREY_LIGHT,
     borderRadius: 3,
     fontSize: 12,
-    marginBottom: "0.5em",
+    marginBottom: '0.5em'
   } as CSSProperties,
   progressBar: {
     bottom: 14,
-    position: "absolute",
-    width: "100%",
+    position: 'absolute',
+    width: '100%',
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   } as CSSProperties,
   zoneHover: {
-    borderColor: GREY_DIM,
+    borderColor: GREY_DIM
   } as CSSProperties,
   default: {
-    borderColor: GREY,
+    borderColor: GREY
   } as CSSProperties,
   remove: {
     height: 23,
-    position: "absolute",
+    position: 'absolute',
     right: 6,
     top: 6,
-    width: 23,
-  } as CSSProperties,
+    width: 23
+  } as CSSProperties
 };
 
 export default function CSVReader(props) {
   const { CSVReader } = useCSVReader();
   const [zoneHover, setZoneHover] = useState(false);
   const [removeHoverColor, setRemoveHoverColor] = useState(
-    DEFAULT_REMOVE_HOVER_COLOR,
+    DEFAULT_REMOVE_HOVER_COLOR
   );
 
   return (
     <CSVReader
       onUploadAccepted={(results: any) => {
-        console.log("---------------------------");
+        console.log('---------------------------');
         console.log(results.data);
-        console.log("---------------------------");
+        console.log('---------------------------');
         props.setData(results.data);
         setZoneHover(false);
       }}
@@ -109,7 +109,7 @@ export default function CSVReader(props) {
         acceptedFile,
         ProgressBar,
         getRemoveFileProps,
-        Remove,
+        Remove
       }: any) => (
         <>
           <div
@@ -117,7 +117,7 @@ export default function CSVReader(props) {
             style={Object.assign(
               {},
               styles.zone,
-              zoneHover && styles.zoneHover,
+              zoneHover && styles.zoneHover
             )}
           >
             {acceptedFile ? (
@@ -149,7 +149,7 @@ export default function CSVReader(props) {
                 </div>
               </>
             ) : (
-              "Drop CSV file here or click to upload"
+              'Drop CSV file here or click to upload'
             )}
           </div>
         </>

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { useCSVDownloader } from "react-papaparse";
+import { useCSVDownloader } from 'react-papaparse';
 
 export default function CSVDownloader(props) {
   const { CSVDownloader, Type } = useCSVDownloader();
@@ -8,10 +8,10 @@ export default function CSVDownloader(props) {
   return (
     <CSVDownloader
       type={Type.Button}
-      filename={"clickpost"}
+      filename={'clickpost'}
       bom={true}
       config={{
-        delimiter: ",",
+        delimiter: ','
       }}
       data={props.data}
     >
