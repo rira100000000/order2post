@@ -30,3 +30,6 @@ end
 
 
 gem "vite_rails", "~> 3.0"
+gem 'devise'
+gem 'actionmailer'
+
