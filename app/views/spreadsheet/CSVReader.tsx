@@ -11,7 +11,7 @@ const GREY_LIGHT = "rgba(255, 255, 255, 0.4)";
 const DEFAULT_REMOVE_HOVER_COLOR = "#A01919";
 const REMOVE_HOVER_COLOR_LIGHT = lightenDarkenColor(
   DEFAULT_REMOVE_HOVER_COLOR,
-  40
+  40,
 );
 const GREY_DIM = "#686868";
 
@@ -83,7 +83,7 @@ export default function CSVReader(props) {
   const { CSVReader } = useCSVReader();
   const [zoneHover, setZoneHover] = useState(false);
   const [removeHoverColor, setRemoveHoverColor] = useState(
-    DEFAULT_REMOVE_HOVER_COLOR
+    DEFAULT_REMOVE_HOVER_COLOR,
   );
 
   return (
@@ -117,7 +117,7 @@ export default function CSVReader(props) {
             style={Object.assign(
               {},
               styles.zone,
-              zoneHover && styles.zoneHover
+              zoneHover && styles.zoneHover,
             )}
           >
             {acceptedFile ? (
