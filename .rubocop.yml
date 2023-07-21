@@ -5,6 +5,7 @@ AllCops:
     - '**/vendor/**/*'
     - app/views/**/*
     - config/**/*
+    - config/*
     - config.ru
     - node_modules/**/*
     - db/migrate/*
@@ -22,7 +23,9 @@ Style/ClassAndModuleChildren:
 Metrics/BlockLength:
   Exclude:
     - test/**/*
-
+Layout/LineLength:
+  Exclude:
+    - config/**/*
 Metrics/ClassLength:
   Exclude:
     - test/**/*
