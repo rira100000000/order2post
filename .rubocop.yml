@@ -1,0 +1,35 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - app/views/**/*
+    - config/**/*
+    - config/*
+    - config.ru
+    - node_modules/**/*
+    - db/migrate/*
+    - db/schema.rb
+    - storage/**/*
+    - tmp/**/*
+    - bin/**/*
+    - spec/**/*
+
+Style/Documentation:
+  Enabled: false
+Style/NestedModifier:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - test/**/*
+Layout/LineLength:
+  Exclude:
+    - config/**/*
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*
+Style/BlockComments:
+  Exclude:
+    - spec/spec_helper.rb
