@@ -13,6 +13,7 @@ AllCops:
     - storage/**/*
     - tmp/**/*
     - bin/**/*
+    - spec/**/*
 
 Style/Documentation:
   Enabled: false
@@ -29,3 +30,6 @@ Layout/LineLength:
 Metrics/ClassLength:
   Exclude:
     - test/**/*
+Style/BlockComments:
+  Exclude:
+    - spec/spec_helper.rb
