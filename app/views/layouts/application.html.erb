@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ViteRailsApp</title>
+    <title>CSV変換君</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application" %>
     <%= vite_client_tag %>
     <%= vite_react_refresh_tag %>
     <%= vite_javascript_tag 'application' %>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body>
-    <div class="navbar">
-      <p class="navbar-text pull-right">
-      <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to 'Edit profile', edit_user_registration_path, class: 'navbar-link' %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'  %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, class: 'navbar-link'  %> |
-        <%= link_to "Login", new_user_session_path, class: 'navbar-link'  %>
-      <% end %>
-      </p>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/ideas">Ideas</a></li>
-      </ul>
-    
+    <nav class="flex items-center justify-between flex-wrap bg-white p-3 border-b border-amber-400">
+      <div class="flex flex-shrink-0 text-amber-500 mr-6" >
+        <img src="../src/assets/logo_origin.png" width="280" alt="ロゴ" align="middle">
+      </div>
+      <div class="block flex-grow flex justify-end items-center mr-4">
+        <div class="text-sm lg:flex-grow">
+          <strong class="flex justify-end mt-0 mr-2 text-amber-500">
+            <%= current_user.email if user_signed_in?%>
+          </strong>
+        </div>
+
+        <% if user_signed_in? %>
+          <div>
+            <a href="/users/sign_out" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 lg:mt-0">サインアウト</a>
+          </div>
+        <% else %>
+          <div>
+            <a href="/users/sign_in" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">ログイン</a>
+            <a href="/users/sign_up" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">サインアップ</a>
+          </div>
+        <% end %>
+      </div>
+    </nav>
+    <div class="alert">
       <% if notice %>
         <p class="alert alert-success"><%= notice %></p>
       <% end %>
@@ -35,7 +44,6 @@
         <p class="alert alert-danger"><%= alert %></p>
       <% end %>
     </div>
-
     <%= yield %>
   </body>
 </html>
