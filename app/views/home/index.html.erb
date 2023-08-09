@@ -1,2 +1,6 @@
 <div id="root"></div>
-<%= vite_javascript_tag 'home.tsx' %>
+<% if user_signed_in?%>
+  <%= vite_javascript_tag 'spreadsheet.tsx' %>
+<% else %>
+  <%= vite_javascript_tag 'home.tsx' %>
+<% end %>

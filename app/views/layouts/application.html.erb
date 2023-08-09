@@ -10,6 +10,12 @@
     <%= vite_react_refresh_tag %>
     <%= vite_javascript_tag 'application' %>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <% if user_signed_in? %>
+      <meta name="user-signed-in" content="true">
+    <% else %>
+      <meta name="user-signed-in" content="false">
+    <% end %>
   </head>
 
   <body>
