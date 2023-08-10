@@ -10,7 +10,7 @@
     <%= vite_react_refresh_tag %>
     <%= vite_javascript_tag 'application' %>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <% if user_signed_in? %>
       <meta name="user-signed-in" content="true">
     <% else %>
@@ -42,14 +42,6 @@
         <% end %>
       </div>
     </nav>
-    <div class="alert">
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-    </div>
     <%= yield %>
   </body>
 </html>

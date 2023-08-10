@@ -13,10 +13,6 @@ const ReadMinne = (input) => {
   const REMARKS = 13;
 
   const lines: string[][] = [];
-  console.log('★★★★★★★★★★★★★★★★');
-
-  console.log(input);
-  console.log('★★★★★★★★★★★★★★★★');
 
   for (let i = 1; i < input.length; i++) {
     const order = input[i];

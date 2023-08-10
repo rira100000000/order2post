@@ -12,7 +12,7 @@ export default function SpreadSheet() {
     wordWrap: true,
     columns: [
       { title: '変換対象選択', type: 'checkbox', width: 100 },
-      { title: '注文番号', width: 80 },
+      { title: '注文番号', width: 100 },
       { title: '発送方法', width: 120 },
       { title: '商品名', width: 250 },
       { title: '数量', width: 50 },
