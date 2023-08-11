@@ -1,11 +1,41 @@
 import React, { useRef, useEffect, useState } from 'react';
 import jspreadsheet from 'jspreadsheet-ce';
-
 import '../../../node_modules/jspreadsheet-ce/dist/jspreadsheet.css';
 import CSVReader from './CSVReader';
-import CSVDownloader from './CSVDownloader';
+import ConvertMenu from './ConvertMenu';
+import ConvertSheet from './ConvertSheet';
 
 export default function SpreadSheet() {
+  const [showSpreadSheet, setshowSpreadSheet] = useState(false);
+  const [showUploadButton, setshowUploadButton] = useState(true);
+  const [showConvertMenu, setshowConvertMenu] = useState(false);
+  const [showConvertSheet, setshowConvertSheet] = useState(false);
+
+  const [content, setContent] = React.useState('');
+
+  const openSpreadSheet = () => {
+    setshowSpreadSheet(true);
+  };
+  const closeSpreadSheet = () => {
+    setshowSpreadSheet(false);
+  };
+
+  const calcShippingInfos = () => {
+    type ShippingInfo = {
+      addressInfo: string;
+      content: string;
+    };
+
+    const shippingInfos: ShippingInfo[] = [];
+
+    for (const oneData of data) {
+      let shippingInfo = { addressInfo: oneData[5], content: content };
+
+      shippingInfos.push(shippingInfo);
+    }
+    return shippingInfos;
+  };
+
   const options: any = {
     data: [[]],
     minDimensions: [0, 0] as [number, number],
@@ -48,6 +78,7 @@ export default function SpreadSheet() {
   useEffect(() => {
     if (jRef.current && !myTable.current) {
       myTable.current = jspreadsheet(jRef.current, options);
+      openSpreadSheet();
     } else {
       if (myTable.current) {
         myTable.current.setData(data);
@@ -58,14 +89,37 @@ export default function SpreadSheet() {
 
   return (
     <div>
-      {isEmpty() ? (
+      {!showSpreadSheet || isEmpty() ? (
         <div ref={jRef} style={{ display: 'none' }} />
       ) : (
         <div ref={jRef} />
       )}
       <br />
-      <CSVReader setData={setData} />
-      {!isEmpty() && <CSVDownloader data={data} />}
+      {showSpreadSheet && !isEmpty() && (
+        <button
+          className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
+          onClick={() => {
+            closeSpreadSheet();
+            setshowUploadButton(false);
+            setshowConvertMenu(true);
+          }}
+        >
+          クリックポスト変換
+        </button>
+      )}
+      {showUploadButton && <CSVReader setData={setData} />}
+      {showConvertMenu && (
+        <ConvertMenu
+          openSpreadSheet={openSpreadSheet}
+          setContent={setContent}
+          setshowUploadButton={setshowUploadButton}
+          setshowConvertMenu={setshowConvertMenu}
+          setshowConvertSheet={setshowConvertSheet}
+        />
+      )}
+      {showConvertSheet && (
+        <ConvertSheet content={content} shippingInfos={calcShippingInfos()} />
+      )}
     </div>
   );
 }

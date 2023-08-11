@@ -47,7 +47,7 @@ export default function CSVReader(props) {
               <div className='flex items-center w-full'>
                 <div
                   {...getRootProps()}
-                  class='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0'
+                  class='inline-block text-sm px-4 py-2 leading-none border rounded text-slate-400 border-slate-300 hover:border-transparent hover:text-white hover:bg-slate-500 hover:cursor-pointer m-3'
                 >
                   最初からやり直す
                 </div>
@@ -56,7 +56,7 @@ export default function CSVReader(props) {
               <div className='flex justify-center items-center w-full'>
                 <div
                   {...getRootProps()}
-                  class='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0'
+                  class='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer mt-4 lg:mt-0'
                 >
                   ファイルを選択
                 </div>
@@ -94,7 +94,7 @@ export default function CSVReader(props) {
                   <div className='flex justify-center items-center w-full'>
                     <div
                       {...getRootProps()}
-                      class='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
+                      class='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer m-3'
                     >
                       はい
                     </div>
