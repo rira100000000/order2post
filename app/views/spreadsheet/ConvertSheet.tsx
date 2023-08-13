@@ -4,7 +4,7 @@ import '../../../node_modules/jspreadsheet-ce/dist/jspreadsheet.css';
 import outputToConvertSheet from './clickpost';
 import './convertSheet.css';
 import * as Encoding from 'encoding-japanese';
-import { saveAs } from 'file-saver';
+import saveAs from 'file-saver';
 
 export default function ConvertSheet(props) {
   const saveCSV = (csvData) => {
