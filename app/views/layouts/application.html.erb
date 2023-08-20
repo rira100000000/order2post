@@ -32,12 +32,12 @@
 
         <% if user_signed_in? %>
           <div>
-            <a href="/users/sign_out" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 lg:mt-0">サインアウト</a>
+            <a href="/users/sign_out" id="signout_button"class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 lg:mt-0">サインアウト</a>
           </div>
         <% else %>
           <div>
-            <a href="/users/sign_in" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">ログイン</a>
-            <a href="/users/sign_up" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">サインアップ</a>
+            <a href="/users/sign_in" id="login_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">ログイン</a>
+            <a href="/users/sign_up" id="signup_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">サインアップ</a>
           </div>
         <% end %>
       </div>

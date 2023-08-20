@@ -28,8 +28,8 @@ export default function SpreadSheet() {
 
     const shippingInfos: ShippingInfo[] = [];
 
-    for (const oneData of data) {
-      let shippingInfo = { addressInfo: oneData[5], content: content };
+    for (const line of lines) {
+      let shippingInfo = { addressInfo: line[5], content: content };
 
       shippingInfos.push(shippingInfo);
     }
@@ -37,7 +37,7 @@ export default function SpreadSheet() {
   };
 
   const options: any = {
-    data: [[]],
+    lines: [[]],
     minDimensions: [0, 0] as [number, number],
     wordWrap: true,
     columns: [
@@ -51,10 +51,10 @@ export default function SpreadSheet() {
       { title: '備考', width: 300 }
     ]
   };
-  const [data, setData] = useState<string[][]>([]);
+  const [lines, setlines] = useState<string[][]>([]);
 
   const isEmpty = () => {
-    return data.length === 0;
+    return lines.length === 0;
   };
 
   const myTable = useRef<ReturnType<typeof jspreadsheet> | null>(null);
@@ -64,7 +64,7 @@ export default function SpreadSheet() {
     if (myTable.current) {
       const columns = myTable.current.getHeaders().length;
 
-      for (let i = 0; i < data.length; i++) {
+      for (let i = 0; i < lines.length; i++) {
         if (i % 2 === 0) {
           for (let j = 0; j < columns; j++) {
             let cellId = jspreadsheet.getColumnNameFromId([j, i]);
@@ -81,11 +81,11 @@ export default function SpreadSheet() {
       openSpreadSheet();
     } else {
       if (myTable.current) {
-        myTable.current.setData(data);
+        myTable.current.setData(lines);
         setRowStyles();
       }
     }
-  }, [options, data]);
+  }, [options, lines]);
 
   return (
     <div>
@@ -107,7 +107,7 @@ export default function SpreadSheet() {
           クリックポスト変換
         </button>
       )}
-      {showUploadButton && <CSVReader setData={setData} />}
+      {showUploadButton && <CSVReader setlines={setlines} />}
       {showConvertMenu && (
         <ConvertMenu
           openSpreadSheet={openSpreadSheet}
