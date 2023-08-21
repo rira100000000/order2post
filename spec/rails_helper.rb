@@ -4,6 +4,7 @@
 
 require_relative 'spec_helper'
 require 'capybara-screenshot/rspec'
+require 'byebug'
 
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
