@@ -33,10 +33,5 @@ module ViteRailsApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-
-    config.generators do |g|
-      g.fixture_replacement :factory_bot, dir: "spec/factories"
-      g.fixture_replacement :fixture_builder
-    end
   end
 end

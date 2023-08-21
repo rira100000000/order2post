@@ -51,7 +51,7 @@ export default function SpreadSheet() {
       { title: '備考', width: 300 }
     ]
   };
-  const [lines, setlines] = useState<string[][]>([]);
+  const [lines, setLines] = useState<string[][]>([]);
 
   const isEmpty = () => {
     return lines.length === 0;
@@ -107,7 +107,7 @@ export default function SpreadSheet() {
           クリックポスト変換
         </button>
       )}
-      {showUploadButton && <CSVReader setlines={setlines} />}
+      {showUploadButton && <CSVReader setLines={setLines} />}
       {showConvertMenu && (
         <ConvertMenu
           openSpreadSheet={openSpreadSheet}

@@ -14,7 +14,7 @@ export default function CSVReader(props) {
   const setMinneData = (data) => {
     openModal();
     const minneData: string[][] = ReadMinne(data);
-    props.setData(minneData);
+    props.setLines(minneData);
     serviceData.current = minneData;
     service.current = 'minne';
     anotherService.current = 'Creema';
@@ -23,7 +23,7 @@ export default function CSVReader(props) {
   const setCreemaData = (data) => {
     openModal();
     const creemaData: string[][] = ReadCreema(data);
-    props.setData(creemaData);
+    props.setLines(creemaData);
     serviceData.current = creemaData;
     service.current = 'Creema';
     anotherService.current = 'minne';
@@ -33,6 +33,7 @@ export default function CSVReader(props) {
     <>
       <CSVReader
         onUploadAccepted={(results: any, file: any) => {
+          console.log(file.name);
           {
             file.name.includes('orders') && setMinneData(results.data);
           }
@@ -77,13 +78,13 @@ export default function CSVReader(props) {
                 closeModal();
                 {
                   file.name.includes('orders') &&
-                    props.setData(
+                    props.setLines(
                       serviceData.current.concat(ReadMinne(results.data))
                     );
                 }
                 {
                   file.name.includes('tradenavi-list') &&
-                    props.setData(
+                    props.setLines(
                       serviceData.current.concat(ReadCreema(results.data))
                     );
                 }
