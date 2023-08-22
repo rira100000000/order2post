@@ -33,7 +33,6 @@ export default function CSVReader(props) {
     <>
       <CSVReader
         onUploadAccepted={(results: any, file: any) => {
-          console.log(file.name);
           {
             file.name.includes('orders') && setMinneData(results.data);
           }
@@ -58,6 +57,7 @@ export default function CSVReader(props) {
                 <div
                   {...getRootProps()}
                   class='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer mt-4 lg:mt-0'
+                  id='file_select_button'
                 >
                   ファイルを選択
                 </div>

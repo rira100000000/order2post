@@ -1,25 +1,14 @@
 # frozen_string_literal: true
 require 'rails_helper'
+require_relative './helpers/login_helper'
 
 RSpec.describe 'ログイン、ログアウトのテスト' do
   fixtures :users
   
   it 'トップページからログインページに飛び、ログイン、ログアウトできること' do
-    user = users(:minneUser)  
+    user = users(:minneUser)
 
-    visit root_path
-    expect(page).to have_selector('#login_button')
-
-    click_on 'login_button'
-
-    expect(page).to have_selector('#email_form')
-
-    fill_in 'email_form', with: user.email
-    fill_in 'user_password', with: 'password'
-
-    click_button 'Log in'
-
-    expect(page).to have_current_path(root_path)
+    login(user)
 
     find('#signout_button').click
     
@@ -27,7 +16,7 @@ RSpec.describe 'ログイン、ログアウトのテスト' do
   end
 end
 
-RSpec.describe 'サインアップできること' do    
+RSpec.describe 'サインアップできること' do
   it 'トップページからサインアップページに飛び、サインアップできること' do
     visit root_path
     expect(page).to have_selector('#signup_button')
@@ -45,4 +34,3 @@ RSpec.describe 'サインアップできること' do
     expect(page).to have_current_path(root_path)
   end
 end
-
