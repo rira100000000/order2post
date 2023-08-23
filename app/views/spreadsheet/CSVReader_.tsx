@@ -33,6 +33,7 @@ export default function CSVReader(props) {
     if (files && files[0]) {
       const selectedFile = files[0];
       const reader = new FileReader();
+      e.target.value = '';
 
       reader.onload = (event) => {
         const fileData = event.target?.result as string;
