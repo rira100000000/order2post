@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import jspreadsheet from 'jspreadsheet-ce';
 import '../../../node_modules/jspreadsheet-ce/dist/jspreadsheet.css';
-import CSVReader from './CSVReader';
+import CSVReader from './CSVReader_';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
 

@@ -16,6 +16,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "file-saver": "^2.0.5",
     "jspreadsheet-ce": "^4.13.3",
+    "papaparse": "^5.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-papaparse": "^4.1.0",
