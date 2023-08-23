@@ -18,6 +18,7 @@ export default function AllConvertForm(props) {
           内容品 ※最大15文字
           <br />
           <input
+            id='convertForm'
             type='text'
             name='content'
             onChange={handleChange}

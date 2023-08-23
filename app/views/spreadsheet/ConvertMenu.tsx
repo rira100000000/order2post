@@ -10,6 +10,7 @@ export default function ConvertMenu(props) {
           props.openSpreadSheet();
           props.setshowUploadButton(true);
           props.setshowConvertMenu(false);
+          props.setService('return');
         }}
       >
         注文一覧に戻る

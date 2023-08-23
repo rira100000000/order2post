@@ -140,3 +140,32 @@ RSpec.describe 'CSVファイルを読み込めること' do
 
 
 end
+
+RSpec.describe '注文一覧画面に戻ったとき、正常に表示されること' do
+  fixtures :users
+  
+  it '注文一覧画面に戻ったあと、一覧とボタンが正常に表示されること' do
+    user = users(:bothUser)
+
+    login(user)
+
+    file_input = find('#fileInput', visible: false)
+    file_path = Rails.root.join('spec', 'fixtures', 'orders_minne_sample.csv')
+    attach_file(file_input[:name], file_path, make_visible: true)
+
+    expect(page).to have_content('minneのデータが読み込まれました。')
+    
+    click_on 'いいえ'
+
+    expect(page).to have_content("minne\n12345694")
+
+    click_on 'クリックポスト変換'
+    expect(page).to have_no_content("minne\n12345694")
+
+    click_on '注文一覧に戻る'
+
+    expect(page).to have_content("minne\n12345694")
+
+    expect(page).to have_content("最初からやり直す")
+  end
+end

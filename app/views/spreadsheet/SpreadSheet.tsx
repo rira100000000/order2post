@@ -10,6 +10,7 @@ export default function SpreadSheet() {
   const [showUploadButton, setshowUploadButton] = useState(true);
   const [showConvertMenu, setshowConvertMenu] = useState(false);
   const [showConvertSheet, setshowConvertSheet] = useState(false);
+  const [service, setService] = useState('');
 
   const [content, setContent] = React.useState('');
 
@@ -107,7 +108,13 @@ export default function SpreadSheet() {
           クリックポスト変換
         </button>
       )}
-      {showUploadButton && <CSVReader setLines={setLines} />}
+      {showUploadButton && (
+        <CSVReader
+          setLines={setLines}
+          setService={setService}
+          service={service}
+        />
+      )}
       {showConvertMenu && (
         <ConvertMenu
           openSpreadSheet={openSpreadSheet}
@@ -115,6 +122,8 @@ export default function SpreadSheet() {
           setshowUploadButton={setshowUploadButton}
           setshowConvertMenu={setshowConvertMenu}
           setshowConvertSheet={setshowConvertSheet}
+          setService={setService}
+          service={service}
         />
       )}
       {showConvertSheet && (
