@@ -37,7 +37,7 @@ export default function ConvertSheet(props: ConvertSheetProps) {
     const uInt8List = new Uint8Array(shiftJisCodeList);
 
     const writeData = new Blob([uInt8List], { type: 'text/csv' });
-
+    console.log(writeData);
     saveAs(writeData, 'clickpost.csv');
   };
 
