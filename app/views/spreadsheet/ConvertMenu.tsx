@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AllConvertForm from './AllConvertForm';
 
-export default function ConvertMenu(props) {
+type SetshowUploadButton = (value: boolean) => void;
+type SetshowConvertMenu = (value: boolean) => void;
+type SetshowConvertSheet = (value: boolean) => void;
+
+interface ConvertMenuProps {
+  openSpreadSheet: () => void;
+  content: string;
+  setContent: React.Dispatch<React.SetStateAction<string>>;
+  setshowUploadButton: SetshowUploadButton;
+  setshowConvertMenu: SetshowConvertMenu;
+  setshowConvertSheet: SetshowConvertSheet;
+}
+
+export default function ConvertMenu(props: ConvertMenuProps) {
+  const [content, setContent] = useState('');
+
   return (
     <>
       <button
@@ -10,7 +25,6 @@ export default function ConvertMenu(props) {
           props.openSpreadSheet();
           props.setshowUploadButton(true);
           props.setshowConvertMenu(false);
-          props.setService('return');
         }}
       >
         注文一覧に戻る
@@ -21,6 +35,7 @@ export default function ConvertMenu(props) {
           クリックポストに表記する内容品を入力してください
         </p>
         <AllConvertForm
+          content={props.content}
           setContent={props.setContent}
           setshowConvertMenu={props.setshowConvertMenu}
           setshowConvertSheet={props.setshowConvertSheet}

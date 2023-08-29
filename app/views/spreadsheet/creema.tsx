@@ -1,4 +1,4 @@
-const ReadCreema = (input) => {
+const ReadCreema = (input: string[][]) => {
   const STATUS = 2;
   const ORDERNUM = 0;
   const SHIPPING = 25;

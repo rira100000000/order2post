@@ -4,28 +4,34 @@ import ReadCreema from './creema';
 import { useCSVReader } from 'react-papaparse';
 import useModal from '../../frontend/src/hooks/useModal';
 
-export default function CSVReader(props) {
+// プロパティ（props）の型定義
+interface CSVReaderProps {
+  setLines: React.Dispatch<React.SetStateAction<string[][]>>;
+  service: string;
+  setService: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function CSVReader(props: CSVReaderProps) {
   const { CSVReader } = useCSVReader();
   const { Modal, openModal, closeModal } = useModal();
-  const service = useRef<string>('');
   const anotherService = useRef<string>('');
   const serviceData = useRef<string[][]>([]);
 
-  const setMinneData = (data) => {
+  const setMinneData = (data: string[][]) => {
     openModal();
     const minneData: string[][] = ReadMinne(data);
     props.setLines(minneData);
     serviceData.current = minneData;
-    service.current = 'minne';
+    props.setService('minne');
     anotherService.current = 'Creema';
   };
 
-  const setCreemaData = (data) => {
+  const setCreemaData = (data: string[][]) => {
     openModal();
     const creemaData: string[][] = ReadCreema(data);
     props.setLines(creemaData);
     serviceData.current = creemaData;
-    service.current = 'Creema';
+    props.setService('Creema');
     anotherService.current = 'minne';
   };
 
@@ -33,21 +39,22 @@ export default function CSVReader(props) {
     <>
       <CSVReader
         onUploadAccepted={(results: any, file: any) => {
-          {
-            file.name.includes('orders') && setMinneData(results.data);
-          }
-          {
-            file.name.includes('tradenavi-list') && setCreemaData(results.data);
+          if (file.name.startsWith('orders')) {
+            setMinneData(results.data);
+          } else if (file.name.startsWith('tradenavi-list')) {
+            setCreemaData(results.data);
+          } else {
+            alert('minneまたはCreemaの注文情報を選択してください');
           }
         }}
       >
         {({ getRootProps }: any) => (
           <>
-            {service.current ? (
+            {props.service ? (
               <div className='flex items-center w-full'>
                 <div
                   {...getRootProps()}
-                  class='inline-block text-sm px-4 py-2 leading-none border rounded text-slate-400 border-slate-300 hover:border-transparent hover:text-white hover:bg-slate-500 hover:cursor-pointer m-3'
+                  className='inline-block text-sm px-4 py-2 leading-none border rounded text-slate-400 border-slate-300 hover:border-transparent hover:text-white hover:bg-slate-500 hover:cursor-pointer m-3'
                 >
                   最初からやり直す
                 </div>
@@ -56,7 +63,7 @@ export default function CSVReader(props) {
               <div className='flex justify-center items-center w-full'>
                 <div
                   {...getRootProps()}
-                  class='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer mt-4 lg:mt-0'
+                  className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer mt-4 lg:mt-0'
                   id='file_select_button'
                 >
                   ファイルを選択
@@ -69,7 +76,7 @@ export default function CSVReader(props) {
       <Modal>
         <div className='bg-white border h-40 p-4 rounded-md'>
           <div>
-            {service.current}のデータが読み込まれました。{'\n'}
+            {props.service}のデータが読み込まれました。{'\n'}
             続けて{anotherService.current}の注文情報を入力しますか？{'\n'}
           </div>
           <div className='m-5'>
@@ -95,7 +102,8 @@ export default function CSVReader(props) {
                   <div className='flex justify-center items-center w-full'>
                     <div
                       {...getRootProps()}
-                      class='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer m-3'
+                      id='yes_button'
+                      className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer m-3'
                     >
                       はい
                     </div>

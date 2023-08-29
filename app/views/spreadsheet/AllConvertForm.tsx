@@ -1,14 +1,28 @@
 import React from 'react';
 
-export default function AllConvertForm(props) {
-  const handleChange = (event) => {
+type SetshowConvertMenu = (value: boolean) => void;
+type SetshowConvertSheet = (value: boolean) => void;
+
+interface AllConvertFormProps {
+  content: string;
+  setContent: React.Dispatch<React.SetStateAction<string>>;
+  setshowConvertMenu: SetshowConvertMenu;
+  setshowConvertSheet: SetshowConvertSheet;
+}
+
+export default function AllConvertForm(props: AllConvertFormProps) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.setContent(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    props.setshowConvertMenu(false);
-    props.setshowConvertSheet(true);
+    if (props.content !== '') {
+      props.setshowConvertMenu(false);
+      props.setshowConvertSheet(true);
+    } else {
+      alert('内容品を設定して下さい');
+    }
   };
 
   return (

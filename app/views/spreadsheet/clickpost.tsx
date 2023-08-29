@@ -1,4 +1,9 @@
-const outputToConvertSheet = (shippingInfos) => {
+interface ShippingInfo {
+  addressInfo: string;
+  content: string;
+}
+
+const outputToConvertSheet = (shippingInfos: ShippingInfo[]) => {
   const POSTALCODE = 0;
   const ADDRESS1 = 1;
   const ADDRESS2 = 2;
@@ -15,7 +20,7 @@ const outputToConvertSheet = (shippingInfos) => {
     '内容品'
   ];
 
-  const splitAddress = (address) => {
+  const splitAddress = (address: string) => {
     const numericIndex = address.search(/[0-9０-９]/); // 最初の数値のインデックスを検索
 
     if (numericIndex !== -1) {
@@ -58,7 +63,7 @@ const outputToConvertSheet = (shippingInfos) => {
   return lines;
 };
 
-const outputToClickpost = (shippingInfos) => {
+const outputToClickpost = (shippingInfos: ShippingInfo[]) => {
   const POSTALCODE = 0;
   const ADDRESS1 = 1;
   const ADDRESS2 = 2;
@@ -75,7 +80,7 @@ const outputToClickpost = (shippingInfos) => {
     '内容品'
   ];
 
-  const splitAddress = (address) => {
+  const splitAddress = (address: string) => {
     const numericIndex = address.search(/[0-9０-９]/); // 最初の数値のインデックスを検索
 
     if (numericIndex !== -1) {

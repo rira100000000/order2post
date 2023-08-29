@@ -1,4 +1,4 @@
-const ReadMinne = (input) => {
+const ReadMinne = (input: string[][]) => {
   const STATUS = 2;
   const ORDERNUM = 0;
   const SHIPPING = 7;

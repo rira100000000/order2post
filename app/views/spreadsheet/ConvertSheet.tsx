@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import jspreadsheet from 'jspreadsheet-ce';
 import '../../../node_modules/jspreadsheet-ce/dist/jspreadsheet.css';
 import outputToConvertSheet from './clickpost';
@@ -6,8 +6,20 @@ import './convertSheet.css';
 import * as Encoding from 'encoding-japanese';
 import saveAs from 'file-saver';
 
-export default function ConvertSheet(props) {
-  const saveCSV = (csvData) => {
+interface ConvertSheetProps {
+  content: string;
+  shippingInfos: ShippingInfo[];
+  setshowConvertMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  setshowConvertSheet: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface ShippingInfo {
+  addressInfo: string;
+  content: string;
+}
+
+export default function ConvertSheet(props: ConvertSheetProps) {
+  const saveCSV = (csvData: string[][]) => {
     let csvString = '';
     for (const line of csvData) {
       csvString = csvString + line + '\n';
@@ -18,7 +30,10 @@ export default function ConvertSheet(props) {
       unicodeList.push(csvString.charCodeAt(i));
     }
 
-    const shiftJisCodeList = Encoding.convert(unicodeList, 'sjis', 'unicode');
+    const shiftJisCodeList = Encoding.convert(unicodeList, {
+      to: 'SJIS',
+      from: 'UNICODE'
+    });
     const uInt8List = new Uint8Array(shiftJisCodeList);
 
     const writeData = new Blob([uInt8List], { type: 'text/csv' });
@@ -58,18 +73,29 @@ export default function ConvertSheet(props) {
   }, [options, props.shippingInfos]);
 
   return (
-    <div>
-      <div ref={convertRef} className='convert-sheet' />
+    <>
+      <button
+        className='inline-block text-md px-4 py-2 leading-none text-slate-400  hover:underline m-1'
+        onClick={() => {
+          props.setshowConvertMenu(true);
+          props.setshowConvertSheet(false);
+        }}
+      >
+        内容品設定に戻る
+      </button>
       <div>
-        <button
-          className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer m-3'
-          onClick={() => {
-            saveCSV(output.current);
-          }}
-        >
-          ダウンロード
-        </button>
+        <div ref={convertRef} className='convert-sheet ml-4' />
+        <div>
+          <button
+            className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer m-3'
+            onClick={() => {
+              saveCSV(output.current);
+            }}
+          >
+            ダウンロード
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

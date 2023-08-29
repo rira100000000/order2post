@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import jspreadsheet from 'jspreadsheet-ce';
 import '../../../node_modules/jspreadsheet-ce/dist/jspreadsheet.css';
-import CSVReader from './CSVReader_';
+import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
 
@@ -11,8 +11,7 @@ export default function SpreadSheet() {
   const [showConvertMenu, setshowConvertMenu] = useState(false);
   const [showConvertSheet, setshowConvertSheet] = useState(false);
   const [service, setService] = useState('');
-
-  const [content, setContent] = React.useState('');
+  const [content, setContent] = useState('');
 
   const openSpreadSheet = () => {
     setshowSpreadSheet(true);
@@ -23,8 +22,8 @@ export default function SpreadSheet() {
 
   const calcShippingInfos = () => {
     type ShippingInfo = {
-      addressInfo: string;
-      content: string;
+      addressInfo: string; //注文一覧の住所欄の情報
+      content: string; // 内容品
     };
 
     const shippingInfos: ShippingInfo[] = [];
@@ -111,23 +110,27 @@ export default function SpreadSheet() {
       {showUploadButton && (
         <CSVReader
           setLines={setLines}
-          setService={setService}
           service={service}
+          setService={setService}
         />
       )}
       {showConvertMenu && (
         <ConvertMenu
           openSpreadSheet={openSpreadSheet}
+          content={content}
           setContent={setContent}
           setshowUploadButton={setshowUploadButton}
           setshowConvertMenu={setshowConvertMenu}
           setshowConvertSheet={setshowConvertSheet}
-          setService={setService}
-          service={service}
         />
       )}
       {showConvertSheet && (
-        <ConvertSheet content={content} shippingInfos={calcShippingInfos()} />
+        <ConvertSheet
+          content={content}
+          shippingInfos={calcShippingInfos()}
+          setshowConvertMenu={setshowConvertMenu}
+          setshowConvertSheet={setshowConvertSheet}
+        />
       )}
     </div>
   );
