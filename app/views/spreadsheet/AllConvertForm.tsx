@@ -2,15 +2,32 @@ import React from 'react';
 
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
+type ShippingInfo = {
+  addressInfo: string; //注文一覧の住所欄の情報
+  content: string; // 内容品
+};
 
 interface AllConvertFormProps {
   content: string;
+  lines: string[][];
   setContent: React.Dispatch<React.SetStateAction<string>>;
+  setShippingInfos: React.Dispatch<React.SetStateAction<ShippingInfo[]>>;
   setshowConvertMenu: SetshowConvertMenu;
   setshowConvertSheet: SetshowConvertSheet;
 }
 
 export default function AllConvertForm(props: AllConvertFormProps) {
+  const calcShippingInfos = () => {
+    const shippingInfos: ShippingInfo[] = [];
+
+    for (const line of props.lines) {
+      let shippingInfo = { addressInfo: line[5], content: props.content };
+
+      shippingInfos.push(shippingInfo);
+    }
+    return shippingInfos;
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.setContent(event.target.value);
   };
@@ -18,6 +35,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (props.content !== '') {
+      props.setShippingInfos(calcShippingInfos());
       props.setshowConvertMenu(false);
       props.setshowConvertSheet(true);
     } else {

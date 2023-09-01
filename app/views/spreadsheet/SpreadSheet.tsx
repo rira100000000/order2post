@@ -12,28 +12,20 @@ export default function SpreadSheet() {
   const [showConvertSheet, setshowConvertSheet] = useState(false);
   const [service, setService] = useState('');
   const [content, setContent] = useState('');
+  const [lines, setLines] = useState<string[][]>([]);
+  const [shippingInfos, setShippingInfos] = useState([]);
+
+  type shippingInfo = {
+    addressInfo: string; //注文一覧の住所欄の情報
+    content: string; // 内容品
+  };
+  type setShippingInfos = React.Dispatch<React.SetStateAction<shippingInfo[]>>;
 
   const openSpreadSheet = () => {
     setshowSpreadSheet(true);
   };
   const closeSpreadSheet = () => {
     setshowSpreadSheet(false);
-  };
-
-  const calcShippingInfos = () => {
-    type ShippingInfo = {
-      addressInfo: string; //注文一覧の住所欄の情報
-      content: string; // 内容品
-    };
-
-    const shippingInfos: ShippingInfo[] = [];
-
-    for (const line of lines) {
-      let shippingInfo = { addressInfo: line[5], content: content };
-
-      shippingInfos.push(shippingInfo);
-    }
-    return shippingInfos;
   };
 
   const options: any = {
@@ -51,7 +43,6 @@ export default function SpreadSheet() {
       { title: '備考', width: 300 }
     ]
   };
-  const [lines, setLines] = useState<string[][]>([]);
 
   const isEmpty = () => {
     return lines.length === 0;
@@ -122,12 +113,15 @@ export default function SpreadSheet() {
           setshowUploadButton={setshowUploadButton}
           setshowConvertMenu={setshowConvertMenu}
           setshowConvertSheet={setshowConvertSheet}
+          shippingInfos={shippingInfos}
+          setShippingInfos={setShippingInfos as setShippingInfos}
+          lines={lines}
         />
       )}
       {showConvertSheet && (
         <ConvertSheet
           content={content}
-          shippingInfos={calcShippingInfos()}
+          shippingInfos={shippingInfos}
           setshowConvertMenu={setshowConvertMenu}
           setshowConvertSheet={setshowConvertSheet}
         />
