@@ -28,25 +28,32 @@ export default function IndividualConvertForm(
   };
 
   const convertform = () => {
+    let orderedItem: string[] = [];
+    props.lines.forEach((line) => {
+      orderedItem = orderedItem.concat(line[3].split('\n'));
+    });
+    console.log(props.lines);
+    //重複の削除
+    const set = new Set(orderedItem);
+    const items = [...set];
+
     const result: React.JSX.Element[] = [];
     let index = 0;
-
-    props.lines.forEach((line) => {
-      const items = line[3].split('\n');
-      items.forEach((item) => {
-        result.push(
-          <div>
-            {item}
-            <input
-              type='text'
-              name='content'
-              className={`content_${index} inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0`}
-              value={item}
-            />
-          </div>
-        );
-      });
+    console.log(props.conversions);
+    items.forEach((item) => {
+      result.push(
+        <div>
+          {item}
+          <input
+            type='text'
+            name='content'
+            className={`content_${index} inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0`}
+            value={props.conversions[item]}
+          />
+        </div>
+      );
     });
+
     return result;
   };
 
