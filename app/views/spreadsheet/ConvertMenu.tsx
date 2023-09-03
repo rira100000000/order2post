@@ -54,7 +54,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
 
   useEffect(() => {
     axios
-      .get('/conversions') // データを取得するエンドポイントに合わせて変更してください
+      .get('/conversions')
       .then((response) => {
         setConversions(response.data);
         console.log(response.data);

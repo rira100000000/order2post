@@ -2,13 +2,7 @@
 
 class ConversionsController < ApplicationController
   def index
-    conversions = Conversion.where(user: current_user)
-    result = {}
-    conversions.each do |conversion|
-      conversion.content
-      result[conversion.item] = conversion.content
-    end
-
-    render json: result
+    conversions = Conversion.new.get_conversions(current_user)
+    render json: conversions
   end
 end
