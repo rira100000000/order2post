@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 type shippingInfo = {
   addressInfo: string; //注文一覧の住所欄の情報
@@ -23,39 +24,97 @@ interface IndividualConvertFormProps {
 export default function IndividualConvertForm(
   props: IndividualConvertFormProps
 ) {
+  const [newConversions, setNewConversions] = useState({});
+  const [items, setItems] = useState<string[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    item: string
+  ) => {
+    setIsMounted(true);
+    const tmpNewConversions = { ...newConversions };
+    tmpNewConversions[item] = event.target.value;
+    setNewConversions(tmpNewConversions);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    for (const key in newConversions) {
+      if (newConversions.hasOwnProperty(key)) {
+        if (!newConversions[key]) {
+          alert('個別設定を使う場合、全ての欄を入力してください');
+          return;
+        }
+      }
+    }
+
+    axios
+      .post('/conversions', { conversions: newConversions })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const conversionValue = (item) => {
+    if (isMounted) {
+      return newConversions[item];
+    } else {
+      return props.conversions[item];
+    }
   };
 
   const convertform = () => {
-    let orderedItem: string[] = [];
-    props.lines.forEach((line) => {
-      orderedItem = orderedItem.concat(line[3].split('\n'));
-    });
-    console.log(props.lines);
-    //重複の削除
-    const set = new Set(orderedItem);
-    const items = [...set];
-
     const result: React.JSX.Element[] = [];
     let index = 0;
-    console.log(props.conversions);
     items.forEach((item) => {
       result.push(
         <div>
-          {item}
+          <span className={`item_${index}`}>{item}</span>
           <input
+            key={`content_${index}`}
             type='text'
             name='content'
             className={`content_${index} inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0`}
-            value={props.conversions[item]}
+            value={conversionValue(item) || ''}
+            onChange={(event) => handleChange(event, item)}
           />
         </div>
       );
+      index++;
     });
 
     return result;
   };
+
+  useEffect(() => {
+    let orderedItem: string[] = [];
+    props.lines.forEach((line) => {
+      orderedItem = orderedItem.concat(line[3].split('\n'));
+    });
+
+    //重複の削除
+    const itemSet = new Set(orderedItem);
+    setItems([...itemSet]);
+
+    const initialConversions = {};
+    for (const item of itemSet) {
+      initialConversions[item] = props.conversions[item];
+    }
+    setNewConversions(initialConversions);
+
+    const csrfTokenElement = document.querySelector('#csrf-token');
+    if (csrfTokenElement) {
+      const csrfToken = csrfTokenElement.getAttribute('data-token');
+      axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
+    } else {
+      console.error('CSRF Token element not found');
+    }
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>

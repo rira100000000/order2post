@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'spreadsheet', to: 'spreadsheet#index'
   get 'conversions', to: 'conversions#index'
+  post '/conversions', to: 'conversions#submit'
 
   devise_for :users
   devise_scope :user do
