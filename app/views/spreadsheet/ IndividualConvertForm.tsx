@@ -32,8 +32,13 @@ export default function IndividualConvertForm(
     event: React.ChangeEvent<HTMLInputElement>,
     item: string
   ) => {
-    setIsMounted(true);
-    const tmpNewConversions = { ...newConversions };
+    let tmpNewConversions = {};
+    if (isMounted) {
+      tmpNewConversions = { ...newConversions };
+    } else {
+      tmpNewConversions = { ...props.conversions };
+      setIsMounted(true);
+    }
     tmpNewConversions[item] = event.target.value;
     setNewConversions(tmpNewConversions);
   };
