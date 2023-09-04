@@ -7,14 +7,14 @@ import * as Encoding from 'encoding-japanese';
 import saveAs from 'file-saver';
 
 interface ConvertSheetProps {
-  content: string;
-  shippingInfos: ShippingInfo[];
+  shippingInfos: shippingInfo[];
   setshowConvertMenu: React.Dispatch<React.SetStateAction<boolean>>;
   setshowConvertSheet: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface ShippingInfo {
+interface shippingInfo {
   addressInfo: string;
+  item: string;
   content: string;
 }
 

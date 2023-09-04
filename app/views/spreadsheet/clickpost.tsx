@@ -58,7 +58,6 @@ const outputToConvertSheet = (shippingInfos: ShippingInfo[]) => {
 
     lines.push(line);
   }
-  console.log(lines);
 
   return lines;
 };

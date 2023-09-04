@@ -3,8 +3,9 @@ import React from 'react';
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
 type ShippingInfo = {
-  addressInfo: string; //注文一覧の住所欄の情報
-  content: string; // 内容品
+  addressInfo: string;
+  item: string;
+  content: string;
 };
 
 interface AllConvertFormProps {
@@ -21,7 +22,11 @@ export default function AllConvertForm(props: AllConvertFormProps) {
     const shippingInfos: ShippingInfo[] = [];
 
     for (const line of props.lines) {
-      let shippingInfo = { addressInfo: line[5], content: props.content };
+      let shippingInfo = {
+        addressInfo: line[5],
+        item: 'any',
+        content: props.content
+      };
 
       shippingInfos.push(shippingInfo);
     }

@@ -17,7 +17,8 @@ export default function SpreadSheet() {
 
   type shippingInfo = {
     addressInfo: string; //注文一覧の住所欄の情報
-    content: string; // 内容品
+    item: string; //商品
+    content: string; //内容品
   };
   type setShippingInfos = React.Dispatch<React.SetStateAction<shippingInfo[]>>;
 
@@ -120,7 +121,6 @@ export default function SpreadSheet() {
       )}
       {showConvertSheet && (
         <ConvertSheet
-          content={content}
           shippingInfos={shippingInfos}
           setshowConvertMenu={setshowConvertMenu}
           setshowConvertSheet={setshowConvertSheet}

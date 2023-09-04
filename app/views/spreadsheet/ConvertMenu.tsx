@@ -7,8 +7,9 @@ type SetshowUploadButton = (value: boolean) => void;
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
 type shippingInfo = {
-  addressInfo: string; //注文一覧の住所欄の情報
-  content: string; // 内容品
+  addressInfo: string;
+  item: string;
+  content: string;
 };
 type setShippingInfos = React.Dispatch<React.SetStateAction<shippingInfo[]>>;
 

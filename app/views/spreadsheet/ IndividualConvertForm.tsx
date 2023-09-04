@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 type shippingInfo = {
-  addressInfo: string; //注文一覧の住所欄の情報
-  content: string; // 内容品
+  addressInfo: string;
+  item: string;
+  content: string;
 };
 type setShippingInfos = React.Dispatch<React.SetStateAction<shippingInfo[]>>;
 type SetshowConvertMenu = (value: boolean) => void;
@@ -28,6 +29,28 @@ export default function IndividualConvertForm(
   const [items, setItems] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
+  const calcShippingInfos = () => {
+    const shippingInfos: shippingInfo[] = [];
+    const conversions = currentConversions();
+
+    for (const line of props.lines) {
+      const item = line[3].split('\n')[0];
+      const content = conversions[item];
+      let shippingInfo = {
+        addressInfo: line[5],
+        item: item,
+        content: content
+      };
+
+      shippingInfos.push(shippingInfo);
+    }
+    return shippingInfos;
+  };
+
+  const currentConversions = () => {
+    return isMounted ? newConversions : props.conversions;
+  };
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     item: string
@@ -45,15 +68,17 @@ export default function IndividualConvertForm(
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const conversions = currentConversions();
 
-    for (const key in newConversions) {
-      if (newConversions.hasOwnProperty(key)) {
-        if (!newConversions[key]) {
+    for (const key in conversions) {
+      if (conversions.hasOwnProperty(key)) {
+        if (!conversions[key]) {
           alert('個別設定を使う場合、全ての欄を入力してください');
           return;
         }
       }
     }
+    props.setShippingInfos(calcShippingInfos());
 
     axios
       .post('/conversions', { conversions: newConversions })
@@ -63,20 +88,15 @@ export default function IndividualConvertForm(
       .catch((error) => {
         console.error(error);
       });
-  };
-
-  const conversionValue = (item) => {
-    if (isMounted) {
-      return newConversions[item];
-    } else {
-      return props.conversions[item];
-    }
+    props.setshowConvertMenu(false);
+    props.setshowConvertSheet(true);
   };
 
   const convertform = () => {
     const result: React.JSX.Element[] = [];
     let index = 0;
     items.forEach((item) => {
+      const conversion = currentConversions();
       result.push(
         <div>
           <span className={`item_${index}`}>{item}</span>
@@ -85,7 +105,7 @@ export default function IndividualConvertForm(
             type='text'
             name='content'
             className={`content_${index} inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0`}
-            value={conversionValue(item) || ''}
+            value={conversion[item] || ''}
             onChange={(event) => handleChange(event, item)}
           />
         </div>
