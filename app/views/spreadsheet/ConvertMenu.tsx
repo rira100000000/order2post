@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AllConvertForm from './AllConvertForm';
-import IndividualConvertForm from './ IndividualConvertForm';
+import IndividualConvertForm from './IndividualConvertForm';
 import axios from 'axios';
 
 type SetshowUploadButton = (value: boolean) => void;
