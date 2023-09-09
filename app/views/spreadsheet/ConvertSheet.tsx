@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import jspreadsheet from 'jspreadsheet-ce';
-import '../../../node_modules/jspreadsheet-ce/dist/jspreadsheet.css';
 import outputToConvertSheet from './clickpost';
 import './convertSheet.css';
 import * as Encoding from 'encoding-japanese';

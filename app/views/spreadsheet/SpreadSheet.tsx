@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import jspreadsheet from 'jspreadsheet-ce';
 import '../../../node_modules/jspreadsheet-ce/dist/jspreadsheet.css';
+import '../../assets/stylesheets/spreadsheet.css';
 import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
@@ -33,6 +34,7 @@ export default function SpreadSheet() {
     lines: [[]],
     minDimensions: [0, 0] as [number, number],
     wordWrap: true,
+    allowInsertRow: false,
     columns: [
       { title: '変換対象選択', type: 'checkbox', width: 100 },
       { title: '注文番号', width: 100 },
@@ -49,31 +51,37 @@ export default function SpreadSheet() {
     return lines.length === 0;
   };
 
-  const myTable = useRef<ReturnType<typeof jspreadsheet> | null>(null);
+  const table = useRef<ReturnType<typeof jspreadsheet> | null>(null);
   const jRef = useRef<HTMLDivElement | null>(null);
 
   const setRowStyles = () => {
-    if (myTable.current) {
-      const columns = myTable.current.getHeaders().length;
+    const rowsWithDateY = document.querySelectorAll('td');
 
-      for (let i = 0; i < lines.length; i++) {
-        if (i % 2 === 0) {
-          for (let j = 0; j < columns; j++) {
-            let cellId = jspreadsheet.getColumnNameFromId([j, i]);
-            myTable.current.setStyle(cellId, 'background-color', '#FDF5E6');
-          }
-        }
+    console.log(rowsWithDateY.length);
+    // 取得した要素をループで処理
+    let isEvenRow = false;
+
+    rowsWithDateY.forEach((row, index) => {
+      if (index % 9 === 0) {
+        isEvenRow = !isEvenRow;
       }
-    }
+
+      if (isEvenRow) {
+        row.classList.add('even-row');
+      }
+      if (!(index % 9 === 1)) {
+        row.classList.add('readonly');
+      }
+    });
   };
 
   useEffect(() => {
-    if (jRef.current && !myTable.current) {
-      myTable.current = jspreadsheet(jRef.current, options);
+    if (jRef.current && !table.current) {
+      table.current = jspreadsheet(jRef.current, options);
       openSpreadSheet();
     } else {
-      if (myTable.current) {
-        myTable.current.setData(lines);
+      if (table.current) {
+        table.current.setData(lines);
         setRowStyles();
       }
     }

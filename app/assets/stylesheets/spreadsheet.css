@@ -1,0 +1,22 @@
+.jexcel > tbody > tr > td.readonly {
+  color: rgba(0, 0, 0, 1);
+  background-color: white;
+}
+
+.jexcel > tbody > tr > td.readonly.even-row {
+  background-color: #fdf5e6;
+}
+
+.even-row {
+  background-color: #fdf5e6;
+}
+#root
+  > div
+  > div.jexcel_container
+  > div.jexcel_content
+  > table
+  > tbody
+  > tr.selected
+  > td.even-row {
+  background-color: #fdf5e6;
+}

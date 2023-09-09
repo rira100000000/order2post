@@ -12,7 +12,6 @@ class Conversion < ApplicationRecord
     conversions.each do |conversion|
       result[conversion.item] = conversion.content
     end
-    puts result
     result
   end
 end

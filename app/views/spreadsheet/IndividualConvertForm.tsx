@@ -10,8 +10,7 @@ type setShippingInfos = React.Dispatch<React.SetStateAction<shippingInfo[]>>;
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
 type Conversions = {
-  item: string;
-  content: string;
+  [key: string]: string;
 };
 
 interface IndividualConvertFormProps {
@@ -25,9 +24,21 @@ interface IndividualConvertFormProps {
 export default function IndividualConvertForm(
   props: IndividualConvertFormProps
 ) {
-  const [newConversions, setNewConversions] = useState({});
+  const [itemSize, setItemSize] = useState(0);
   const [items, setItems] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
+
+  const initNewConversions = () => {
+    const keys = Object.keys(props.conversions);
+    const initialConversions = {};
+    for (const key of keys) {
+      initialConversions[key] = props.conversions[key];
+      console.log('response.data[key]=' + props.conversions[key]);
+    }
+    return initialConversions;
+  };
+
+  const [newConversions, setNewConversions] = useState({});
 
   const calcShippingInfos = () => {
     const shippingInfos: shippingInfo[] = [];
@@ -56,26 +67,56 @@ export default function IndividualConvertForm(
     item: string
   ) => {
     let tmpNewConversions = {};
-    if (isMounted) {
-      tmpNewConversions = { ...newConversions };
+    if (!isMounted) {
+      setNewConversions(initNewConversions());
+      tmpNewConversions = initNewConversions();
     } else {
-      tmpNewConversions = { ...props.conversions };
-      setIsMounted(true);
+      tmpNewConversions = { ...newConversions };
     }
+
+    setIsMounted(true);
+
     tmpNewConversions[item] = event.target.value;
     setNewConversions(tmpNewConversions);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const conversions = currentConversions();
+    console.log(isMounted ? 'using newConversions' : 'using props.conversions');
+    console.log('props.conversions');
+    console.log(props.conversions);
+    console.log('newConversions4=');
+    console.log(newConversions);
+
+    let conversions = {};
+    if (!isMounted) {
+      setNewConversions(initNewConversions());
+      conversions = initNewConversions();
+    } else {
+      conversions = { ...newConversions };
+    }
+
+    console.log('conversions3=');
+    console.log(conversions);
+    const keyLength = Object.keys(conversions).length;
+    if (keyLength === 0) {
+      alert('個別設定を行う場合、全ての欄を入力してください error=1');
+      return;
+    } else if (keyLength !== itemSize) {
+      alert('個別設定を行う場合、全ての欄を入力してください error=2');
+      console.log('keylength=' + keyLength);
+      console.log('itemsize=' + itemSize);
+      return;
+    } else {
+      console.log('keylength=' + keyLength);
+    }
 
     for (const key in conversions) {
-      if (conversions.hasOwnProperty(key)) {
-        if (!conversions[key]) {
-          alert('個別設定を使う場合、全ての欄を入力してください');
-          return;
-        }
+      if (!conversions[key]) {
+        alert('個別設定を行う場合、全ての欄を入力してください error=3');
+        return;
+      } else {
+        console.log('conversion=' + conversions[key]);
       }
     }
     props.setShippingInfos(calcShippingInfos());
@@ -104,7 +145,8 @@ export default function IndividualConvertForm(
             key={`content_${index}`}
             type='text'
             name='content'
-            className={`content_${index} inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0`}
+            id={`content_${index}`}
+            className='inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0'
             value={conversion[item] || ''}
             onChange={(event) => handleChange(event, item)}
           />
@@ -125,7 +167,7 @@ export default function IndividualConvertForm(
     //重複の削除
     const itemSet = new Set(orderedItem);
     setItems([...itemSet]);
-
+    setItemSize(itemSet.size);
     const initialConversions = {};
     for (const item of itemSet) {
       initialConversions[item] = props.conversions[item];

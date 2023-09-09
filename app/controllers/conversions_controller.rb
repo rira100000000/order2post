@@ -36,7 +36,6 @@ class ConversionsController < ApplicationController
 
   def update(conversion, content)
     new_conversion_params = { content: }
-    puts conversion
     conversion.update!(new_conversion_params)
   end
 

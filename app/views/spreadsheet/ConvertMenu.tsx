@@ -25,17 +25,13 @@ interface ConvertMenuProps {
   lines: string[][];
 }
 
-interface Conversions {
-  item: string;
-  content: string;
-}
+type Conversions = {
+  [key: string]: string;
+};
 
 export default function ConvertMenu(props: ConvertMenuProps) {
   const [content, setContent] = useState('');
-  const [conversions, setConversions] = useState<Conversions>({
-    item: '',
-    content: ''
-  });
+  const [conversions, setConversions] = useState<Conversions>({});
 
   const calcShippingInfos = () => {
     type ShippingInfo = {
@@ -58,7 +54,6 @@ export default function ConvertMenu(props: ConvertMenuProps) {
       .get('/conversions')
       .then((response) => {
         setConversions(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error('データの取得に失敗しました: ', error);
