@@ -11,15 +11,15 @@ const ReadCreema = (input: string[][]) => {
   const DATE = 1;
   const REMARKS = 22;
 
-  const lines: string[][] = [];
+  const lines: Array<Array<string | boolean>> = [];
 
   for (let i = 1; i < input.length; i++) {
     const order = input[i];
     if (order[STATUS] !== '発送準備') {
       continue;
     }
-    const line: string[] = [];
-    line.push('');
+    const line: Array<string | boolean> = [];
+    line.push(order[SHIPPING] === 'クリックポスト' ? true : false);
     line.push('Creema\n' + order[ORDERNUM]);
     line.push(order[SHIPPING]);
 

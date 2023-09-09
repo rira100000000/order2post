@@ -10,7 +10,7 @@ type ShippingInfo = {
 
 interface AllConvertFormProps {
   content: string;
-  lines: string[][];
+  lines: Array<Array<string | boolean>>;
   setContent: React.Dispatch<React.SetStateAction<string>>;
   setShippingInfos: React.Dispatch<React.SetStateAction<ShippingInfo[]>>;
   setshowConvertMenu: SetshowConvertMenu;
@@ -22,13 +22,14 @@ export default function AllConvertForm(props: AllConvertFormProps) {
     const shippingInfos: ShippingInfo[] = [];
 
     for (const line of props.lines) {
-      let shippingInfo = {
-        addressInfo: line[5],
-        item: 'any',
-        content: props.content
-      };
-
-      shippingInfos.push(shippingInfo);
+      if (line[0] === true) {
+        let shippingInfo = {
+          addressInfo: line[5] as string,
+          item: 'any',
+          content: props.content
+        };
+        shippingInfos.push(shippingInfo);
+      }
     }
     return shippingInfos;
   };

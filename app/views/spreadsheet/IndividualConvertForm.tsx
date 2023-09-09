@@ -14,7 +14,7 @@ type Conversions = {
 };
 
 interface IndividualConvertFormProps {
-  lines: string[][];
+  lines: Array<Array<string | boolean>>;
   conversions: Conversions;
   setShippingInfos: setShippingInfos;
   setshowConvertMenu: SetshowConvertMenu;
@@ -45,15 +45,17 @@ export default function IndividualConvertForm(
     const conversions = currentConversions();
 
     for (const line of props.lines) {
-      const item = line[3].split('\n')[0];
-      const content = conversions[item];
-      let shippingInfo = {
-        addressInfo: line[5],
-        item: item,
-        content: content
-      };
+      if (line[0] === true) {
+        const item = (line[3] as string).split('\n')[0];
+        const content = conversions[item];
+        let shippingInfo = {
+          addressInfo: line[5] as string,
+          item: item,
+          content: content
+        };
 
-      shippingInfos.push(shippingInfo);
+        shippingInfos.push(shippingInfo);
+      }
     }
     return shippingInfos;
   };
@@ -161,7 +163,7 @@ export default function IndividualConvertForm(
   useEffect(() => {
     let orderedItem: string[] = [];
     props.lines.forEach((line) => {
-      orderedItem = orderedItem.concat(line[3].split('\n'));
+      orderedItem = orderedItem.concat((line[3] as string).split('\n'));
     });
 
     //重複の削除

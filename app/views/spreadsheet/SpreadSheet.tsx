@@ -13,7 +13,7 @@ export default function SpreadSheet() {
   const [showConvertSheet, setshowConvertSheet] = useState(false);
   const [service, setService] = useState('');
   const [content, setContent] = useState('');
-  const [lines, setLines] = useState<string[][]>([]);
+  const [lines, setLines] = useState<Array<Array<string | boolean>>>([]);
   const [shippingInfos, setShippingInfos] = useState([]);
 
   type shippingInfo = {
@@ -49,6 +49,12 @@ export default function SpreadSheet() {
 
   const isEmpty = () => {
     return lines.length === 0;
+  };
+
+  const ischecked = () => {
+    return lines.some((line) => {
+      return line[0] === true;
+    });
   };
 
   const table = useRef<ReturnType<typeof jspreadsheet> | null>(null);
@@ -99,9 +105,13 @@ export default function SpreadSheet() {
         <button
           className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
           onClick={() => {
-            closeSpreadSheet();
-            setshowUploadButton(false);
-            setshowConvertMenu(true);
+            if (ischecked()) {
+              closeSpreadSheet();
+              setshowUploadButton(false);
+              setshowConvertMenu(true);
+            } else {
+              alert('クリックポストに変換する注文にチェックを入れてください');
+            }
           }}
         >
           クリックポスト変換
@@ -125,6 +135,7 @@ export default function SpreadSheet() {
           shippingInfos={shippingInfos}
           setShippingInfos={setShippingInfos as setShippingInfos}
           lines={lines}
+          setLines={setLines}
         />
       )}
       {showConvertSheet && (

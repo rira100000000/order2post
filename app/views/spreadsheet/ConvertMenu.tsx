@@ -6,6 +6,7 @@ import axios from 'axios';
 type SetshowUploadButton = (value: boolean) => void;
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
+type setLines = (value: string[][]) => void;
 type shippingInfo = {
   addressInfo: string;
   item: string;
@@ -22,7 +23,8 @@ interface ConvertMenuProps {
   setshowConvertSheet: SetshowConvertSheet;
   shippingInfos: shippingInfo[];
   setShippingInfos: setShippingInfos;
-  lines: string[][];
+  lines: Array<Array<string | boolean>>;
+  setLines: setLines;
 }
 
 type Conversions = {
@@ -30,24 +32,7 @@ type Conversions = {
 };
 
 export default function ConvertMenu(props: ConvertMenuProps) {
-  const [content, setContent] = useState('');
   const [conversions, setConversions] = useState<Conversions>({});
-
-  const calcShippingInfos = () => {
-    type ShippingInfo = {
-      addressInfo: string; //注文一覧の住所欄の情報
-      content: string; // 内容品
-    };
-
-    const shippingInfos: ShippingInfo[] = [];
-
-    for (const line of props.lines) {
-      let shippingInfo = { addressInfo: line[5], content: content };
-
-      shippingInfos.push(shippingInfo);
-    }
-    return shippingInfos;
-  };
 
   useEffect(() => {
     axios

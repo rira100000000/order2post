@@ -6,7 +6,9 @@ import useModal from '../../frontend/src/hooks/useModal';
 
 // プロパティ（props）の型定義
 interface CSVReaderProps {
-  setLines: React.Dispatch<React.SetStateAction<string[][]>>;
+  setLines: React.Dispatch<
+    React.SetStateAction<Array<Array<string | boolean>>>
+  >;
   service: string;
   setService: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -15,11 +17,11 @@ export default function CSVReader(props: CSVReaderProps) {
   const { CSVReader } = useCSVReader();
   const { Modal, openModal, closeModal } = useModal();
   const anotherService = useRef<string>('');
-  const serviceData = useRef<string[][]>([]);
+  const serviceData = useRef<Array<Array<string | boolean>>>([]);
 
   const setMinneData = (data: string[][]) => {
     openModal();
-    const minneData: string[][] = ReadMinne(data);
+    const minneData: Array<Array<string | boolean>> = ReadMinne(data);
     props.setLines(minneData);
     serviceData.current = minneData;
     props.setService('minne');
@@ -28,7 +30,7 @@ export default function CSVReader(props: CSVReaderProps) {
 
   const setCreemaData = (data: string[][]) => {
     openModal();
-    const creemaData: string[][] = ReadCreema(data);
+    const creemaData: Array<Array<string | boolean>> = ReadCreema(data);
     props.setLines(creemaData);
     serviceData.current = creemaData;
     props.setService('Creema');
@@ -82,18 +84,18 @@ export default function CSVReader(props: CSVReaderProps) {
           <div className='m-5'>
             <CSVReader
               onUploadAccepted={(results: any, file: any) => {
-                closeModal();
-                {
-                  file.name.includes('orders') &&
-                    props.setLines(
-                      serviceData.current.concat(ReadMinne(results.data))
-                    );
-                }
-                {
-                  file.name.includes('tradenavi-list') &&
-                    props.setLines(
-                      serviceData.current.concat(ReadCreema(results.data))
-                    );
+                if (file.name.includes('orders')) {
+                  props.setLines(
+                    serviceData.current.concat(ReadMinne(results.data))
+                  );
+                  closeModal();
+                } else if (file.name.includes('tradenavi-list')) {
+                  props.setLines(
+                    serviceData.current.concat(ReadCreema(results.data))
+                  );
+                  closeModal();
+                } else {
+                  alert('minneまたはCreemaの注文情報を選択してください');
                 }
               }}
             >
