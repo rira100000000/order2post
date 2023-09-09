@@ -24,6 +24,10 @@ RSpec.describe 'クリックポスト用に正しくファイルが作成でき�
       
     expect(page).to have_content("minne\n12345694")
     
+    all('input[type="checkbox"]').each do |checkbox|
+      checkbox.set(true)
+    end
+    
     click_on 'クリックポスト変換'
 
     fill_in 'convertForm', with: '変換された内容品'

@@ -98,6 +98,10 @@ RSpec.describe '内容品の設定ができること' do
 
         expect(page).to have_content("Creema\n202302071459-zxPE")
         
+        all('input[type="checkbox"]').each do |checkbox|
+            checkbox.set(true)
+        end
+        
         click_on 'クリックポスト変換'
 
         expect(page).to have_xpath("//input[@id='content_0'][@value='スカート']")
