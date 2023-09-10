@@ -3,7 +3,7 @@
 class Conversion < ApplicationRecord
   belongs_to :user
 
-  validates :item, presence: true, uniqueness: true
+  validates :item, presence: true, uniqueness: { scope: :user_id }
   validates :content, presence: true
 
   def self.get_conversions(current_user)

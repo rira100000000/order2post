@@ -61,6 +61,7 @@ export default function IndividualConvertForm(
   };
 
   const currentConversions = () => {
+    console.log(props.conversions);
     return isMounted ? newConversions : props.conversions;
   };
 
@@ -84,11 +85,15 @@ export default function IndividualConvertForm(
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(isMounted ? 'using newConversions' : 'using props.conversions');
-    console.log('props.conversions');
-    console.log(props.conversions);
-    console.log('newConversions4=');
-    console.log(newConversions);
+    const contentInputs = document.querySelectorAll(
+      'input[name="individual_content"]'
+    );
+    for (const input of contentInputs) {
+      if (!input['value']) {
+        alert('個別設定を行う場合、全ての欄を入力してください error=2');
+        return;
+      }
+    }
 
     let conversions = {};
     if (!isMounted) {
@@ -96,21 +101,9 @@ export default function IndividualConvertForm(
       conversions = initNewConversions();
     } else {
       conversions = { ...newConversions };
-    }
+      console.log('conversions=');
 
-    console.log('conversions3=');
-    console.log(conversions);
-    const keyLength = Object.keys(conversions).length;
-    if (keyLength === 0) {
-      alert('個別設定を行う場合、全ての欄を入力してください error=1');
-      return;
-    } else if (keyLength !== itemSize) {
-      alert('個別設定を行う場合、全ての欄を入力してください error=2');
-      console.log('keylength=' + keyLength);
-      console.log('itemsize=' + itemSize);
-      return;
-    } else {
-      console.log('keylength=' + keyLength);
+      console.log(conversions);
     }
 
     for (const key in conversions) {
@@ -124,7 +117,7 @@ export default function IndividualConvertForm(
     props.setShippingInfos(calcShippingInfos());
 
     axios
-      .post('/conversions', { conversions: newConversions })
+      .post('/conversions', { conversions: conversions })
       .then((response) => {
         console.log(response.data);
       })
@@ -146,7 +139,7 @@ export default function IndividualConvertForm(
           <input
             key={`content_${index}`}
             type='text'
-            name='content'
+            name='individual_content'
             id={`content_${index}`}
             className='inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0'
             value={conversion[item] || ''}
@@ -163,7 +156,9 @@ export default function IndividualConvertForm(
   useEffect(() => {
     let orderedItem: string[] = [];
     props.lines.forEach((line) => {
-      orderedItem = orderedItem.concat((line[3] as string).split('\n'));
+      if (line[0] === true) {
+        orderedItem = orderedItem.concat((line[3] as string).split('\n'));
+      }
     });
 
     //重複の削除

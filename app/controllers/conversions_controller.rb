@@ -10,18 +10,21 @@ class ConversionsController < ApplicationController
 
   def submit
     new_conversions = params[:conversions]
+    current_conversions = Conversion.where(user: current_user)
 
     new_conversions.each_key do |key|
       is_update = false
-
-      Conversion.where(user: current_user).each do |current_conversion|
+      current_conversions.each do |current_conversion|
         next if current_conversion.item != key
 
         update(current_conversion, new_conversions[key])
         is_update = true
         break
       end
-      create(key, new_conversions[key]) unless is_update
+      unless is_update
+        puts "create #{key}★★★★★★★★★★★★★★★★★★★★★★"
+        create(key, new_conversions[key])
+      end
     end
 
     render json: params[:data]
