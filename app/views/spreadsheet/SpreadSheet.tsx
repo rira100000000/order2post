@@ -5,6 +5,7 @@ import '../../assets/stylesheets/spreadsheet.css';
 import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
+import { alertConverteds } from './converteds';
 
 export default function SpreadSheet() {
   const [showSpreadSheet, setshowSpreadSheet] = useState(false);
@@ -109,6 +110,7 @@ export default function SpreadSheet() {
               closeSpreadSheet();
               setshowUploadButton(false);
               setshowConvertMenu(true);
+              alertConverteds(lines);
             } else {
               alert('クリックポストに変換する注文にチェックを入れてください');
             }

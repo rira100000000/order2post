@@ -19,18 +19,18 @@ export default function CSVReader(props: CSVReaderProps) {
   const anotherService = useRef<string>('');
   const serviceData = useRef<Array<Array<string | boolean>>>([]);
 
-  const setMinneData = (data: string[][]) => {
+  const setMinneData = async (data: string[][]) => {
     openModal();
-    const minneData: Array<Array<string | boolean>> = ReadMinne(data);
+    const minneData: Array<Array<string | boolean>> = await ReadMinne(data);
     props.setLines(minneData);
     serviceData.current = minneData;
     props.setService('minne');
     anotherService.current = 'Creema';
   };
 
-  const setCreemaData = (data: string[][]) => {
+  const setCreemaData = async (data: string[][]) => {
     openModal();
-    const creemaData: Array<Array<string | boolean>> = ReadCreema(data);
+    const creemaData: Array<Array<string | boolean>> = await ReadCreema(data);
     props.setLines(creemaData);
     serviceData.current = creemaData;
     props.setService('Creema');
@@ -83,15 +83,15 @@ export default function CSVReader(props: CSVReaderProps) {
           </div>
           <div className='m-5'>
             <CSVReader
-              onUploadAccepted={(results: any, file: any) => {
+              onUploadAccepted={async (results: any, file: any) => {
                 if (file.name.includes('orders')) {
                   props.setLines(
-                    serviceData.current.concat(ReadMinne(results.data))
+                    serviceData.current.concat(await ReadMinne(results.data))
                   );
                   closeModal();
                 } else if (file.name.includes('tradenavi-list')) {
                   props.setLines(
-                    serviceData.current.concat(ReadCreema(results.data))
+                    serviceData.current.concat(await ReadCreema(results.data))
                   );
                   closeModal();
                 } else {

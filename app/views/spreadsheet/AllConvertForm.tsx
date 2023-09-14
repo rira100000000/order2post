@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios';
-import updateConverteds from './converteds';
+import { updateConverteds } from './converteds';
 
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;

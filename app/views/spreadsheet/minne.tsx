@@ -1,4 +1,6 @@
-const ReadMinne = (input: string[][]) => {
+import { checkConverteds } from './converteds';
+
+const ReadMinne = async (csvDatas: string[][]) => {
   const STATUS = 2;
   const ORDERNUM = 0;
   const SHIPPING = 7;
@@ -13,29 +15,45 @@ const ReadMinne = (input: string[][]) => {
   const REMARKS = 13;
 
   const lines: Array<Array<string | boolean>> = [];
+  const conpareDatas: Array<Array<string | boolean>> = [];
 
-  for (let i = 1; i < input.length; i++) {
-    const order = input[i];
-    if (order[STATUS] !== '発送準備中') {
+  for (const csvData of csvDatas) {
+    conpareDatas.push([true, 'minne\n' + csvData[ORDERNUM]]);
+  }
+  const converteds = await checkConverteds(conpareDatas);
+
+  for (let i = 1; i < csvDatas.length; i++) {
+    const csvData = csvDatas[i];
+    if (csvData[STATUS] !== '発送準備中') {
       continue;
     }
     const line: Array<string | boolean> = [];
-    line.push(order[SHIPPING] === 'クリックポスト' ? true : false);
-    line.push('minne\n' + order[ORDERNUM]);
-    line.push(order[SHIPPING]);
+
+    if (
+      converteds.some((converted) => {
+        return converted === `minne\n${csvData[ORDERNUM]}`;
+      })
+    ) {
+      line.push(false);
+    } else {
+      line.push(csvData[SHIPPING] === 'クリックポスト' ? true : false);
+    }
+
+    line.push('minne\n' + csvData[ORDERNUM]);
+    line.push(csvData[SHIPPING]);
 
     const items: string[] = [];
     const itemnums: string[] = [];
     const remarks: string[] = [];
 
-    items.push(input[i][ITEM]);
-    itemnums.push(input[i][ITEMNUM]);
-    remarks.push(input[i][REMARKS]);
+    items.push(csvDatas[i][ITEM]);
+    itemnums.push(csvDatas[i][ITEMNUM]);
+    remarks.push(csvDatas[i][REMARKS]);
 
-    while (input[i][ORDERNUM] === input[i + 1][ORDERNUM]) {
-      items.push(input[i + 1][ITEM]);
-      itemnums.push(input[i + 1][ITEMNUM]);
-      remarks.push(input[i + 1][REMARKS]);
+    while (csvDatas[i][ORDERNUM] === csvDatas[i + 1][ORDERNUM]) {
+      items.push(csvDatas[i + 1][ITEM]);
+      itemnums.push(csvDatas[i + 1][ITEMNUM]);
+      remarks.push(csvDatas[i + 1][REMARKS]);
       i++;
     }
 
@@ -43,19 +61,19 @@ const ReadMinne = (input: string[][]) => {
     line.push(itemnums.join('\n'));
     line.push(
       '〒' +
-        order[POSTALCODE].slice(0, 3) +
+        csvData[POSTALCODE].slice(0, 3) +
         '-' +
-        order[POSTALCODE].slice(3, 7) +
+        csvData[POSTALCODE].slice(3, 7) +
         '\n' +
-        order[ADDRESS1] +
+        csvData[ADDRESS1] +
         '\n' +
-        order[ADDRESS2] +
+        csvData[ADDRESS2] +
         '\n' +
-        order[NAME] +
+        csvData[NAME] +
         '\n' +
-        order[TEL]
+        csvData[TEL]
     );
-    line.push(order[DATE]);
+    line.push(csvData[DATE]);
     line.push(remarks.join('\n'));
     lines.push(line);
   }

@@ -3,6 +3,11 @@
 class ConvertedsController < ApplicationController
   protect_from_forgery
 
+  def index
+    converteds = Converted.where(user: current_user)
+    render json: converteds
+  end
+
   def submit
     new_converted_ids = params[:converteds]
     current_converted_orders = Converted.where(user: current_user)
