@@ -64,7 +64,6 @@ export default function SpreadSheet() {
   const setRowStyles = () => {
     const rowsWithDateY = document.querySelectorAll('td');
 
-    console.log(rowsWithDateY.length);
     // 取得した要素をループで処理
     let isEvenRow = false;
 

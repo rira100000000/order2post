@@ -62,7 +62,6 @@ export default function IndividualConvertForm(
   };
 
   const currentConversions = () => {
-    console.log(props.conversions);
     return isMounted ? newConversions : props.conversions;
   };
 
@@ -134,10 +133,9 @@ export default function IndividualConvertForm(
     items.forEach((item) => {
       const conversion = currentConversions();
       result.push(
-        <div>
+        <div key={`content_${index}`}>
           <span className={`item_${index}`}>{item}</span>
           <input
-            key={`content_${index}`}
             type='text'
             name='individual_content'
             id={`content_${index}`}
