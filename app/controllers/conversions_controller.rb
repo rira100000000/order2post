@@ -21,10 +21,7 @@ class ConversionsController < ApplicationController
         is_update = true
         break
       end
-      unless is_update
-        puts "create #{key}★★★★★★★★★★★★★★★★★★★★★★"
-        create(key, new_conversions[key])
-      end
+      create(key, new_conversions[key]) unless is_update
     end
 
     render json: params[:data]
@@ -40,10 +37,5 @@ class ConversionsController < ApplicationController
   def update(conversion, content)
     new_conversion_params = { content: }
     conversion.update!(new_conversion_params)
-  end
-
-  def conversion_params
-    # requireを削除
-    params.permit(:conversions)
   end
 end

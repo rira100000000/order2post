@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import updateConverteds from './converteds';
 
 type shippingInfo = {
   addressInfo: string;
@@ -101,9 +102,6 @@ export default function IndividualConvertForm(
       conversions = initNewConversions();
     } else {
       conversions = { ...newConversions };
-      console.log('conversions=');
-
-      console.log(conversions);
     }
 
     for (const key in conversions) {
@@ -124,6 +122,8 @@ export default function IndividualConvertForm(
       .catch((error) => {
         console.error(error);
       });
+
+    updateConverteds(props.lines);
     props.setshowConvertMenu(false);
     props.setshowConvertSheet(true);
   };

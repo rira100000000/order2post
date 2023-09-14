@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import updateConverteds from './converteds';
 
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
@@ -42,6 +44,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
     event.preventDefault();
     if (props.content !== '') {
       props.setShippingInfos(calcShippingInfos());
+      updateConverteds(props.lines);
       props.setshowConvertMenu(false);
       props.setshowConvertSheet(true);
     } else {
