@@ -25,6 +25,9 @@ interface IndividualConvertFormProps {
 export default function IndividualConvertForm(
   props: IndividualConvertFormProps
 ) {
+  const NEEDCONVERT = 0;
+  const ITEM = 3;
+  const ADDRESS = 5;
   const [items, setItems] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -46,10 +49,10 @@ export default function IndividualConvertForm(
 
     for (const line of props.lines) {
       if (line[0] === true) {
-        const item = (line[3] as string).split('\n')[0];
-        const content = conversions[item];
+        const item = (line[ITEM] as string).split('\n')[NEEDCONVERT];
+        const content = conversions[ITEM];
         let shippingInfo = {
-          addressInfo: line[5] as string,
+          addressInfo: line[ADDRESS] as string,
           item: item,
           content: content
         };
@@ -153,7 +156,7 @@ export default function IndividualConvertForm(
     let orderedItem: string[] = [];
     props.lines.forEach((line) => {
       if (line[0] === true) {
-        orderedItem = orderedItem.concat((line[3] as string).split('\n'));
+        orderedItem = orderedItem.concat((line[ITEM] as string).split('\n'));
       }
     });
 
