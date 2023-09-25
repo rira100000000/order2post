@@ -25,7 +25,6 @@ interface IndividualConvertFormProps {
 export default function IndividualConvertForm(
   props: IndividualConvertFormProps
 ) {
-  const [itemSize, setItemSize] = useState(0);
   const [items, setItems] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -161,7 +160,6 @@ export default function IndividualConvertForm(
     //重複の削除
     const itemSet = new Set(orderedItem);
     setItems([...itemSet]);
-    setItemSize(itemSet.size);
     const initialConversions = {};
     for (const item of itemSet) {
       initialConversions[item] = props.conversions[item];
