@@ -129,23 +129,22 @@ export default function IndividualConvertForm(
 
   const convertform = () => {
     const result: React.JSX.Element[] = [];
-    let index = 0;
-    items.forEach((item) => {
+
+    items.forEach((item, index) => {
       const conversion = currentConversions();
       result.push(
-        <div key={`content_${index}`}>
-          <span className={`item_${index}`}>{item}</span>
+        <div key={`content_${index}`} className='w-full flex items-center'>
+          <span className={`item_${index} w-64 flex-wrap`}>{item}</span>
           <input
             type='text'
             name='individual_content'
             id={`content_${index}`}
-            className='inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0'
+            className='text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-1 ml-auto'
             value={conversion[item] || ''}
             onChange={(event) => handleChange(event, item)}
           />
         </div>
       );
-      index++;
     });
 
     return result;
