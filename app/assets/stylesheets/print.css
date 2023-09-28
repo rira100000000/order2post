@@ -1,0 +1,51 @@
+@media print {
+  div.print_none,
+  body > nav.print_none,
+  .print_none {
+    display: none;
+  }
+  .print-friendly {
+    page-break-inside: avoid;
+  }
+
+  .printSheet {
+    display: block !important;
+  }
+  .even-row {
+    background-color: #fdf5e6 !important;
+  }
+
+  body {
+    width: 297mm;
+    height: 210mm;
+    -webkit-print-color-adjust: exact;
+  }
+}
+td {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+td.orderNum {
+  width: 20mm;
+}
+
+td.shipping {
+  width: 25mm;
+}
+td.item {
+  width: 80mm;
+}
+td.itemNum {
+  width: 10mm;
+}
+
+td.address {
+  width: 70mm;
+}
+td.date {
+  width: 20mm;
+}
+td.remarks {
+  width: 70mm;
+}

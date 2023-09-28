@@ -3,8 +3,8 @@ import ReadMinne from './minne';
 import ReadCreema from './creema';
 import { useCSVReader } from 'react-papaparse';
 import useModal from '../../frontend/src/hooks/useModal';
+import '../../assets/stylesheets/print.css';
 
-// プロパティ（props）の型定義
 interface CSVReaderProps {
   setLines: React.Dispatch<
     React.SetStateAction<Array<Array<string | boolean>>>
@@ -56,7 +56,7 @@ export default function CSVReader(props: CSVReaderProps) {
               <div className='flex items-center w-full'>
                 <div
                   {...getRootProps()}
-                  className='inline-block text-sm px-4 py-2 leading-none border rounded text-slate-400 border-slate-300 hover:border-transparent hover:text-white hover:bg-slate-500 hover:cursor-pointer m-3'
+                  className='print_none inline-block text-sm px-4 py-2 leading-none border rounded text-slate-400 border-slate-300 hover:border-transparent hover:text-white hover:bg-slate-500 hover:cursor-pointer m-3'
                 >
                   最初からやり直す
                 </div>
@@ -76,7 +76,7 @@ export default function CSVReader(props: CSVReaderProps) {
         )}
       </CSVReader>
       <Modal>
-        <div className='bg-white border h-40 p-4 rounded-md'>
+        <div className='bg-white border h-40 p-4 rounded-md print_none'>
           <div>
             {props.service}のデータが読み込まれました。{'\n'}
             続けて{anotherService.current}の注文情報を入力しますか？{'\n'}

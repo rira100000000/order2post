@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "print" %>
     <%= vite_client_tag %>
     <%= vite_react_refresh_tag %>
     <%= vite_javascript_tag 'application' %>
@@ -20,7 +20,7 @@
   </head>
 
   <body>
-    <nav class="flex items-center justify-between flex-wrap bg-white p-3 border-b border-amber-400">
+    <nav class="flex items-center justify-between flex-wrap bg-white p-3 border-b border-t-0 border-l-0 border-r-0 border-amber-400 print_none">
       <div class="flex flex-shrink-0 text-amber-500 mr-6" >
         <a href=<% root_path %>><img src="../src/assets/logo_origin.png" width="280" alt="ロゴ" align="middle"></a>
       </div>

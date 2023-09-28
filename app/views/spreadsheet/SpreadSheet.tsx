@@ -6,12 +6,14 @@ import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
 import { alertConverteds } from './converteds';
+import PrintSheet from './PrintSheet';
 
 export default function SpreadSheet() {
   const [showSpreadSheet, setshowSpreadSheet] = useState(false);
   const [showUploadButton, setshowUploadButton] = useState(true);
   const [showConvertMenu, setshowConvertMenu] = useState(false);
   const [showConvertSheet, setshowConvertSheet] = useState(false);
+  const [showPrintSheet, setShowPrintSheet] = useState(false);
   const [service, setService] = useState('');
   const [content, setContent] = useState('');
   const [lines, setLines] = useState<Array<Array<string | boolean>>>([]);
@@ -62,23 +64,21 @@ export default function SpreadSheet() {
   const jRef = useRef<HTMLDivElement | null>(null);
 
   const setRowStyles = () => {
-    const rowsWithDateY = document.querySelectorAll('td');
-
-    // 取得した要素をループで処理
-    let isEvenRow = false;
-
-    rowsWithDateY.forEach((row, index) => {
-      if (index % 9 === 0) {
-        isEvenRow = !isEvenRow;
-      }
-
-      if (isEvenRow) {
-        row.classList.add('even-row');
-      }
-      if (!(index % 9 === 1)) {
-        row.classList.add('readonly');
-      }
-    });
+    const spreadsheets = document.querySelectorAll('.jexcel_content');
+    for (const spreadsheet of spreadsheets) {
+      const rows = spreadsheet.querySelectorAll('tr');
+      rows.forEach((row, index) => {
+        const cells = row.querySelectorAll('td');
+        cells.forEach((cell, cellIndex) => {
+          if (!(cellIndex % 9 === 1)) {
+            cell.classList.add('readonly');
+          }
+          if (index % 2 === 0) {
+            cell.classList.add('even-row');
+          }
+        });
+      });
+    }
   };
 
   useEffect(() => {
@@ -98,26 +98,39 @@ export default function SpreadSheet() {
       {!showSpreadSheet || isEmpty() ? (
         <div ref={jRef} style={{ display: 'none' }} />
       ) : (
-        <div ref={jRef} />
+        <div ref={jRef} className='print_none' />
       )}
       <br />
       {showSpreadSheet && !isEmpty() && (
-        <button
-          className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
-          onClick={() => {
-            if (ischecked()) {
-              closeSpreadSheet();
-              setshowUploadButton(false);
-              setshowConvertMenu(true);
-              alertConverteds(lines);
-            } else {
-              alert('クリックポストに変換する注文にチェックを入れてください');
-            }
-          }}
-        >
-          クリックポスト変換
-        </button>
+        <div className='print_none'>
+          <button
+            className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
+            onClick={() => {
+              if (ischecked()) {
+                closeSpreadSheet();
+                setshowUploadButton(false);
+                setshowConvertMenu(true);
+                false;
+                alertConverteds(lines);
+              } else {
+                alert('クリックポストに変換する注文にチェックを入れてください');
+              }
+            }}
+          >
+            クリックポスト変換
+          </button>
+
+          <button
+            className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3 print_none'
+            onClick={() => {
+              window.print();
+            }}
+          >
+            印刷する
+          </button>
+        </div>
       )}
+
       {showUploadButton && (
         <CSVReader
           setLines={setLines}
@@ -146,6 +159,14 @@ export default function SpreadSheet() {
           setshowConvertSheet={setshowConvertSheet}
         />
       )}
+      {
+        <PrintSheet
+          lines={lines}
+          setShowPrintSheet={setShowPrintSheet}
+          openSpreadSheet={openSpreadSheet}
+          setshowUploadButton={setshowUploadButton}
+        />
+      }
     </div>
   );
 }
