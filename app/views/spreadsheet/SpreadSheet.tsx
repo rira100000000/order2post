@@ -71,6 +71,8 @@ export default function SpreadSheet() {
         cells.forEach((cell, cellIndex) => {
           if (!(cellIndex % 9 === 1)) {
             cell.classList.add('readonly');
+          } else {
+            cell.classList.add('checkbox-cell');
           }
           if (index % 2 === 0) {
             cell.classList.add('even-row');
@@ -78,6 +80,33 @@ export default function SpreadSheet() {
         });
       });
     }
+  };
+
+  const setCheckboxStyles = () => {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    let counter = 1;
+    for (const checkbox of checkboxes) {
+      checkbox.id = `checkbox-${counter}`;
+      const targetCheckbox = document.getElementById(`checkbox-${counter}`);
+      if (targetCheckbox) {
+        targetCheckbox.addEventListener('click', () => {
+          targetCheckbox.click();
+        });
+      }
+      counter++;
+    }
+
+    const checkboxCells = document.querySelectorAll('.checkbox-cell');
+    checkboxCells.forEach((cell, index) => {
+      cell.id = `checkboxCell-${index}`;
+      cell.addEventListener('click', () => {
+        const checkbox = document.getElementById(`checkbox-${index}`);
+        console.log(`checkbox-${index}`);
+        if (checkbox) {
+          checkbox.click();
+        }
+      });
+    });
   };
 
   useEffect(() => {
@@ -88,6 +117,7 @@ export default function SpreadSheet() {
       if (table.current) {
         table.current.setData(lines);
         setRowStyles();
+        setCheckboxStyles();
       }
     }
   }, [options, lines]);

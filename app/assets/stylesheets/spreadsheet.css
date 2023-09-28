@@ -6,3 +6,8 @@
 td.even-row {
   background-color: #fdf5e6 !important;
 }
+
+input[type='checkbox'] {
+  transform: scale(1.5);
+  margin: 0 6px 0 0;
+}
