@@ -1,15 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import '../../assets/stylesheets/print.css';
 
-type setShowPrintSheet = (value: boolean) => void;
-type setshowUploadButton = (value: boolean) => void;
-type openSpreadSheet = () => void;
-
 interface PrintProps {
   lines: Array<Array<string | boolean>>;
-  setShowPrintSheet: setShowPrintSheet;
-  setshowUploadButton: setshowUploadButton;
-  openSpreadSheet: openSpreadSheet;
 }
 
 export default function PrintSheet(props: PrintProps) {
@@ -92,7 +85,7 @@ export default function PrintSheet(props: PrintProps) {
 
   useEffect(() => {
     setPrintStyles();
-  }, []);
+  }, [props.lines]);
 
   return <>{outputToPrintSheet()}</>;
 }

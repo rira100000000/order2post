@@ -13,7 +13,6 @@ export default function SpreadSheet() {
   const [showUploadButton, setshowUploadButton] = useState(true);
   const [showConvertMenu, setshowConvertMenu] = useState(false);
   const [showConvertSheet, setshowConvertSheet] = useState(false);
-  const [showPrintSheet, setShowPrintSheet] = useState(false);
   const [service, setService] = useState('');
   const [content, setContent] = useState('');
   const [lines, setLines] = useState<Array<Array<string | boolean>>>([]);
@@ -159,14 +158,7 @@ export default function SpreadSheet() {
           setshowConvertSheet={setshowConvertSheet}
         />
       )}
-      {
-        <PrintSheet
-          lines={lines}
-          setShowPrintSheet={setShowPrintSheet}
-          openSpreadSheet={openSpreadSheet}
-          setshowUploadButton={setshowUploadButton}
-        />
-      }
+      {<PrintSheet lines={lines} />}
     </div>
   );
 }
