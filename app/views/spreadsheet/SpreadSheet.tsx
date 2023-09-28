@@ -59,6 +59,12 @@ export default function SpreadSheet() {
     });
   };
 
+  const checkdNum = () => {
+    return lines.filter((line) => {
+      line[0] === true;
+    }).length;
+  };
+
   const table = useRef<ReturnType<typeof jspreadsheet> | null>(null);
   const jRef = useRef<HTMLDivElement | null>(null);
 
@@ -136,13 +142,19 @@ export default function SpreadSheet() {
             className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
             onClick={() => {
               if (ischecked()) {
-                closeSpreadSheet();
-                setshowUploadButton(false);
-                setshowConvertMenu(true);
-                false;
-                alertConverteds(lines);
+                if (checkdNum() >= 40) {
+                  closeSpreadSheet();
+                  setshowUploadButton(false);
+                  setshowConvertMenu(true);
+                  false;
+                  alertConverteds(lines);
+                } else {
+                  alert('一度に変換できる注文は40件までです。');
+                }
               } else {
-                alert('クリックポストに変換する注文にチェックを入れてください');
+                alert(
+                  'クリックポストに変換する注文にチェックを入れてください。'
+                );
               }
             }}
           >
