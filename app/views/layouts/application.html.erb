@@ -8,7 +8,8 @@
     <%= stylesheet_link_tag "print" %>
     <%= vite_client_tag %>
     <%= vite_react_refresh_tag %>
-    <%= vite_javascript_tag 'application' %>
+    <%= vite_javascript_tag 'application.jsx' %>
+    
     <script src="https://cdn.tailwindcss.com"></script>
 
     <%= content_tag(:div, '', id: 'csrf-token', data: { token: form_authenticity_token }) %>
@@ -30,17 +31,17 @@
             <%= current_user.email if user_signed_in?%>
           </strong>
         </div>
+         <div>
+          <% if user_signed_in? %>
+              <a href="/users/sign_out" id="signout_button"class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 lg:mt-0">サインアウト</a>
 
-        <% if user_signed_in? %>
-          <div>
-            <a href="/users/sign_out" id="signout_button"class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 lg:mt-0">サインアウト</a>
-          </div>
-        <% else %>
-          <div>
-            <a href="/users/sign_in" id="login_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">ログイン</a>
-            <a href="/users/sign_up" id="signup_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">サインアップ</a>
-          </div>
-        <% end %>
+          <% else %>
+              <a href="/users/sign_in" id="login_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">ログイン</a>
+              <a href="/users/sign_up" id="signup_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">サインアップ</a>
+          <% end %>
+          <span id="setting"></span>
+        </div>
+
       </div>
     </nav>
     <%= yield %>
