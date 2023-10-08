@@ -54,6 +54,18 @@
   <% end %>
 
   <p>Unhappy? <span><%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></span></p>
+<%= button_to "削除する", registration_path(resource_name), method: :delete, data: { turbo: false }, form: { onSubmit: "return check()" } %>
 
   <%= link_to "Back", :back %>
 </div>
+
+<script>
+function check(){
+  if(window.confirm('本当に削除しますか？')){ 
+    return true;
+  }
+  else{
+    return false; 
+  }
+}
+</script>
