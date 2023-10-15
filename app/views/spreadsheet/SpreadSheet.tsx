@@ -61,7 +61,7 @@ export default function SpreadSheet() {
 
   const checkdNum = () => {
     return lines.filter((line) => {
-      line[0] === true;
+      return line[0] === true;
     }).length;
   };
 
@@ -142,13 +142,15 @@ export default function SpreadSheet() {
             className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
             onClick={() => {
               if (ischecked()) {
-                if (checkdNum() >= 40) {
+                if (checkdNum() <= 40) {
+                  console.log(checkdNum());
                   closeSpreadSheet();
                   setshowUploadButton(false);
                   setshowConvertMenu(true);
                   false;
                   alertConverteds(lines);
                 } else {
+                  console.log(checkdNum());
                   alert('一度に変換できる注文は40件までです。');
                 }
               } else {
