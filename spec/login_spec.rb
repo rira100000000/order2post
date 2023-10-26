@@ -21,7 +21,7 @@ RSpec.describe 'サインアップできること' do
     visit root_path
     expect(page).to have_selector('#signup_button')
 
-    click_on 'signup_button'
+    find('#signup_button').click
 
     expect(page).to have_selector('#user_email')
 
@@ -29,7 +29,7 @@ RSpec.describe 'サインアップできること' do
     fill_in 'user_password', with: 'password'
     fill_in 'user_password_confirmation', with: 'password'
 
-    click_button 'Sign Up'
+    click_button '登録'
 
     expect(page).to have_current_path(root_path)
   end
