@@ -7,7 +7,7 @@ RSpec.describe '内容品の設定ができること' do
     fixtures :conversions
 
     it '内容品が全て内容品一括設定フォームに入力した内容になっている事' do
-        user = users(:bothUser)
+        user = users(:have_conversions_User)
         login(user)
 
         expect(page).to have_content('ファイルを選択')
@@ -33,8 +33,7 @@ RSpec.describe '内容品の設定ができること' do
     end
 
     it '内容品がDBに保存されている場合、内容品欄に自動入力されること' do
-        user = users(:bothUser)
-        conversion = conversions(:conversion4)
+        user = users(:have_conversions_User)
         login(user)
 
         expect(page).to have_content('ファイルを選択')
@@ -58,8 +57,7 @@ RSpec.describe '内容品の設定ができること' do
     end
 
     it '内容品がDBに保存されていない場合、内容品欄に何も入力されない事' do
-        user = users(:bothUser)
-        conversion = conversions(:conversion4)
+        user = users(:no_conversions_User)
         login(user)
 
         expect(page).to have_content('ファイルを選択')
@@ -76,13 +74,12 @@ RSpec.describe '内容品の設定ができること' do
         expect(page).to have_content("Creema\n202302071459-zxPE")
         
         click_on 'クリックポスト変換'
-
-        expect(page).to have_xpath("//input[@id='content_3'][@value='']")
+        
+        expect(page).to have_xpath("//input[@id='content_0'][@value='']")
     end
 
     it '内容品欄がすべて埋まっていれば、内容品の個別登録ができること' do
-        user = users(:bothUser)
-        conversion = conversions(:conversion4)
+        user = users(:have_conversions_User)
         login(user)
 
         expect(page).to have_content('ファイルを選択')
@@ -108,6 +105,7 @@ RSpec.describe '内容品の設定ができること' do
         expect(page).to have_xpath("//input[@id='content_1'][@value='ラグランブラウス']")
         expect(page).to have_xpath("//input[@id='content_2'][@value='ブラウス']")
         fill_in 'content_3', with: '衣類'
+        sleep 5
 
         click_on '個別変換'
 
@@ -116,8 +114,7 @@ RSpec.describe '内容品の設定ができること' do
     end
 
     it '内容品欄に空欄がある場合、内容品の個別登録ができない事' do
-        user = users(:bothUser)
-        conversion = conversions(:conversion4)
+        user = users(:no_conversions_User)
         login(user)
 
         expect(page).to have_content('ファイルを選択')
@@ -135,10 +132,7 @@ RSpec.describe '内容品の設定ができること' do
         
         click_on 'クリックポスト変換'
 
-        expect(page).to have_xpath("//input[@id='content_0'][@value='スカート']")
-        expect(page).to have_xpath("//input[@id='content_1'][@value='ラグランブラウス']")
-        expect(page).to have_xpath("//input[@id='content_2'][@value='ブラウス']")
-        fill_in 'content_3', with: ''
+        expect(page).to have_xpath("//input[@id='content_0'][@value='']")
 
         click_on '個別変換'
 

@@ -20,16 +20,16 @@ conversion3:
   content: '変換後の内容品3'
 
 conversion4:
-  user: :bothUser
+  user: :have_conversions_User
   item: 'カラフルギャザースカート　レコード柄'
   content: 'スカート'
 
 conversion5:
-  user: :bothUser
+  user: :have_conversions_User
   item: 'ガーゼラグランブラウス　グレージュ'
   content: 'ラグランブラウス'
 
 conversion6:
-  user: :bothUser
+  user: :have_conversions_User
   item: '【カラバリ3色】ガーゼスクエアネックブラウス（ブラウスカラー選択: スモーキーピンク）'
   content: 'ブラウス'

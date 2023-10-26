@@ -23,7 +23,7 @@ RSpec.describe 'CSVファイルを読み込めること' do
   end
 
   it 'creemaのCSVファイルが読み込めること' do
-    user = users(:creemaUser)
+    user = users(:no_conversions_User)
 
     login(user)
 
@@ -40,7 +40,7 @@ RSpec.describe 'CSVファイルを読み込めること' do
   end
 
   it 'minneのCSVファイルを読込後、CreemaのCSVファイルを読み込めること' do
-    user = users(:bothUser)
+    user = users(:have_conversions_User)
 
     login(user)
 
@@ -59,7 +59,7 @@ RSpec.describe 'CSVファイルを読み込めること' do
   end
 
   it 'CreemaのCSVファイルを読込後、minneのCSVファイルを読み込めること' do    
-    user = users(:bothUser)
+    user = users(:have_conversions_User)
 
     login(user)
     
@@ -78,7 +78,7 @@ RSpec.describe 'CSVファイルを読み込めること' do
   end
 
   it '最初からやり直すボタン押下後、新しいCSVファイルが読み込めること' do
-    user = users(:bothUser)
+    user = users(:have_conversions_User)
 
     login(user)
 

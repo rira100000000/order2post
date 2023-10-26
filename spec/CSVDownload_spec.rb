@@ -5,9 +5,10 @@ require 'csv'
 
 RSpec.describe 'クリックポスト用に正しくファイルが作成できること' do
   fixtures :users
+  fixtures :converteds
 
   it 'クリックポスト用に正しくファイルが作成できること' do
-    user = users(:bothUser)
+    user = users(:have_conversions_User)
     login(user)
     download_path = Rails.root.join('spec', 'tmp')
     page.driver.browser.download_path = download_path
