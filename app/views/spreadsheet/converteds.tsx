@@ -52,7 +52,7 @@ const checkConverteds = (lines): Promise<string[]> => {
       const converteds: string[] = [];
       for (const convertedOrder of response.data) {
         for (const newOrderId of newOrderIds) {
-          if (newOrderId === convertedOrder['order_id']) {
+          if (newOrderId === convertedOrder['order_id'].replace(/\\n/g, '\n')) {
             converteds.push(newOrderId);
           }
         }

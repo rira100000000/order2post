@@ -15,3 +15,7 @@ no_conversions_User:
 have_conversions_User:
   email: 'have_conversions_user@example.com'
   encrypted_password: '$2a$12$eOfyAOF14QDa4KdMuIRZOuj1FCS0fuFouJozfIdjvbx3R4tc9qL5i'
+
+have_converteds_User:
+  email: 'have_converteds_user@example.com'
+  encrypted_password: '$2a$12$eOfyAOF14QDa4KdMuIRZOuj1FCS0fuFouJozfIdjvbx3R4tc9qL5i'

@@ -39,7 +39,7 @@ export default function SpreadSheet() {
     allowInsertRow: false,
     columns: [
       { title: '変換対象選択', type: 'checkbox', width: 100 },
-      { title: '注文番号', width: 100 },
+      { title: '注文番号', width: 120 },
       { title: '発送方法', width: 120 },
       { title: '商品名', width: 250 },
       { title: '数量', width: 50 },
@@ -147,7 +147,6 @@ export default function SpreadSheet() {
                   closeSpreadSheet();
                   setshowUploadButton(false);
                   setshowConvertMenu(true);
-                  false;
                   alertConverteds(lines);
                 } else {
                   console.log(checkdNum());
