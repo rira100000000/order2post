@@ -50,7 +50,8 @@ export default function IndividualConvertForm(
     for (const line of props.lines) {
       if (line[0] === true) {
         const item = (line[ITEM] as string).split('\n')[NEEDCONVERT];
-        const content = conversions[ITEM];
+        const content = conversions[line[ITEM] as string];
+        console.log(content);
         let shippingInfo = {
           addressInfo: line[ADDRESS] as string,
           item: item,

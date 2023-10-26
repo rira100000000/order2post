@@ -53,7 +53,7 @@ const outputToConvertSheet = (shippingInfos: ShippingInfo[]) => {
     const splitedAddress2 = splitAddress(addressInfos[ADDRESS2]);
     line.push(splitedAddress2[0]);
     line.push(splitedAddress2[1]);
-
+    console.log(shippingInfo['content']);
     line.push(shippingInfo['content']);
 
     lines.push(line);
