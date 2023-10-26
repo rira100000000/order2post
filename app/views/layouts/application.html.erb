@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag "print" %>
     <%= vite_client_tag %>
     <%= vite_react_refresh_tag %>
-    
+    <script src="https://kit.fontawesome.com/7da7ad13fa.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <%= content_tag(:div, '', id: 'csrf-token', data: { token: form_authenticity_token }) %>
@@ -41,11 +41,21 @@
         </div>
       </div>
     </nav>
-    <div class="flash-notifications">
+    <div class="flash-notifications" id="flashMessage">
       <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: key) %>
+        <div class="flex">
+            <button onclick="dismissMessage(this)" class="dismiss-button mt-2 ml-2 border-2  border-gray-300 px-2 rounded"><%= value %> <i class="fa-solid fa-xmark"></i></button>
+        </div>
       <% end %>
     </div>
+
+
     <%= yield %>
   </body>
+  <script>
+        function dismissMessage() {
+            const flashMessage = document.getElementById("flashMessage");
+            flashMessage.style.display = "none";
+        }
+    </script>
 </html>

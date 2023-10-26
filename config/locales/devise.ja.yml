@@ -44,9 +44,9 @@ ja:
       updated: 'アカウントが正常に更新されました。'
       updated_but_not_signed_in: 'アカウントが正常に更新されましたが、パスワードが変更されたため、再度サインインする必要があります。'
     sessions:
-      signed_in: '正常にサインインしました。'
-      signed_out: '正常にサインアウトしました。'
-      already_signed_out: '正常にサインアウトしました。'
+      signed_in: ''
+      signed_out: ''
+      already_signed_out: ''
     unlocks:
       send_instructions: '数分後にアカウントのロック解除手順が記載されたメールを受け取る予定です。'
       send_paranoid_instructions: 'アカウントが存在する場合、数分後にアカウントのロック解除手順が記載されたメールが届きます。'
