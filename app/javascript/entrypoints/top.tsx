@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import SpreadSheet from '../..//javascript/components/SpreadSheet';
-import '../../assets/stylesheets/output.css';
+import Top from '../../javascript/components/Top';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <SpreadSheet />
+    <Top />
   </React.StrictMode>
 );
