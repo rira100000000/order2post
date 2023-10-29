@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { updateConverteds } from './converteds';
+import { updateConverteds } from '../converteds';
 
 type shippingInfo = {
   addressInfo: string;

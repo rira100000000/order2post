@@ -5,7 +5,7 @@ import '../../assets/stylesheets/spreadsheet.css';
 import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
-import { alertConverteds } from './converteds';
+import { alertConverteds } from '../converteds';
 import PrintSheet from './PrintSheet';
 
 export default function SpreadSheet() {

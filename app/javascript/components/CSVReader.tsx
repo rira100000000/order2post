@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import ReadMinne from './minne';
-import ReadCreema from './creema';
+import ReadMinne from '../minne';
+import ReadCreema from '../creema';
 import { useCSVReader } from 'react-papaparse';
 import useModal from '../../frontend/src/hooks/useModal';
 import '../../assets/stylesheets/print.css';
