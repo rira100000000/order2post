@@ -51,7 +51,7 @@ export default function CSVReader(props: CSVReaderProps) {
       >
         {({ getRootProps }: any) => (
           <>
-            {service ? (
+            {service.current ? (
               <div className='flex items-center w-full'>
                 <div
                   {...getRootProps()}
