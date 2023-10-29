@@ -13,7 +13,6 @@ export default function SpreadSheet() {
   const [showUploadButton, setshowUploadButton] = useState(true);
   const [showConvertMenu, setshowConvertMenu] = useState(false);
   const [showConvertSheet, setshowConvertSheet] = useState(false);
-  const [service, setService] = useState('');
   const [content, setContent] = useState('');
   const [lines, setLines] = useState<Array<Array<string | boolean>>>([]);
   const [shippingInfos, setShippingInfos] = useState([]);
@@ -76,11 +75,14 @@ export default function SpreadSheet() {
         const cells = row.querySelectorAll('td');
         cells.forEach((cell, cellIndex) => {
           if (!(cellIndex % 9 === 1)) {
+            // checkbox以外編集不可にするため
             cell.classList.add('readonly');
           } else {
+            // checkboxのセル全体をクリック可能にするため
             cell.classList.add('checkbox-cell');
           }
           if (index % 2 === 0) {
+            // 偶数行に色を付けるため
             cell.classList.add('even-row');
           }
         });
@@ -115,6 +117,22 @@ export default function SpreadSheet() {
     });
   };
 
+  const handleClick = () => {
+    if (ischecked()) {
+      console.log('選択数 ' + checkdNum());
+      if (checkdNum() <= 40) {
+        closeSpreadSheet();
+        setshowUploadButton(false);
+        setshowConvertMenu(true);
+        alertConverteds(lines);
+      } else {
+        alert('一度に変換できる注文は40件までです。');
+      }
+    } else {
+      alert('クリックポストに変換する注文にチェックを入れてください。');
+    }
+  };
+
   useEffect(() => {
     if (jRef.current && !table.current) {
       table.current = jspreadsheet(jRef.current, options);
@@ -140,24 +158,7 @@ export default function SpreadSheet() {
         <div className='print_none'>
           <button
             className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
-            onClick={() => {
-              if (ischecked()) {
-                if (checkdNum() <= 40) {
-                  console.log(checkdNum());
-                  closeSpreadSheet();
-                  setshowUploadButton(false);
-                  setshowConvertMenu(true);
-                  alertConverteds(lines);
-                } else {
-                  console.log(checkdNum());
-                  alert('一度に変換できる注文は40件までです。');
-                }
-              } else {
-                alert(
-                  'クリックポストに変換する注文にチェックを入れてください。'
-                );
-              }
-            }}
+            onClick={handleClick}
           >
             クリックポスト変換
           </button>
@@ -173,13 +174,7 @@ export default function SpreadSheet() {
         </div>
       )}
 
-      {showUploadButton && (
-        <CSVReader
-          setLines={setLines}
-          service={service}
-          setService={setService}
-        />
-      )}
+      {showUploadButton && <CSVReader setLines={setLines} />}
       {showConvertMenu && (
         <ConvertMenu
           openSpreadSheet={openSpreadSheet}

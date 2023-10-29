@@ -9,13 +9,12 @@ interface CSVReaderProps {
   setLines: React.Dispatch<
     React.SetStateAction<Array<Array<string | boolean>>>
   >;
-  service: string;
-  setService: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function CSVReader(props: CSVReaderProps) {
   const { CSVReader } = useCSVReader();
   const { Modal, openModal, closeModal } = useModal();
+  const service = useRef<string>('');
   const anotherService = useRef<string>('');
   const serviceData = useRef<Array<Array<string | boolean>>>([]);
 
@@ -24,7 +23,7 @@ export default function CSVReader(props: CSVReaderProps) {
     const minneData: Array<Array<string | boolean>> = await ReadMinne(data);
     props.setLines(minneData);
     serviceData.current = minneData;
-    props.setService('minne');
+    service.current = 'minne';
     anotherService.current = 'Creema';
   };
 
@@ -33,7 +32,7 @@ export default function CSVReader(props: CSVReaderProps) {
     const creemaData: Array<Array<string | boolean>> = await ReadCreema(data);
     props.setLines(creemaData);
     serviceData.current = creemaData;
-    props.setService('Creema');
+    service.current = 'creema';
     anotherService.current = 'minne';
   };
 
@@ -52,7 +51,7 @@ export default function CSVReader(props: CSVReaderProps) {
       >
         {({ getRootProps }: any) => (
           <>
-            {props.service ? (
+            {service ? (
               <div className='flex items-center w-full'>
                 <div
                   {...getRootProps()}
@@ -78,7 +77,7 @@ export default function CSVReader(props: CSVReaderProps) {
       <Modal>
         <div className='bg-white border h-40 p-4 rounded-md print_none'>
           <div>
-            {props.service}のデータが読み込まれました。{'\n'}
+            {service.current}のデータが読み込まれました。{'\n'}
             続けて{anotherService.current}の注文情報を入力しますか？{'\n'}
           </div>
           <div className='m-5'>
