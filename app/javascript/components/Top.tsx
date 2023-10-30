@@ -1,24 +1,28 @@
-import React from 'react';
+import minneToPost from '../../assets/images/minnetopost.png';
 
-function App() {
+function Top() {
   return (
     <>
       <div className='flex justify-center items-center w-full'>
         <div className='flex flex-col items-center text-yellow-800'>
-          <h1 className='text-5xl mt-2 mb-2'>CSV変換君</h1>
-          <p className='md:text-xl border-b-8 border-red-500 mt-4 mb-4'>
-            minne,Creemaを使うハンドメイド作家のための発送作業支援サービス！
+          <p className='md:text-xl border-b-8 border-red-500 mt-10 mb-4'>
+            minne,Creemaの注文一覧データをクリックポストのまとめ申込用データへ変換します！
           </p>
-          <a
-            href='/users/sign_up'
-            className='text-xl px-4 py-2 mt-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500'
-          >
-            サインアップ
-          </a>
         </div>
+      </div>
+      <div className='flex flex-col items-center'>
+        <div className='flex flex-col mt-1 items-center text-yellow-800'>
+          <img src={minneToPost} width='700' alt='image'></img>
+        </div>
+        <a
+          href='/users/sign_up'
+          className='text-xl px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500'
+        >
+          サインアップ
+        </a>
       </div>
     </>
   );
 }
 
-export default App;
+export default Top;

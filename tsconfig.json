@@ -22,9 +22,9 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "app/frontend/src",
     "jest.setup.ts",
-    "app/javascript/components/Top.tsx"
+    "app/javascript/components/Top.tsx",
+    "declarations.d.ts"
   ],
   "references": [{ "path": "tsconfig.node.json" }]
 }
