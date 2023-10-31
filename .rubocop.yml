@@ -33,3 +33,5 @@ Metrics/ClassLength:
 Style/BlockComments:
   Exclude:
     - spec/spec_helper.rb
+Metrics/MethodLength:
+  Max: 20

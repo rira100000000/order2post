@@ -1,41 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ViteRailsApp</title>
+    <title>CSV変換君</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "print" %>
     <%= vite_client_tag %>
     <%= vite_react_refresh_tag %>
-    <%= vite_javascript_tag 'application' %>
+    <script src="https://kit.fontawesome.com/7da7ad13fa.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <%= content_tag(:div, '', id: 'csrf-token', data: { token: form_authenticity_token }) %>
+    <% if user_signed_in? %>
+      <meta name="user-signed-in" content="true">
+    <% else %>
+      <meta name="user-signed-in" content="false">
+    <% end %>
   </head>
 
   <body>
-    <div class="navbar">
-      <p class="navbar-text pull-right">
-      <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to 'Edit profile', edit_user_registration_path, class: 'navbar-link' %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'  %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, class: 'navbar-link'  %> |
-        <%= link_to "Login", new_user_session_path, class: 'navbar-link'  %>
-      <% end %>
-      </p>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/ideas">Ideas</a></li>
-      </ul>
-    
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
+    <nav class="flex items-center justify-between flex-wrap bg-white p-3 border-b border-t-0 border-l-0 border-r-0 border-amber-400 print_none">
+      <div class="flex flex-shrink-0 text-amber-500 mr-6" >
+        <a href='/'><img src="<%= asset_path('logo_origin.png') %>" width="280" alt="ロゴ" align="middle"></a>
+      </div>
+      <div class="block flex-grow flex justify-end items-center mr-4">
+        <div class="text-sm lg:flex-grow">
+          <strong class="flex justify-end mt-0 mr-2 text-amber-500">
+            <%= current_user.email if user_signed_in?%>
+          </strong>
+        </div>
+        <div>
+          <% if user_signed_in? %>
+            <a href="/users/sign_out" id="signout_button"class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 lg:mt-0">サインアウト</a>
+            <a href="/users/edit" id="setting_button"class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 lg:mt-0">設定</a>
+          <% else %>
+            <a href="/users/sign_in" id="login_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">ログイン</a>
+            <a href="/users/sign_up" id="signup_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">サインアップ</a>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+    <div class="flash-notifications" id="flashMessage">
+      <% flash.each do |key, value| %>
+        <div class="flex">
+            <button onclick="dismissMessage(this)" class="dismiss-button mt-2 ml-2 border-2  border-gray-300 px-2 rounded"><%= value %> <i class="fa-solid fa-xmark"></i></button>
+        </div>
       <% end %>
     </div>
 
+
     <%= yield %>
   </body>
+  <script>
+        function dismissMessage() {
+            const flashMessage = document.getElementById("flashMessage");
+            flashMessage.style.display = "none";
+        }
+    </script>
 </html>

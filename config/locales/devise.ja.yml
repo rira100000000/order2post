@@ -1,0 +1,53 @@
+ja:
+  devise:
+    confirmations:
+      confirmed: 'メールアドレスは正常に確認されました。'
+      send_instructions: '数分後にメールでメールアドレスの確認方法に関する手順が記載されたメールを受け取る予定です。'
+      send_paranoid_instructions: 'データベースにメールアドレスが存在する場合、数分後にメールアドレスの確認手順が記載されたメールを受け取る予定です。'
+    failure:
+      already_authenticated: '既にサインインしています。'
+      inactive: 'アカウントはまだ有効化されていません。'
+      invalid: '%{authentication_keys}またはパスワードが無効です。'
+      locked: 'アカウントはロックされています。'
+      last_attempt: 'アカウントがロックされる前に、もう1回試行できます。'
+      not_found_in_database: '%{authentication_keys}またはパスワードが無効です。'
+      timeout: 'セッションが期限切れです。続行するにはもう一度サインインしてください。'
+      unauthenticated: '続行する前にサインインまたはサインアップする必要があります。'
+      unconfirmed: '続行する前にメールアドレスの確認を行う必要があります。'
+    mailer:
+      confirmation_instructions:
+        subject: '確認手順'
+      reset_password_instructions:
+        subject: 'パスワードリセット手順'
+      unlock_instructions:
+        subject: 'アカウントロック解除手順'
+      email_changed:
+        subject: 'メールアドレス変更'
+      password_change:
+        subject: 'パスワード変更'
+    omniauth_callbacks:
+      failure: '%{kind}アカウントからの認証に失敗しました。理由: "%{reason}"'
+      success: '%{kind}アカウントからの認証に成功しました。'
+    passwords:
+      no_token: 'パスワードリセットメールからアクセスできません。パスワードリセットメールからアクセスする場合は、提供された完全なURLを使用してください。'
+      send_instructions: '数分後にパスワードをリセットする手順が記載されたメールを受け取る予定です。'
+      send_paranoid_instructions: 'データベースにメールアドレスが存在する場合、数分後にメールアドレスにパスワードリセットリンクが届く予定です。'
+      updated: 'パスワードが正常に変更されました。現在、サインイン済みです。'
+      updated_not_active: 'パスワードが正常に変更されました。'
+    registrations:
+      destroyed: 'さようなら！アカウントは正常にキャンセルされました。またのご利用をお待ちしております。'
+      signed_up: 'ようこそ！正常にサインアップしました。'
+      signed_up_but_inactive: '正常にサインアップしましたが、アカウントはまだ有効化されていないため、サインインできませんでした。'
+      signed_up_but_locked: '正常にサインアップしましたが、アカウントがロックされているため、サインインできませんでした。'
+      signed_up_but_unconfirmed: '確認リンクが含まれたメッセージがメールアドレスに送信されました。アカウントを有効化するためにリンクをクリックしてください。'
+      update_needs_confirmation: 'アカウントが正常に更新されましたが、新しいメールアドレスを確認する必要があります。メールを確認し、確認リンクをクリックして新しいメールアドレスを確認してください。'
+      updated: 'アカウントが正常に更新されました。'
+      updated_but_not_signed_in: 'アカウントが正常に更新されましたが、パスワードが変更されたため、再度サインインする必要があります。'
+    sessions:
+      signed_in: ''
+      signed_out: ''
+      already_signed_out: ''
+    unlocks:
+      send_instructions: '数分後にアカウントのロック解除手順が記載されたメールを受け取る予定です。'
+      send_paranoid_instructions: 'アカウントが存在する場合、数分後にアカウントのロック解除手順が記載されたメールが届きます。'
+      unlocked: 'アカウントは正常にロック解除されました。続行するためにサインインしてください。'

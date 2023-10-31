@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  def set_csrf_token_header
+    response.set_header('X-CSRF-Token', form_authenticity_token)
+  end
 end
