@@ -30,7 +30,7 @@ end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem 'spring'
+  gem 'dockerfile-rails', '>= 1.5'
 end
 
 group :test do
@@ -45,4 +45,6 @@ end
 gem 'actionmailer'
 gem 'devise'
 gem 'devise-tailwindcssed'
+gem 'sentry-rails', '~> 5.12'
+gem 'sentry-ruby', '~> 5.12'
 gem 'vite_rails', '~> 3.0'
