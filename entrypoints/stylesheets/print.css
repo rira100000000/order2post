@@ -17,7 +17,7 @@
 
   body {
     width: 297mm;
-    height: 210mm;
+    height: 200mm;
     -webkit-print-color-adjust: exact;
   }
 }
@@ -47,5 +47,5 @@ td.date {
   width: 20mm;
 }
 td.remarks {
-  width: 70mm;
+  width: 61mm;
 }

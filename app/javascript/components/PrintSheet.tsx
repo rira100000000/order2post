@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import '../../assets/stylesheets/print.css';
 
 interface PrintProps {
   lines: Array<Array<string | boolean>>;

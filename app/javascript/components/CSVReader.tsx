@@ -3,18 +3,19 @@ import ReadMinne from '../minne';
 import ReadCreema from '../creema';
 import { useCSVReader } from 'react-papaparse';
 import useModal from '../hooks/useModal';
-import '../../assets/stylesheets/print.css';
 
 interface CSVReaderProps {
   setLines: React.Dispatch<
     React.SetStateAction<Array<Array<string | boolean>>>
   >;
+  service: string;
+  setService: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function CSVReader(props: CSVReaderProps) {
   const { CSVReader } = useCSVReader();
   const { Modal, openModal, closeModal } = useModal();
-  const [service, setService] = useState('');
+
   const anotherService = useRef<string>('');
   const serviceData = useRef<Array<Array<string | boolean>>>([]);
 
@@ -23,7 +24,7 @@ export default function CSVReader(props: CSVReaderProps) {
     const minneData: Array<Array<string | boolean>> = await ReadMinne(data);
     props.setLines(minneData);
     serviceData.current = minneData;
-    setService('minne');
+    props.setService('minne');
     anotherService.current = 'Creema';
   };
 
@@ -32,7 +33,7 @@ export default function CSVReader(props: CSVReaderProps) {
     const creemaData: Array<Array<string | boolean>> = await ReadCreema(data);
     props.setLines(creemaData);
     serviceData.current = creemaData;
-    setService('Creema');
+    props.setService('Creema');
     anotherService.current = 'minne';
   };
 
@@ -51,7 +52,7 @@ export default function CSVReader(props: CSVReaderProps) {
       >
         {({ getRootProps }: any) => (
           <>
-            {service ? (
+            {props.service ? (
               <div className='flex items-center w-full'>
                 <div
                   {...getRootProps()}
@@ -77,7 +78,7 @@ export default function CSVReader(props: CSVReaderProps) {
       <Modal>
         <div className='bg-white border h-40 p-4 rounded-md print_none'>
           <div>
-            {service}のデータが読み込まれました。{'\n'}
+            {props.service}のデータが読み込まれました。{'\n'}
             続けて{anotherService.current}の注文情報を入力しますか？{'\n'}
           </div>
           <div className='m-5'>

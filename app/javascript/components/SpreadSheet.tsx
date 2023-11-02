@@ -1,7 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 import jspreadsheet from 'jspreadsheet-ce';
-import '../../../node_modules/jspreadsheet-ce/dist/jspreadsheet.css';
-import '../../assets/stylesheets/spreadsheet.css';
 import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
@@ -13,6 +11,7 @@ export default function SpreadSheet() {
   const [showUploadButton, setshowUploadButton] = useState(true);
   const [showConvertMenu, setshowConvertMenu] = useState(false);
   const [showConvertSheet, setshowConvertSheet] = useState(false);
+  const [service, setService] = useState('');
   const [content, setContent] = useState('');
   const [lines, setLines] = useState<Array<Array<string | boolean>>>([]);
   const [shippingInfos, setShippingInfos] = useState([]);
@@ -37,14 +36,14 @@ export default function SpreadSheet() {
     wordWrap: true,
     allowInsertRow: false,
     columns: [
-      { title: '変換対象選択', type: 'checkbox', width: 100 },
-      { title: '注文番号', width: 120 },
-      { title: '発送方法', width: 120 },
-      { title: '商品名', width: 250 },
-      { title: '数量', width: 50 },
-      { title: '発送先', width: 300 },
-      { title: '注文日', width: 100 },
-      { title: '備考', width: 300 }
+      { title: '変換対象選択', type: 'checkbox' },
+      { title: '注文番号' },
+      { title: '発送方法' },
+      { title: '商品名' },
+      { title: '数量' },
+      { title: '発送先' },
+      { title: '注文日' },
+      { title: '備考' }
     ]
   };
 
@@ -87,6 +86,22 @@ export default function SpreadSheet() {
           }
         });
       });
+    }
+  };
+
+  const setColStyle = () => {
+    const spreadsheets = document.querySelectorAll('.resizable');
+    for (const spreadsheet of spreadsheets) {
+      const cells = spreadsheet.querySelectorAll('td');
+      cells[0].classList.add('hide');
+      cells[1].classList.add('w-[120px]');
+      cells[2].classList.add('w-[120px]');
+      cells[3].classList.add('w-[120px]');
+      cells[4].classList.add('w-[300px]');
+      cells[5].classList.add('w-[10px]');
+      cells[6].classList.add('w-[300px]');
+      cells[7].classList.add('w-[100px]');
+      cells[8].classList.add('w-[300px]');
     }
   };
 
@@ -141,6 +156,7 @@ export default function SpreadSheet() {
       if (table.current) {
         table.current.setData(lines);
         setRowStyles();
+        setColStyle();
         setCheckboxStyles();
       }
     }
@@ -174,7 +190,13 @@ export default function SpreadSheet() {
         </div>
       )}
 
-      {showUploadButton && <CSVReader setLines={setLines} />}
+      {showUploadButton && (
+        <CSVReader
+          setLines={setLines}
+          service={service}
+          setService={setService}
+        />
+      )}
       {showConvertMenu && (
         <ConvertMenu
           openSpreadSheet={openSpreadSheet}

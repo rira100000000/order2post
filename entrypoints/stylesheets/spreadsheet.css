@@ -11,3 +11,16 @@ input[type='checkbox'] {
   transform: scale(1.5);
   margin: 0 6px 0 0;
 }
+
+.jexcel_textarea {
+  display: none;
+}
+.jexcel_about * {
+  display: none;
+}
+.jexcel_row {
+  display: none;
+}
+.hide {
+  display: none;
+}

@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import jspreadsheet from 'jspreadsheet-ce';
 import outputToConvertSheet from '../clickpost';
-import '../..//assets/stylesheets/convertSheet.css';
 import * as Encoding from 'encoding-japanese';
 import saveAs from 'file-saver';
 
@@ -40,18 +39,38 @@ export default function ConvertSheet(props: ConvertSheetProps) {
     saveAs(writeData, 'clickpost.csv');
   };
 
+  const setColStyle = () => {
+    const spreadsheets = document.querySelectorAll('.convert-sheet');
+    console.log(spreadsheets);
+    for (const spreadsheet of spreadsheets) {
+      const draggable = spreadsheet.querySelectorAll('.draggable');
+      console.log(draggable);
+      const cells = draggable[0].querySelectorAll('td');
+      console.log(cells[2]);
+      cells[0].classList.add('hide');
+      cells[1].classList.add('w-[130px]');
+      cells[2].classList.add('w-[120px]');
+      cells[3].classList.add('w-[120px]');
+      cells[4].classList.add('w-[250px]');
+      cells[5].classList.add('w-[250px]');
+      cells[6].classList.add('w-[250px]');
+      cells[7].classList.add('w-[250px]');
+      cells[8].classList.add('w-[300px]');
+    }
+  };
+
   const options: any = {
     data: [[]],
     minDimensions: [0, 0] as [number, number],
     columns: [
-      { title: 'お届け先郵便番号', width: 130 },
-      { title: 'お届け先氏名', width: 120 },
-      { title: 'お届け先敬称', width: 120 },
-      { title: 'お届け先住所1行目', width: 250 },
-      { title: 'お届け先住所2行目', width: 250 },
-      { title: 'お届け先住所3行目', width: 250 },
-      { title: 'お届け先住所4行目', width: 250 },
-      { title: '内容品', width: 300 }
+      { title: 'お届け先郵便番号' },
+      { title: 'お届け先氏名' },
+      { title: 'お届け先敬称' },
+      { title: 'お届け先住所1行目' },
+      { title: 'お届け先住所2行目' },
+      { title: 'お届け先住所3行目' },
+      { title: 'お届け先住所4行目' },
+      { title: '内容品' }
     ]
   };
 
@@ -62,11 +81,11 @@ export default function ConvertSheet(props: ConvertSheetProps) {
   useEffect(() => {
     if (convertRef.current && !convertTable.current) {
       convertTable.current = jspreadsheet(convertRef.current, options);
-      convertTable.current.hideIndex();
     } else {
       if (convertTable.current) {
         output.current = outputToConvertSheet(props.shippingInfos);
         convertTable.current.setData(output.current);
+        setColStyle();
       }
     }
   }, [options, props.shippingInfos]);

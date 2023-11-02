@@ -23,7 +23,10 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-papaparse": "^4.1.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "typescript": "^4.9.5",
+    "vite": "^4.4.4",
+    "vite-plugin-ruby": "^3.2.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.22.5",
@@ -52,9 +55,6 @@
     "jest-environment-jsdom": "^29.6.2",
     "jest-transform-stub": "^2.0.0",
     "react-test-renderer": "^18.2.0",
-    "ts-jest": "^29.1.1",
-    "typescript": "^4.9.5",
-    "vite": "^4.4.4",
-    "vite-plugin-ruby": "^3.2.2"
+    "ts-jest": "^29.1.1"
   }
 }

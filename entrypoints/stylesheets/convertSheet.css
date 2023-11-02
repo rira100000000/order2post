@@ -2,4 +2,7 @@
   .resizable {
     display: none;
   }
+  .jexcel_row {
+    display: none;
+  }
 }
