@@ -152,13 +152,11 @@ export default function SpreadSheet() {
     if (jRef.current && !table.current) {
       table.current = jspreadsheet(jRef.current, options);
       openSpreadSheet();
-    } else {
-      if (table.current) {
-        table.current.setData(lines);
-        setRowStyles();
-        setColStyle();
-        setCheckboxStyles();
-      }
+    } else if (table.current) {
+      table.current.setData(lines);
+      setRowStyles();
+      setColStyle();
+      setCheckboxStyles();
     }
   }, [options, lines]);
 

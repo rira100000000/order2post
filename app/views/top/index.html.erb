@@ -1,6 +1,6 @@
 <div id="root"></div>
 <% if user_signed_in?%>
-  <%= vite_javascript_tag '/app/javascript/entrypoints/spreadsheet.tsx' %>
+  <%= vite_javascript_tag 'spreadsheet.tsx' %>
 <% else %>
-  <%= vite_javascript_tag '/app/javascript/entrypoints/top.tsx' %>
+  <%= vite_javascript_tag 'top.tsx' %>
 <% end %>

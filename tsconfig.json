@@ -21,10 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "jest.setup.ts",
-    "app/javascript/components/Top.tsx",
-    "declarations.d.ts"
-  ],
+  "include": ["declarations.d.ts"],
   "references": [{ "path": "tsconfig.node.json" }]
 }

@@ -79,16 +79,15 @@ export default function ConvertSheet(props: ConvertSheetProps) {
   const output = useRef<string[][]>([]);
 
   useEffect(() => {
-    if (convertRef.current && !convertTable.current) {
+    if (!convertTable.current) {
+      console.log('convertRef.current0');
+      console.log(convertRef.current);
       convertTable.current = jspreadsheet(convertRef.current, options);
-    } else {
-      if (convertTable.current) {
-        output.current = outputToConvertSheet(props.shippingInfos);
-        convertTable.current.setData(output.current);
-        setColStyle();
-      }
     }
-  }, [options, props.shippingInfos]);
+    output.current = outputToConvertSheet(props.shippingInfos);
+    convertTable.current.setData(output.current);
+    setColStyle();
+  }, [options, props.shippingInfos, convertRef.current]);
 
   return (
     <>

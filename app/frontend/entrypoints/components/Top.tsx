@@ -1,4 +1,6 @@
-import minneToPost from '../../assets/images/minnetopost.png';
+import React from 'react';
+import '../declarations.d.ts';
+import minneToPost from '../minneToPost.png';
 
 function Top() {
   return (

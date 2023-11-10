@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "print" %>
     <%= vite_client_tag %>
-    <%= vite_stylesheet_tag 'application' %>
+    <%= stylesheet_link_tag vite_asset_path('application.css') %>
     <%= vite_react_refresh_tag %>
     <script src="https://kit.fontawesome.com/7da7ad13fa.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,7 +22,7 @@
   <body>
     <nav class="flex items-center justify-between flex-wrap bg-white p-3 border-b border-t-0 border-l-0 border-r-0 border-amber-400 print_none">
       <div class="flex flex-shrink-0 text-amber-500 mr-6" >
-        <a href='/'><img src="<%= asset_path('logo_origin.png') %>" width="280" alt="ロゴ" align="middle"></a>
+        <a href='/'><img src=<%= vite_asset_path 'logo_origin.png' %> width=280 ></a>
       </div>
       <div class="block flex-grow flex justify-end items-center mr-4">
         <div class="text-sm lg:flex-grow">
