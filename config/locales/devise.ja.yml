@@ -1,4 +1,34 @@
 ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: 'が空白です'
+              too_short: 'が短すぎます'
+            reset_password_token:
+              invalid: 'が無効です。'
+              blank: 'が空白です。'
+            password_confirmation:
+              confirmation: 'が一致しません'
+            email:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+            password:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+              confirmation: "が内容とあっていません。"
+
+  errors:
+    messages:
+      not_saved: '変更を保存できませんでした。'
   devise:
     confirmations:
       confirmed: 'メールアドレスは正常に確認されました。'
@@ -29,11 +59,11 @@ ja:
       failure: '%{kind}アカウントからの認証に失敗しました。理由: "%{reason}"'
       success: '%{kind}アカウントからの認証に成功しました。'
     passwords:
-      no_token: 'パスワードリセットメールからアクセスできません。パスワードリセットメールからアクセスする場合は、提供された完全なURLを使用してください。'
-      send_instructions: '数分後にパスワードをリセットする手順が記載されたメールを受け取る予定です。'
-      send_paranoid_instructions: 'データベースにメールアドレスが存在する場合、数分後にメールアドレスにパスワードリセットリンクが届く予定です。'
-      updated: 'パスワードが正常に変更されました。現在、サインイン済みです。'
-      updated_not_active: 'パスワードが正常に変更されました。'
+      no_token: 'パスワード再設定のためのトークンが見つかりません。'
+      send_instructions: 'パスワード再設定のためのメールを送信しました。メール内のリンクをクリックしてください。'
+      send_paranoid_instructions: 'もしアカウントが登録されていれば、パスワード再設定のためのメールを送信しました。メール内のリンクをクリックしてください。'
+      updated: 'パスワードが正常に更新されました！'
+      updated_not_active: 'パスワードが正常に更新されましたが、アカウントはまだ有効ではありません。'
     registrations:
       destroyed: 'さようなら！アカウントは正常にキャンセルされました。またのご利用をお待ちしております。'
       signed_up: 'ようこそ！正常にサインアップしました。'

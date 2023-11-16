@@ -40,6 +40,7 @@ end
 
 gem 'actionmailer'
 gem 'devise'
+gem 'devise-i18n'
 gem 'devise-tailwindcssed'
 gem 'dockerfile-rails', '>= 1.5'
 gem 'dotenv'
