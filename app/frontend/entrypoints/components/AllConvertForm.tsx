@@ -70,7 +70,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
         <input
           type='submit'
           value='クリックポスト変換'
-          className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer m-3'
+          className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer m-3'
         />
       </div>
     </form>

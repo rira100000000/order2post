@@ -20,36 +20,6 @@
   </head>
 
   <body>
-    <nav class="flex items-center justify-between flex-wrap bg-white p-3 border-b border-t-0 border-l-0 border-r-0 border-amber-400 print_none">
-      <div class="flex flex-shrink-0 text-amber-500 mr-6" >
-        <a href='/'><img src=<%= vite_asset_path 'logo_origin.png' %> width=280 ></a>
-      </div>
-      <div class="block flex-grow flex justify-end items-center mr-4">
-        <div class="text-sm lg:flex-grow">
-          <strong class="flex justify-end mt-0 mr-2 text-amber-500">
-            <%= current_user.email if user_signed_in?%>
-          </strong>
-        </div>
-        <div>
-          <% if user_signed_in? %>
-            <a href="/users/sign_out" id="signout_button"class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 lg:mt-0">サインアウト</a>
-            <a href="/users/edit" id="setting_button"class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 lg:mt-0">設定</a>
-          <% else %>
-            <a href="/users/sign_in" id="login_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">ログイン</a>
-            <a href="/users/sign_up" id="signup_button" class="inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 mt-4 lg:mt-0">サインアップ</a>
-          <% end %>
-        </div>
-      </div>
-    </nav>
-    <div class="flash-notifications" id="flashMessage">
-      <% flash.each do |key, value| %>
-        <div class="flex">
-            <button onclick="dismissMessage(this)" class="dismiss-button mt-2 ml-2 border-2  border-gray-300 px-2 rounded"><%= value %> <i class="fa-solid fa-xmark"></i></button>
-        </div>
-      <% end %>
-    </div>
-
-
     <%= yield %>
   </body>
   <script>

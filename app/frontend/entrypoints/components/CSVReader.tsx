@@ -65,7 +65,7 @@ export default function CSVReader(props: CSVReaderProps) {
               <div className='flex justify-center items-center w-full'>
                 <div
                   {...getRootProps()}
-                  className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer mt-4 lg:mt-0'
+                  className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer mt-4 lg:mt-0'
                   id='file_select_button'
                 >
                   ファイルを選択
@@ -105,12 +105,12 @@ export default function CSVReader(props: CSVReaderProps) {
                     <div
                       {...getRootProps()}
                       id='yes_button'
-                      className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 hover:cursor-pointer m-3'
+                      className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer m-3'
                     >
                       はい
                     </div>
                     <button
-                      className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
+                      className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3'
                       onClick={closeModal}
                     >
                       いいえ

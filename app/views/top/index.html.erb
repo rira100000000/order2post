@@ -1,4 +1,5 @@
-<div id="root"></div>
+<div id="root" />
+<div id='email' data-email='<%= @current_user_email.to_json %>' />
 <% if user_signed_in?%>
   <%= vite_javascript_tag 'spreadsheet.tsx' %>
 <% else %>

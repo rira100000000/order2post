@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import Header from './Header';
 import jspreadsheet from 'jspreadsheet-ce';
 import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
@@ -6,7 +7,11 @@ import ConvertSheet from './ConvertSheet';
 import { alertConverteds } from '../converteds';
 import PrintSheet from './PrintSheet';
 
-export default function SpreadSheet() {
+type Props = {
+  current_user_email?: string;
+};
+
+export default function SpreadSheet(props: Props) {
   const [showSpreadSheet, setshowSpreadSheet] = useState(false);
   const [showUploadButton, setshowUploadButton] = useState(true);
   const [showConvertMenu, setshowConvertMenu] = useState(false);
@@ -159,64 +164,68 @@ export default function SpreadSheet() {
       setCheckboxStyles();
     }
   }, [options, lines]);
-
+  console.log(props.current_user_email);
   return (
-    <div>
-      {!showSpreadSheet || isEmpty() ? (
-        <div ref={jRef} style={{ display: 'none' }} />
-      ) : (
-        <div ref={jRef} className='print_none' />
-      )}
-      <br />
-      {showSpreadSheet && !isEmpty() && (
-        <div className='print_none'>
-          <button
-            className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3'
-            onClick={handleClick}
-          >
-            クリックポスト変換
-          </button>
+    <>
+      <Header current_user_email={props.current_user_email} />
 
-          <button
-            className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-500 border-amber-500 hover:border-transparent hover:text-white hover:bg-amber-500 m-3 print_none'
-            onClick={() => {
-              window.print();
-            }}
-          >
-            印刷する
-          </button>
-        </div>
-      )}
+      <div>
+        {!showSpreadSheet || isEmpty() ? (
+          <div ref={jRef} style={{ display: 'none' }} />
+        ) : (
+          <div ref={jRef} className='print_none' />
+        )}
+        <br />
+        {showSpreadSheet && !isEmpty() && (
+          <div className='print_none'>
+            <button
+              className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3'
+              onClick={handleClick}
+            >
+              クリックポスト変換
+            </button>
 
-      {showUploadButton && (
-        <CSVReader
-          setLines={setLines}
-          service={service}
-          setService={setService}
-        />
-      )}
-      {showConvertMenu && (
-        <ConvertMenu
-          openSpreadSheet={openSpreadSheet}
-          content={content}
-          setContent={setContent}
-          setshowUploadButton={setshowUploadButton}
-          setshowConvertMenu={setshowConvertMenu}
-          setshowConvertSheet={setshowConvertSheet}
-          shippingInfos={shippingInfos}
-          setShippingInfos={setShippingInfos as setShippingInfos}
-          lines={lines}
-          setLines={setLines}
-        />
-      )}
-      {showConvertSheet && (
-        <ConvertSheet
-          shippingInfos={shippingInfos}
-          setshowConvertMenu={setshowConvertMenu}
-          setshowConvertSheet={setshowConvertSheet}
-        />
-      )}
-      {<PrintSheet lines={lines} />}
-    </div>
+            <button
+              className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3 print_none'
+              onClick={() => {
+                window.print();
+              }}
+            >
+              印刷する
+            </button>
+          </div>
+        )}
+
+        {showUploadButton && (
+          <CSVReader
+            setLines={setLines}
+            service={service}
+            setService={setService}
+          />
+        )}
+        {showConvertMenu && (
+          <ConvertMenu
+            openSpreadSheet={openSpreadSheet}
+            content={content}
+            setContent={setContent}
+            setshowUploadButton={setshowUploadButton}
+            setshowConvertMenu={setshowConvertMenu}
+            setshowConvertSheet={setshowConvertSheet}
+            shippingInfos={shippingInfos}
+            setShippingInfos={setShippingInfos as setShippingInfos}
+            lines={lines}
+            setLines={setLines}
+          />
+        )}
+        {showConvertSheet && (
+          <ConvertSheet
+            shippingInfos={shippingInfos}
+            setshowConvertMenu={setshowConvertMenu}
+            setshowConvertSheet={setshowConvertSheet}
+          />
+        )}
+        {<PrintSheet lines={lines} />}
+      </div>
+    </>
   );
 }

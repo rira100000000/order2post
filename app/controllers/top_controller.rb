@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 class TopController < ApplicationController
-  def index; end
+  def index
+    @current_user_email = current_user.email
+  end
 end
