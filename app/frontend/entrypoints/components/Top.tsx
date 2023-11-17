@@ -6,7 +6,7 @@ import logo from '../logo_origin.png';
 function Top() {
   return (
     <>
-      <div className='flex flex-col mt-1 items-center '>
+      <div className='flex flex-col mt-5 items-center '>
         <a href='/'>
           <img src={logo} width='560' alt='img' />
         </a>
@@ -23,7 +23,7 @@ function Top() {
               </div>
             </div>
             <div className='flex flex-col mt-1 items-center '>
-              <img src={minneToPost} width='500' alt='image'></img>
+              <img src={minneToPost} width='480' alt='image'></img>
             </div>
             <a
               href='/users/sign_up'
