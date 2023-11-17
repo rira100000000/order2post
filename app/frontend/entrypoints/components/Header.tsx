@@ -16,11 +16,11 @@ const Header = ({ current_user_email }) => {
               {current_user_email.replace(/"/g, '')}
             </strong>
           </div>
-          <div>
+          <div className='mr-5'>
             <a
               href='/users/sign_out'
               id='signout_button'
-              className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 lg:mt-0'
+              className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 lg:mt-0 mr-2'
             >
               サインアウト
             </a>

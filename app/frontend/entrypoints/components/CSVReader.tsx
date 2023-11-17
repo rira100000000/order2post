@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import ReadMinne from '../minne';
 import ReadCreema from '../creema';
 import { useCSVReader } from 'react-papaparse';
@@ -76,7 +76,7 @@ export default function CSVReader(props: CSVReaderProps) {
         )}
       </CSVReader>
       <Modal>
-        <div className='bg-white border h-40 p-4 rounded-md print_none'>
+        <div className='border h-40 p-4 rounded-md print_none'>
           <div>
             {props.service}のデータが読み込まれました。{'\n'}
             続けて{anotherService.current}の注文情報を入力しますか？{'\n'}

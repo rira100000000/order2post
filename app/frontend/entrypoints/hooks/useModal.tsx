@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const useModal: any = () => {
   const [show, setShow] = useState(false);
@@ -38,7 +38,13 @@ const useModal: any = () => {
             opacity: '0.5'
           }}
         ></div>
-        <div style={{ position: 'relative', whiteSpace: 'pre-line' }}>
+        <div
+          style={{
+            position: 'relative',
+            whiteSpace: 'pre-line',
+            backgroundColor: '#f5f5f5'
+          }}
+        >
           {children}
         </div>
       </div>

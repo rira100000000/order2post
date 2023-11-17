@@ -39,6 +39,33 @@ export default function ConvertSheet(props: ConvertSheetProps) {
     saveAs(writeData, 'clickpost.csv');
   };
 
+  const setRowStyles = () => {
+    const convertsheetDiv = document.querySelector('.convert-sheet');
+    const spreadsheet = convertsheetDiv?.querySelector('.jexcel_content');
+    if (spreadsheet) {
+      const rows = spreadsheet.querySelectorAll('tr');
+      rows.forEach((row, index) => {
+        const cells = row.querySelectorAll('td');
+        cells.forEach((cell, cellIndex) => {
+          if (!(cellIndex % 9 === 1)) {
+            // checkbox以外編集不可にするため
+            cell.classList.add('readonly');
+          } else {
+            // checkboxのセル全体をクリック可能にするため
+            cell.classList.add('checkbox-cell');
+          }
+          if ((index + 1) % 2 === 0) {
+            // 偶数行に色を付けるため
+            cell.classList.add('even-row');
+          } else {
+            // 奇数行に色を付けるため
+            cell.classList.add('odd-row');
+          }
+        });
+      });
+    }
+  };
+
   const setColStyle = () => {
     const spreadsheets = document.querySelectorAll('.convert-sheet');
     console.log(spreadsheets);
@@ -87,6 +114,7 @@ export default function ConvertSheet(props: ConvertSheetProps) {
     output.current = outputToConvertSheet(props.shippingInfos);
     convertTable.current.setData(output.current);
     setColStyle();
+    setRowStyles();
   }, [options, props.shippingInfos, convertRef.current]);
 
   return (

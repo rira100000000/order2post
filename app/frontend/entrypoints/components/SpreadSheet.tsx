@@ -72,25 +72,36 @@ export default function SpreadSheet(props: Props) {
   const jRef = useRef<HTMLDivElement | null>(null);
 
   const setRowStyles = () => {
-    const spreadsheets = document.querySelectorAll('.jexcel_content');
-    for (const spreadsheet of spreadsheets) {
-      const rows = spreadsheet.querySelectorAll('tr');
-      rows.forEach((row, index) => {
-        const cells = row.querySelectorAll('td');
-        cells.forEach((cell, cellIndex) => {
-          if (!(cellIndex % 9 === 1)) {
-            // checkbox以外編集不可にするため
-            cell.classList.add('readonly');
-          } else {
-            // checkboxのセル全体をクリック可能にするため
-            cell.classList.add('checkbox-cell');
-          }
-          if (index % 2 === 0) {
-            // 偶数行に色を付けるため
-            cell.classList.add('even-row');
-          }
+    const spreadsheetDivs = document.querySelectorAll('.spreadsheet');
+    for (const spreadsheetDiv of spreadsheetDivs) {
+      const spreadsheet = spreadsheetDiv.querySelector('.jexcel_content');
+
+      if (spreadsheet) {
+        const rows = spreadsheet.querySelectorAll('tr');
+        rows.forEach((row, index) => {
+          const cells = row.querySelectorAll('td');
+          cells.forEach((cell, cellIndex) => {
+            if (!(cellIndex % 9 === 1)) {
+              // checkbox以外編集不可にするため
+              cell.classList.add('readonly');
+            } else {
+              // checkboxのセル全体をクリック可能にするため
+              cell.classList.add('checkbox-cell');
+            }
+            const computedStyle = window.getComputedStyle(row);
+            console.log(computedStyle.display);
+            if (computedStyle.display !== 'none') {
+              if (index % 2 === 0) {
+                // 偶数行に色を付けるため
+                cell.classList.add('even-row');
+              } else {
+                // 偶数行に色を付けるため
+                cell.classList.add('odd-row');
+              }
+            }
+          });
         });
-      });
+      }
     }
   };
 
@@ -173,7 +184,7 @@ export default function SpreadSheet(props: Props) {
         {!showSpreadSheet || isEmpty() ? (
           <div ref={jRef} style={{ display: 'none' }} />
         ) : (
-          <div ref={jRef} className='print_none' />
+          <div ref={jRef} className='spreadsheet print_none' />
         )}
         <br />
         {showSpreadSheet && !isEmpty() && (
