@@ -2,6 +2,7 @@ import React from 'react';
 import '../declarations.d.ts';
 import minneToPost from '../images/minneToPost.png';
 import logo from '../images/logo_origin.png';
+import Footer from './Footer.tsx';
 
 function Top() {
   return (
@@ -43,6 +44,7 @@ function Top() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -1,53 +1,56 @@
-<div class="flex justify-center items-center mt-10">
-  <div class="w-full max-w-xs">
-    <h2 class="font-hairline mb-6 text-center">パスワード再設定</h2>
+<div class='w-full'>
+    <div class="flex justify-center items-center mt-10">
+        <div class="w-full max-w-xs">
+            <h2 class="font-hairline mb-6 text-center">パスワード再設定</h2>
 
-    <%= form_for(resource,
-                url: user_password_path(),
-                html: {
-                        method: :put,
-                        class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600"
-                }
-        ) do |f| %>
+            <%= form_for(resource,
+                        url: user_password_path(),
+                        html: {
+                                method: :put,
+                                class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600"
+                        }
+                ) do |f| %>
 
-        <%#= render "devise/shared/error_messages", resource: resource %>
+                <%#= render "devise/shared/error_messages", resource: resource %>
 
-        <%= devise_error_messages! %>
+                <%= devise_error_messages! %>
 
-        <%= f.hidden_field :reset_password_token %>
+                <%= f.hidden_field :reset_password_token %>
 
-        <div class="mb-4">
-            <%= f.label :password, "パスワード",
-                        class: "block font-bold mb-2 text-gray-700 text-sm"
-            %>
-            <% if @minimum_password_length %>
-                <small><em class="text-gray-600">(<%= @minimum_password_length %> 文字以上で設定してください)</em></small>
+                <div class="mb-4">
+                    <%= f.label :password, "パスワード",
+                                class: "block font-bold mb-2 text-gray-700 text-sm"
+                    %>
+                    <% if @minimum_password_length %>
+                        <small><em class="text-gray-600">(<%= @minimum_password_length %> 文字以上で設定してください)</em></small>
+                    <% end %>
+                    <%= f.password_field :password,
+                                        autofocus: true,
+                                        autocomplete: "new-password",
+                                        class: "appearance-none border leading-tight focus:outline-none px-3 py-2 rounded shadow focus:shadow-outline text-gray-700 w-full"
+                    %>
+                </div>
+
+                <div class="mb-4">
+                    <%= f.label :password_confirmation,
+                                "パスワード(確認用)",
+                                class: "block font-bold mb-2 text-gray-700 text-sm"
+                    %>
+                    <%= f.password_field :password_confirmation,
+                                        autocomplete: "off",
+                                        class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    %>
+                </div>
+
+                <div class="mb-4">
+                    <%= f.submit "設定",
+                                class: "button font-bold py-2 px-4 rounded w-full button py-2 px-4 rounded inline-block text-md h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer" 
+                    %>
+                </div>
             <% end %>
-            <%= f.password_field :password,
-                                autofocus: true,
-                                autocomplete: "new-password",
-                                class: "appearance-none border leading-tight focus:outline-none px-3 py-2 rounded shadow focus:shadow-outline text-gray-700 w-full"
-            %>
-        </div>
 
-        <div class="mb-4">
-            <%= f.label :password_confirmation,
-                        "パスワード(確認用)",
-                        class: "block font-bold mb-2 text-gray-700 text-sm"
-            %>
-            <%= f.password_field :password_confirmation,
-                                autocomplete: "off",
-                                class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            %>
+            <%= render "devise/shared/form_footer" %>
         </div>
-
-        <div class="mb-4">
-            <%= f.submit "設定",
-                        class: "button font-bold py-2 px-4 rounded w-full button py-2 px-4 rounded inline-block text-md h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer" 
-            %>
-        </div>
-    <% end %>
-
-    <%= render "devise/shared/form_footer" %>
-  </div>
+    </div>
+    <%= render 'shared/footer' %>
 </div>
