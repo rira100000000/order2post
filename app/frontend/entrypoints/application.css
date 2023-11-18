@@ -21,3 +21,14 @@
 body {
   background-color: #f5f5f5;
 }
+
+.wrapper {
+  min-height: 100vh; /*①高さの最小値*/
+  position: relative; /*②相対位置*/
+}
+
+footer {
+  width: 100%;
+  position: absolute; /*②絶対位置*/
+  bottom: 0; /*下に固定*/
+}

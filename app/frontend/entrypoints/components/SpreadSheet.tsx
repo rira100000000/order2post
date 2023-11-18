@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from './Header';
+import Footer from './Footer';
 import jspreadsheet from 'jspreadsheet-ce';
 import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
@@ -237,6 +238,7 @@ export default function SpreadSheet(props: Props) {
         )}
         {<PrintSheet lines={lines} />}
       </div>
+      <Footer />
     </>
   );
 }
