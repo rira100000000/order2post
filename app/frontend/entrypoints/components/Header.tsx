@@ -1,6 +1,6 @@
-import logo from '../logo_origin.png';
 import React from 'react';
-
+import '../declarations.d.ts';
+import logo from '../images/logo_origin.png';
 const Header = ({ current_user_email }) => {
   return (
     <>
@@ -18,18 +18,25 @@ const Header = ({ current_user_email }) => {
           </div>
           <div className='mr-5'>
             <a
+              href='/usage'
+              id='usage_button'
+              className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 lg:mt-0 mr-2'
+            >
+              使い方
+            </a>
+            <a
+              href='/users/edit'
+              id='setting_button'
+              className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 lg:mt-0 mr-2'
+            >
+              設定
+            </a>
+            <a
               href='/users/sign_out'
               id='signout_button'
               className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 lg:mt-0 mr-2'
             >
               サインアウト
-            </a>
-            <a
-              href='/users/edit'
-              id='setting_button'
-              className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 lg:mt-0'
-            >
-              設定
             </a>
           </div>
         </div>

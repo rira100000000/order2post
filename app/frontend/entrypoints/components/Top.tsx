@@ -1,7 +1,7 @@
 import React from 'react';
 import '../declarations.d.ts';
-import minneToPost from '../minneToPost.png';
-import logo from '../logo_origin.png';
+import minneToPost from '../images/minneToPost.png';
+import logo from '../images/logo_origin.png';
 
 function Top() {
   return (

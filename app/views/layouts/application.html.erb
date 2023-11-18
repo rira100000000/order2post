@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/7da7ad13fa.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="icon" href=<%= vite_asset_path 'favicon.png' %> />
+    <link rel="icon" href=<%= vite_asset_path 'entrypoints/images/favicon.png' %> />
 
     <%= content_tag(:div, '', id: 'csrf-token', data: { token: form_authenticity_token }) %>
     <% if user_signed_in? %>
