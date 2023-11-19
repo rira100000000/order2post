@@ -150,6 +150,8 @@ GEM
       rest-client (>= 2.0.2)
     marcel (1.0.2)
     matrix (0.4.2)
+    meta-tags (2.19.0)
+      actionpack (>= 3.2.0, < 7.2)
     method_source (1.0.0)
     mime-types (3.5.1)
       mime-types-data (~> 3.2015)
@@ -293,6 +295,7 @@ DEPENDENCIES
   faker
   fixture_builder
   mailgun-ruby
+  meta-tags
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.6)

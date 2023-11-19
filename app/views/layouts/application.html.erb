@@ -2,15 +2,7 @@
 <html>
   <head prefix=”og: http://ogp.me/ns#”>
     <title>Order2Post</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta property="og:url" content="order2post.fun" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Order2Post" />
-    <meta property="og:description" content="minne、Creemaの注文情報をクリックポストのまとめ申込ファイルに変換します" />
-    <meta property="og:site_name" content="Order2Post" />
-    <meta property="og:image" content=<%= vite_asset_path('entrypoints/images/OGP.png') %> />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@rira100000000" />
+    <%= display_meta_tags default_meta_tags %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= vite_client_tag %>
