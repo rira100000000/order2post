@@ -144,6 +144,7 @@ export default function IndividualConvertForm(
             id={`content_${index}`}
             className='text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-1 ml-auto'
             value={conversion[item] || ''}
+            placeholder='ex)アクセサリー'
             onChange={(event) => handleChange(event, item)}
           />
         </div>
