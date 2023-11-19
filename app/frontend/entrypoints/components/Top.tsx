@@ -1,6 +1,6 @@
 import React from 'react';
 import '../declarations.d.ts';
-import minneToPost from '../images/minneToPost.png';
+import toPost from '../images/toPost.png';
 import logo from '../images/logo_origin.png';
 import Footer from './Footer.tsx';
 
@@ -25,7 +25,7 @@ function Top() {
             </div>
             <div className='flex flex-col mt-1 items-center '>
               <img
-                src={minneToPost}
+                src={toPost}
                 width='480'
                 alt='注文がポストに入るイメージ'
               ></img>
