@@ -3,12 +3,17 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className='print_none'>
-      <nav className='flex items-center justify-center flex-wrap p-3 bg-slate-800'>
-        <div className='flex flex-shrink-0 text-white mr-6'>
-          <a href='/privacy'>プライバシーポリシー</a>
+      <nav className='block p-3 bg-slate-800'>
+        <div className='flex justify-center flex-wrap bg-slate-800'>
+          <div className='flex text-white mr-6'>
+            <a href='/privacy'>プライバシーポリシー</a>
+          </div>
+          <div className='flex text-white'>
+            <a href='/terms'>利用規約</a>
+          </div>
         </div>
-        <div className='flex flex-shrink-0 text-white mr-6'>
-          <a href='/terms'>利用規約</a>
+        <div className='flex justify-center text-white mt-2'>
+          <p>©2023 rira100000000</p>
         </div>
       </nav>
     </footer>
