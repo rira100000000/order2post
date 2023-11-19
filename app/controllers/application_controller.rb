@@ -3,11 +3,11 @@
 class ApplicationController < ActionController::Base
   around_action :switch_locale
 
-  def switch_locale(&action)
+  def switch_locale(&)
     locale = extract_locale_from_tld || I18n.default_locale
-    I18n.with_locale(locale, &action)
+    I18n.with_locale(locale, &)
   end
-  
+
   def set_csrf_token_header
     response.set_header('X-CSRF-Token', form_authenticity_token)
   end

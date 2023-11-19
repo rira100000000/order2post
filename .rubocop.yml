@@ -35,3 +35,5 @@ Style/BlockComments:
     - spec/spec_helper.rb
 Metrics/MethodLength:
   Max: 20
+  Exclude:
+    - app/helpers/meta_tags_helper.rb
