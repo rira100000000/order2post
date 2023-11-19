@@ -3,7 +3,6 @@
 module MetaTagsHelper
   def default_meta_tags
     {
-      site: 'Order2Post',
       reverse: true,
       charset: 'utf-8',
       description: 'Order2Postはminne、Creemaの注文情報をクリックポストのまとめ申込ファイルに変換するサービスです',
