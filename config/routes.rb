@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   root 'top#index'
-  get 'spreadsheet', to: 'spreadsheet#index'
   get 'conversions', to: 'conversions#index'
   post '/conversions', to: 'conversions#submit'
   get '/converteds', to: 'converteds#index'
