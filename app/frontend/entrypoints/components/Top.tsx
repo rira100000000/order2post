@@ -9,7 +9,7 @@ function Top() {
     <>
       <div className='flex flex-col mt-5 items-center '>
         <a href='/'>
-          <img src={logo} width='560' alt='img' />
+          <img src={logo} width='560' alt='ロゴ' />
         </a>
       </div>
 
@@ -24,7 +24,11 @@ function Top() {
               </div>
             </div>
             <div className='flex flex-col mt-1 items-center '>
-              <img src={minneToPost} width='480' alt='image'></img>
+              <img
+                src={minneToPost}
+                width='480'
+                alt='注文がポストに入るイメージ'
+              ></img>
             </div>
             <a
               href='/users/sign_up'
