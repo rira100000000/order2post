@@ -179,66 +179,70 @@ export default function SpreadSheet(props: Props) {
   console.log(props.current_user_email);
   return (
     <>
-      <Header current_user_email={props.current_user_email} />
+      <div className='app'>
+        <div className='content'>
+          <Header current_user_email={props.current_user_email} />
 
-      <div>
-        {!showSpreadSheet || isEmpty() ? (
-          <div ref={jRef} style={{ display: 'none' }} />
-        ) : (
-          <div ref={jRef} className='spreadsheet print_none' />
-        )}
-        <br />
-        {showSpreadSheet && !isEmpty() && (
-          <div className='print_none'>
-            <button
-              className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3'
-              onClick={handleClick}
-            >
-              クリックポスト変換
-            </button>
+          <div>
+            {!showSpreadSheet || isEmpty() ? (
+              <div ref={jRef} style={{ display: 'none' }} />
+            ) : (
+              <div ref={jRef} className='spreadsheet print_none' />
+            )}
+            <br />
+            {showSpreadSheet && !isEmpty() && (
+              <div className='print_none'>
+                <button
+                  className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3'
+                  onClick={handleClick}
+                >
+                  クリックポスト変換
+                </button>
 
-            <button
-              className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3 print_none'
-              onClick={() => {
-                window.print();
-              }}
-            >
-              印刷する
-            </button>
+                <button
+                  className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3 print_none'
+                  onClick={() => {
+                    window.print();
+                  }}
+                >
+                  印刷する
+                </button>
+              </div>
+            )}
+
+            {showUploadButton && (
+              <CSVReader
+                setLines={setLines}
+                service={service}
+                setService={setService}
+              />
+            )}
+            {showConvertMenu && (
+              <ConvertMenu
+                openSpreadSheet={openSpreadSheet}
+                content={content}
+                setContent={setContent}
+                setshowUploadButton={setshowUploadButton}
+                setshowConvertMenu={setshowConvertMenu}
+                setshowConvertSheet={setshowConvertSheet}
+                shippingInfos={shippingInfos}
+                setShippingInfos={setShippingInfos as setShippingInfos}
+                lines={lines}
+                setLines={setLines}
+              />
+            )}
+            {showConvertSheet && (
+              <ConvertSheet
+                shippingInfos={shippingInfos}
+                setshowConvertMenu={setshowConvertMenu}
+                setshowConvertSheet={setshowConvertSheet}
+              />
+            )}
+            {<PrintSheet lines={lines} />}
           </div>
-        )}
-
-        {showUploadButton && (
-          <CSVReader
-            setLines={setLines}
-            service={service}
-            setService={setService}
-          />
-        )}
-        {showConvertMenu && (
-          <ConvertMenu
-            openSpreadSheet={openSpreadSheet}
-            content={content}
-            setContent={setContent}
-            setshowUploadButton={setshowUploadButton}
-            setshowConvertMenu={setshowConvertMenu}
-            setshowConvertSheet={setshowConvertSheet}
-            shippingInfos={shippingInfos}
-            setShippingInfos={setShippingInfos as setShippingInfos}
-            lines={lines}
-            setLines={setLines}
-          />
-        )}
-        {showConvertSheet && (
-          <ConvertSheet
-            shippingInfos={shippingInfos}
-            setshowConvertMenu={setshowConvertMenu}
-            setshowConvertSheet={setshowConvertSheet}
-          />
-        )}
-        {<PrintSheet lines={lines} />}
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }

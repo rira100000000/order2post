@@ -6,70 +6,73 @@
   <meta name="description" content="ユーザーのメールアドレス、パスワードの再設定を行います。">
 </head>
 
-<div class='w-full'>
-  <%= render 'shared/header' %>
-  <div class="flex justify-center items-center mt-10">
-    <div class="w-full max-w-xs">
-      <h1 class="font-hairline mb-6 text-center">ユーザー情報編集</h1>
+<div class='app w-full'>
+  <div class='content'>
+    <%= render 'shared/header' %>
+    <div class="flex justify-center items-center mt-10">
+      <div class="w-full max-w-xs">
+        <h1 class="font-hairline mb-6 text-center">ユーザー情報編集</h1>
 
-      <%= form_for(resource,
-                    as: resource_name,
-                    url: registration_path(resource_name),
-                    html: {
-                            method: :put,
-                            class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600"
-                    }
-            ) do |f| %>
+        <%= form_for(resource,
+                      as: resource_name,
+                      url: registration_path(resource_name),
+                      html: {
+                              method: :put,
+                              class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600"
+                      }
+              ) do |f| %>
 
-      <%#= render "devise/shared/error_messages", resource: resource %>
-      <%= devise_error_messages! %>
+        <%#= render "devise/shared/error_messages", resource: resource %>
+        <%= devise_error_messages! %>
 
-      <div class="mb-4">
-        <%= f.label 'メールアドレス', class: "block font-bold mb-2 text-gray-700 text-sm"  %>
-        <%= f.email_field :email,
-                                  autofocus: true,
-                                  autocomplete: "email",
-                                  class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none shadow focus:shadow-outline" %>
+        <div class="mb-4">
+          <%= f.label 'メールアドレス', class: "block font-bold mb-2 text-gray-700 text-sm"  %>
+          <%= f.email_field :email,
+                                    autofocus: true,
+                                    autocomplete: "email",
+                                    class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none shadow focus:shadow-outline" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="mb-4">
+          <%= f.label 'パスワード', class: "block font-bold mb-2 text-gray-700 text-sm" %> <i>(変更しない場合入力不要)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+
+        </div>
+
+        <div class="mb-4">
+          <%= f.label 'パスワード(確認用)', class: "block font-bold mb-2 text-gray-700 text-sm"  %>
+          <%= f.password_field :password_confirmation,
+                                      autocomplete: "new-password",
+                                      class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label '現在のパスワード', class: "block font-bold mb-2 text-gray-700 text-sm" %>
+          <%= f.password_field :current_password,
+                                      autocomplete: "current-password",
+                                      class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                                      
+                  %>
+        </div>
+
+        <div class="actions flex justify-center items-center">
+          <%= f.submit "更新する", class: "button py-2 px-4 rounded inline-block text-md h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer" %>
+        </div>
+        <% end %>
+
+      <%= button_to "アカウントを削除する", registration_path(resource_name), method: :delete, data: { turbo: false }, form: { onSubmit: "return check()" }, class: "inline-block text-md px-4 py-2 leading-none text-slate-400  hover:underline" %>
+
+        <%= link_to "戻る", :root ,class: "inline-block text-md px-4 py-2 leading-none text-slate-400  hover:underline"%>
       </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-
-      <div class="mb-4">
-        <%= f.label 'パスワード', class: "block font-bold mb-2 text-gray-700 text-sm" %> <i>(変更しない場合入力不要)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
-
-      </div>
-
-      <div class="mb-4">
-        <%= f.label 'パスワード(確認用)', class: "block font-bold mb-2 text-gray-700 text-sm"  %>
-        <%= f.password_field :password_confirmation,
-                                    autocomplete: "new-password",
-                                    class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                %>
-      </div>
-
-      <div class="mb-4">
-        <%= f.label '現在のパスワード', class: "block font-bold mb-2 text-gray-700 text-sm" %>
-        <%= f.password_field :current_password,
-                                    autocomplete: "current-password",
-                                    class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                                    
-                %>
-      </div>
-
-      <div class="actions flex justify-center items-center">
-        <%= f.submit "更新する", class: "button py-2 px-4 rounded inline-block text-md h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer" %>
-      </div>
-      <% end %>
-
-    <%= button_to "アカウントを削除する", registration_path(resource_name), method: :delete, data: { turbo: false }, form: { onSubmit: "return check()" }, class: "inline-block text-md px-4 py-2 leading-none text-slate-400  hover:underline" %>
-
-      <%= link_to "戻る", :root ,class: "inline-block text-md px-4 py-2 leading-none text-slate-400  hover:underline"%>
     </div>
   </div>
   <%= render 'shared/footer' %>
+
 </div>
 <script>
 function check(){
