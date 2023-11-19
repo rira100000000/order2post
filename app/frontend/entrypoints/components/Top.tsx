@@ -34,6 +34,7 @@ function Top() {
                 </div>
                 <a
                   href='/users/sign_up'
+                  id='signup_button'
                   className='text-xl px-4 py-2 mt-4 mb-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600'
                 >
                   サインアップ

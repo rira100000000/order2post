@@ -12,7 +12,7 @@ RSpec.describe 'ログイン、ログアウトのテスト' do
 
     find('#signout_button').click
     
-    expect(page).to have_content('CSV変換君')
+    expect(page).to have_content('minne,Creemaの注文一覧データをクリックポストのまとめ申込用データへ変換します！')
   end
 end
 
