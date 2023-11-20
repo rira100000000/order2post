@@ -20,22 +20,43 @@
 
 ## 仕様技術
 ### バックエンド
-[Ruby 3.1.4](https://www.ruby-lang.org/ja/)<br>
-[Ruby on Rails 7.0.8](https://rubyonrails.org/)<br>
+* [Ruby 3.1.4](https://www.ruby-lang.org/ja/)<br>
+* [Ruby on Rails 7.0.8](https://rubyonrails.org/)<br>
 ### フロントエンド
-[React 18.2.0](https://react.dev/)<br>
-[TypeScript 5.2.2](https://www.typescriptlang.org/)<br>
-[Tailwind CSS 3.5.5](https://tailwindcss.com/)<br>
-[vite 4.5.0](https://ja.vitejs.dev/)<br>
+* [React 18.2.0](https://react.dev/)<br>
+* [TypeScript 5.2.2](https://www.typescriptlang.org/)<br>
+* [Tailwind CSS 3.5.5](https://tailwindcss.com/)<br>
+* [vite 4.5.0](https://ja.vitejs.dev/)<br>
 
 ### データベース
-[PostgreSQL](https://www.postgresql.org/)
+* [PostgreSQL](https://www.postgresql.org/)
 
 ### デプロイ
-[Fly.io](https://fly.io/)<br>
+* [Fly.io](https://fly.io/)<br>
 
 ### CI
-[GitHub Actions](https://github.co.jp/features/actions)<br>
+* [GitHub Actions](https://github.co.jp/features/actions)<br>
 
 ### テスト
-[RSpec](https://rspec.info/)
+* [RSpec](https://rspec.info/)
+
+## 利用方法
+### 環境変数
+| 環境変数名 | 説明 |
+| ---- | ---- |
+| MAILGUN_API | MailgunのAPIキー |
+
+### インストールと実行
+```
+$ git clone https://github.com/rira100000000/csv_converter.git
+$ cd csv_converter
+$ bin/setup
+$ npm install
+$ foreman start -f Procfile.dev
+```
+
+### Test/Formatter & Lint
+```
+$ bundle exec rspec
+$ bin/lint
+```
