@@ -8,7 +8,7 @@ class ConvertedsController < ApplicationController
     render json: converteds
   end
 
-  def submit
+  def create
     new_converted_ids = params[:converteds]
     current_converted_orders = Converted.where(user: current_user)
     warning_list = []
@@ -22,7 +22,7 @@ class ConvertedsController < ApplicationController
         break
       end
 
-      create(new_converted_id) unless is_update
+      submit(new_converted_id) unless is_update
     end
 
     render json: warning_list
@@ -30,7 +30,7 @@ class ConvertedsController < ApplicationController
 
   private
 
-  def create(order_id)
+  def submit(order_id)
     new_converted_order = Converted.new(user: current_user, order_id:)
     new_converted_order.save!
   end

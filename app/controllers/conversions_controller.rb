@@ -8,7 +8,7 @@ class ConversionsController < ApplicationController
     render json: conversions
   end
 
-  def submit
+  def create
     new_conversions = params[:conversions]
     current_conversions = Conversion.where(user: current_user)
 
@@ -21,7 +21,7 @@ class ConversionsController < ApplicationController
         is_update = true
         break
       end
-      create(key, new_conversions[key]) unless is_update
+      submit(key, new_conversions[key]) unless is_update
     end
 
     render json: params[:data]
@@ -29,7 +29,7 @@ class ConversionsController < ApplicationController
 
   private
 
-  def create(key, content)
+  def submit(key, content)
     new_conversion = Conversion.new(user: current_user, item: key, content:)
     new_conversion.save!
   end
