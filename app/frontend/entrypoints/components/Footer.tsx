@@ -6,7 +6,7 @@ const Footer = () => {
       <nav className='block p-3 bg-slate-800'>
         <div className='flex justify-center flex-wrap bg-slate-800'>
           <div className='flex text-white mr-6'>
-            <a href='/privacy' className='hover:underline'>
+            <a href='/privacy_policy' className='hover:underline'>
               プライバシーポリシー
             </a>
           </div>
