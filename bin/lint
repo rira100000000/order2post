@@ -1,0 +1,5 @@
+#!/bin/bash
+
+bundle exec rubocop -a
+npx prettier --check .
+npx eslint
