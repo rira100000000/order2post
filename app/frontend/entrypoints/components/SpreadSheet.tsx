@@ -183,11 +183,11 @@ export default function SpreadSheet(props: Props) {
         <div className='content'>
           <Header current_user_email={props.current_user_email} />
 
-          <div>
+          <div className='md:w-full'>
             {!showSpreadSheet || isEmpty() ? (
               <div ref={jRef} style={{ display: 'none' }} />
             ) : (
-              <div ref={jRef} className='spreadsheet print_none' />
+              <div ref={jRef} className='spreadsheet print_none w-max' />
             )}
             <br />
             {showSpreadSheet && !isEmpty() && (
