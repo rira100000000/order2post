@@ -137,7 +137,7 @@ export default function IndividualConvertForm(
       const conversion = currentConversions();
       result.push(
         <div key={`content_${index}`} className='w-full flex items-center'>
-          <span className={`item_${index} w-64 flex-wrap`}>{item}</span>
+          <span className={`item_${index} md:w-64 flex flex-wrap`}>{item}</span>
           <input
             type='text'
             name='individual_content'
