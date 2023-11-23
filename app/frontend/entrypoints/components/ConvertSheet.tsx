@@ -35,7 +35,6 @@ export default function ConvertSheet(props: ConvertSheetProps) {
     const uInt8List = new Uint8Array(shiftJisCodeList);
 
     const writeData = new Blob([uInt8List], { type: 'text/csv' });
-    console.log(writeData);
     saveAs(writeData, 'clickpost.csv');
   };
 
@@ -68,12 +67,9 @@ export default function ConvertSheet(props: ConvertSheetProps) {
 
   const setColStyle = () => {
     const spreadsheets = document.querySelectorAll('.convert-sheet');
-    console.log(spreadsheets);
     for (const spreadsheet of spreadsheets) {
       const draggable = spreadsheet.querySelectorAll('.draggable');
-      console.log(draggable);
       const cells = draggable[0].querySelectorAll('td');
-      console.log(cells[2]);
       cells[0].classList.add('hide');
       cells[1].classList.add('w-[130px]');
       cells[2].classList.add('w-[120px]');
@@ -107,8 +103,6 @@ export default function ConvertSheet(props: ConvertSheetProps) {
 
   useEffect(() => {
     if (!convertTable.current) {
-      console.log('convertRef.current0');
-      console.log(convertRef.current);
       convertTable.current = jspreadsheet(convertRef.current, options);
     }
     output.current = outputToConvertSheet(props.shippingInfos);

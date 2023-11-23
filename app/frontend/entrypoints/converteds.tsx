@@ -10,9 +10,7 @@ const updateConverteds = (lines) => {
 
   axios
     .post('/converteds', { converteds: converteds })
-    .then((response) => {
-      console.log(response.data);
-    })
+    .then((response) => {})
     .catch((error) => {
       console.error(error);
     });
@@ -23,7 +21,6 @@ const alertConverteds = async (lines) => {
 
   let message = '';
   for (const converted of converteds) {
-    console.log(converted);
     if (message !== '') {
       message = message + '\n' + converted.split('\n').join('');
     } else {

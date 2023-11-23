@@ -36,7 +36,6 @@ export default function IndividualConvertForm(
     const initialConversions = {};
     for (const key of keys) {
       initialConversions[key] = props.conversions[key];
-      console.log('response.data[key]=' + props.conversions[key]);
     }
     return initialConversions;
   };
@@ -51,7 +50,6 @@ export default function IndividualConvertForm(
       if (line[0] === true) {
         const item = (line[ITEM] as string).split('\n')[NEEDCONVERT];
         const content = conversions[line[ITEM] as string];
-        console.log(content);
         let shippingInfo = {
           addressInfo: line[ADDRESS] as string,
           item: item,
@@ -111,16 +109,13 @@ export default function IndividualConvertForm(
         alert('個別設定を行う場合、全ての欄を入力してください error=3');
         return;
       } else {
-        console.log('conversion=' + conversions[key]);
       }
     }
     props.setShippingInfos(calcShippingInfos());
 
     axios
       .post('/conversions', { conversions: conversions })
-      .then((response) => {
-        console.log(response.data);
-      })
+      .then((response) => {})
       .catch((error) => {
         console.error(error);
       });

@@ -90,7 +90,6 @@ export default function SpreadSheet(props: Props) {
               cell.classList.add('checkbox-cell');
             }
             const computedStyle = window.getComputedStyle(row);
-            console.log(computedStyle.display);
             if (computedStyle.display !== 'none') {
               if (index % 2 === 0) {
                 // 偶数行に色を付けるため
@@ -141,7 +140,6 @@ export default function SpreadSheet(props: Props) {
       cell.id = `checkboxCell-${index}`;
       cell.addEventListener('click', () => {
         const checkbox = document.getElementById(`checkbox-${index}`);
-        console.log(`checkbox-${index}`);
         if (checkbox) {
           checkbox.click();
         }
@@ -151,7 +149,6 @@ export default function SpreadSheet(props: Props) {
 
   const handleClick = () => {
     if (ischecked()) {
-      console.log('選択数 ' + checkdNum());
       if (checkdNum() <= 40) {
         closeSpreadSheet();
         setshowUploadButton(false);
@@ -176,7 +173,6 @@ export default function SpreadSheet(props: Props) {
       setCheckboxStyles();
     }
   }, [options, lines]);
-  console.log(props.current_user_email);
   return (
     <>
       <div className='app'>
