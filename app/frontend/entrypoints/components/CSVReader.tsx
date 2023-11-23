@@ -51,7 +51,7 @@ export default function CSVReader(props: CSVReaderProps) {
         }}
       >
         {({ getRootProps }: any) => (
-          <>
+          <div className='print_none'>
             {props.service ? (
               <div className='flex items-center w-full'>
                 <div
@@ -72,7 +72,7 @@ export default function CSVReader(props: CSVReaderProps) {
                 </div>
               </div>
             )}
-          </>
+          </div>
         )}
       </CSVReader>
       <Modal>

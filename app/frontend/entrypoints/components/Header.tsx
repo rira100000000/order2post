@@ -3,7 +3,7 @@ import '../declarations.d.ts';
 import logo from '../images/logo_origin.png';
 const Header = ({ current_user_email }) => {
   return (
-    <>
+    <div className='print_none'>
       <nav className='flex items-center flex-wrap p-3 border-b border-t-0 border-l-0 border-r-0 border-amber-600 print_none'>
         <div className='flex flex-shrink-0 text-amber-600 mr-6'>
           <a href='/'>
@@ -41,7 +41,7 @@ const Header = ({ current_user_email }) => {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 

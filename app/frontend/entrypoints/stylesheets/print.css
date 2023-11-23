@@ -1,6 +1,4 @@
 @media print {
-  div.print_none,
-  body > nav.print_none,
   .print_none {
     display: none;
   }
