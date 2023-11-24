@@ -121,6 +121,24 @@ export default function SpreadSheet(props: Props) {
     }
   };
 
+  const setSmartphoneColStyle = () => {
+    const spreadsheets = document.querySelectorAll('.draggable');
+    for (const spreadsheet of spreadsheets) {
+      const cells = spreadsheet.querySelectorAll('td');
+      if (cells[0]) {
+        cells[0].classList.add('hide');
+        cells[1].classList.add('min-120');
+        cells[2].classList.add('min-120');
+        cells[3].classList.add('min-120');
+        cells[4].classList.add('min-300');
+        cells[5].classList.add('min-10');
+        cells[6].classList.add('min-300');
+        cells[7].classList.add('min-100');
+        cells[8].classList.add('min-300');
+      }
+    }
+  };
+
   const setCheckboxStyles = () => {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     let counter = 1;
@@ -170,6 +188,7 @@ export default function SpreadSheet(props: Props) {
       table.current.setData(lines);
       setRowStyles();
       setColStyle();
+      setSmartphoneColStyle();
       setCheckboxStyles();
     }
   }, [options, lines]);

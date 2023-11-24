@@ -71,14 +71,14 @@ export default function ConvertSheet(props: ConvertSheetProps) {
       const draggable = spreadsheet.querySelectorAll('.draggable');
       const cells = draggable[0].querySelectorAll('td');
       cells[0].classList.add('hide');
-      cells[1].classList.add('w-[130px]');
-      cells[2].classList.add('w-[120px]');
-      cells[3].classList.add('w-[120px]');
-      cells[4].classList.add('w-[250px]');
-      cells[5].classList.add('w-[250px]');
-      cells[6].classList.add('w-[250px]');
-      cells[7].classList.add('w-[250px]');
-      cells[8].classList.add('w-[300px]');
+      cells[1].classList.add('min-130');
+      cells[2].classList.add('min-120');
+      cells[3].classList.add('min-120');
+      cells[4].classList.add('min-250');
+      cells[5].classList.add('min-250');
+      cells[6].classList.add('min-250');
+      cells[7].classList.add('min-250');
+      cells[8].classList.add('min-300');
     }
   };
 
@@ -123,10 +123,7 @@ export default function ConvertSheet(props: ConvertSheetProps) {
         内容品設定に戻る
       </button>
       <div>
-        <div
-          ref={convertRef}
-          className='convert-sheet ml-4 md:w-[90vw] w-[600px]'
-        />
+        <div ref={convertRef} className='convert-sheet w-max' />
         <div>
           <button
             className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer m-3'

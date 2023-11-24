@@ -6,3 +6,27 @@
     display: none;
   }
 }
+
+.jexcel_content {
+  overflow: auto;
+  width: 100vw;
+}
+
+.min-300 {
+  min-width: 300px;
+}
+.min-250 {
+  min-width: 250px;
+}
+.min-130 {
+  min-width: 130px;
+}
+.min-120 {
+  min-width: 120px;
+}
+.min-100 {
+  min-width: 100px;
+}
+.min-10 {
+  min-width: 10px;
+}

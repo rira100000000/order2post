@@ -27,3 +27,10 @@ input[type='checkbox'] {
 .hide {
   display: none;
 }
+/* .jexcel_content {
+  overflow: auto;
+  width: 100vw;
+}
+td {
+  min-width: 100px;
+} */
