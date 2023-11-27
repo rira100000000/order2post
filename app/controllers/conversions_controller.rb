@@ -10,7 +10,7 @@ class ConversionsController < ApplicationController
 
   def create
     new_conversions = params[:conversions]
-    current_conversions = Conversion.where(user: current_user)
+    current_conversions = current_user.conversions
 
     new_conversions.each_key do |key|
       is_update = false
@@ -30,7 +30,7 @@ class ConversionsController < ApplicationController
   private
 
   def submit(key, content)
-    new_conversion = Conversion.new(user: current_user, item: key, content:)
+    new_conversion = current_user.conversions.create!(item: key, content:)
     new_conversion.save!
   end
 

@@ -7,7 +7,7 @@ class Conversion < ApplicationRecord
   validates :content, presence: true
 
   def self.get_conversions(current_user)
-    conversions = Conversion.where(user: current_user)
+    conversions = current_user.conversions
     result = {}
     conversions.each do |conversion|
       result[conversion.item] = conversion.content
