@@ -10,7 +10,7 @@ class ConvertedsController < ApplicationController
 
   def create
     new_converted_ids = params[:converteds]
-    current_converted_orders = Converted.where(user: current_user)
+    current_converted_orders = current_user.converteds
     warning_list = []
     new_converted_ids.each do |new_converted_id|
       is_update = false
@@ -31,7 +31,6 @@ class ConvertedsController < ApplicationController
   private
 
   def submit(order_id)
-    new_converted_order = Converted.new(user: current_user, order_id:)
-    new_converted_order.save!
+    current_user.converteds.create!(order_id:)
   end
 end
