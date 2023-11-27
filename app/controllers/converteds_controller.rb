@@ -4,7 +4,7 @@ class ConvertedsController < ApplicationController
   protect_from_forgery
 
   def index
-    converteds = Converted.where(user: current_user)
+    converteds = current_user.converteds
     render json: converteds
   end
 
