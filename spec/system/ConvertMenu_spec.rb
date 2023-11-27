@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
-require_relative './helpers/login_helper'
+require_relative '../helpers/login_helper'
 
 RSpec.describe '内容品の設定ができること' do
     fixtures :users

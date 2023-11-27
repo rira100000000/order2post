@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
-require_relative './helpers/login_helper'
+require_relative '../helpers/login_helper'
 require 'csv'
 
 RSpec.describe 'クリックポスト用に正しくファイルが作成できること' do

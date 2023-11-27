@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
-require_relative './helpers/login_helper'
+require_relative '../helpers/login_helper'
 
 RSpec.describe '変換する注文を選択できること' do
     fixtures :users
