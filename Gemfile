@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.4'
+ruby '3.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 7.0.6'
@@ -41,7 +41,6 @@ end
 gem 'actionmailer'
 gem 'devise'
 gem 'devise-i18n'
-gem 'devise-tailwindcssed'
 gem 'dockerfile-rails', '>= 1.5'
 gem 'dotenv'
 gem 'mailgun-ruby'
