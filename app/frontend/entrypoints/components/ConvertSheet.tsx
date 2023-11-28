@@ -23,10 +23,9 @@ export default function ConvertSheet(props: ConvertSheetProps) {
       csvString = csvString + line + '\n';
     }
 
-    const unicodeList: number[] = [];
-    for (let i = 0; i < csvString.length; i++) {
-      unicodeList.push(csvString.charCodeAt(i));
-    }
+    const unicodeList: number[] = csvString
+      .split('')
+      .map((char) => char.charCodeAt(0));
 
     const shiftJisCodeList = Encoding.convert(unicodeList, {
       to: 'SJIS',
