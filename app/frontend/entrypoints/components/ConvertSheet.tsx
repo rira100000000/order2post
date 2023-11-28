@@ -101,11 +101,11 @@ export default function ConvertSheet(props: ConvertSheetProps) {
   const output = useRef<string[][]>([]);
 
   useEffect(() => {
-    if (!convertTable.current) {
+    if (!convertTable.current && convertRef.current) {
       convertTable.current = jspreadsheet(convertRef.current, options);
     }
     output.current = outputToConvertSheet(props.shippingInfos);
-    convertTable.current.setData(output.current);
+    convertTable.current?.setData(output.current);
     setColStyle();
     setRowStyles();
   }, [options, props.shippingInfos, convertRef.current]);
