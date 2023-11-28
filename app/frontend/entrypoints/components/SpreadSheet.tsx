@@ -122,7 +122,7 @@ export default function SpreadSheet(props: Props) {
   };
 
   const setSmartphoneColStyle = () => {
-    const spreadsheets = document.querySelectorAll('.draggable');
+    const spreadsheets = document.querySelectorAll('.spreadsheet');
     for (const spreadsheet of spreadsheets) {
       const cells = spreadsheet.querySelectorAll('td');
       if (cells[0]) {
