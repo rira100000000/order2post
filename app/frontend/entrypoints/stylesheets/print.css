@@ -18,32 +18,39 @@
     height: 200mm;
     -webkit-print-color-adjust: exact;
   }
+
+  td.orderNum {
+    min-width: 20mm;
+    width: 20mm;
+  }
+
+  .shipping {
+    min-width: 25mm;
+    width: 25mm;
+  }
+  td.item {
+    min-width: 80mm;
+    width: 80mm;
+  }
+  td.itemNum {
+    min-width: 10mm;
+    width: 10mm;
+  }
+
+  td.address {
+    min-width: 70mm;
+    width: 70mm;
+  }
+  td.date {
+    min-width: 20mm;
+    width: 20mm;
+  }
+  td.remarks {
+    min-width: 61mm;
+    width: 61mm;
+  }
 }
 td {
   border-collapse: collapse;
   border: 1px solid #ccc;
-}
-
-td.orderNum {
-  width: 20mm;
-}
-
-td.shipping {
-  width: 25mm;
-}
-td.item {
-  width: 80mm;
-}
-td.itemNum {
-  width: 10mm;
-}
-
-td.address {
-  width: 70mm;
-}
-td.date {
-  width: 20mm;
-}
-td.remarks {
-  width: 61mm;
 }

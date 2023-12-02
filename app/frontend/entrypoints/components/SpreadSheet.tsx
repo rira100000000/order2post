@@ -5,7 +5,6 @@ import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
 import { alertConverteds } from '../converteds';
-import PrintSheet from './PrintSheet';
 
 type Props = {
   current_user_email?: string;
@@ -74,7 +73,7 @@ export default function SpreadSheet(props: Props) {
 
           <div className='w-full'>
             {showSpreadSheet && !isEmpty() && (
-              <div className='print_none'>
+              <div>
                 <OrderSheet lines={lines} setLines={setLines} />
                 <br />
                 <button
@@ -124,7 +123,6 @@ export default function SpreadSheet(props: Props) {
                 setshowConvertSheet={setshowConvertSheet}
               />
             )}
-            {<PrintSheet lines={lines} />}
           </div>
         </div>
         <Footer />
@@ -155,19 +153,19 @@ function OrderSheet(props: OrderSheetProps) {
   const classes = (index: number, oddOrEven: string): string => {
     switch (index % 7) {
       case 0:
-        return `min-120 ${oddOrEven}`;
+        return `min-120 ${oddOrEven} orderNum`;
       case 1:
-        return `min-120 ${oddOrEven}`;
+        return `min-120 ${oddOrEven} shipping`;
       case 2:
-        return `min-300 ${oddOrEven}`;
+        return `min-300 ${oddOrEven} item`;
       case 3:
-        return `min-10 ${oddOrEven}`;
+        return `min-10 ${oddOrEven} itemNum`;
       case 4:
-        return `min-300 ${oddOrEven}`;
+        return `min-300 ${oddOrEven} address`;
       case 5:
-        return `min-100 ${oddOrEven}`;
+        return `min-100 ${oddOrEven} date`;
       case 6:
-        return `min-300 ${oddOrEven}`;
+        return `min-300 ${oddOrEven} remarks`;
       default:
         return 'unknown';
     }
@@ -195,9 +193,9 @@ function OrderSheet(props: OrderSheetProps) {
         oddOrEven = 'odd-row';
       }
       return (
-        <tr key={index}>
+        <tr key={line[1].toString()} className='print-friendly'>
           <td
-            className={`min-120 ${oddOrEven} checkbox-cell`}
+            className={`min-120 ${oddOrEven} checkbox-cell print_none`}
             onClick={() => {
               handleOnClick(index);
             }}
@@ -228,7 +226,7 @@ function OrderSheet(props: OrderSheetProps) {
       <table>
         <thead>
           <tr>
-            <th>変換対象選択</th>
+            <th className='print_none'>変換対象選択</th>
             <th>注文番号</th>
             <th>発送方法</th>
             <th>商品名</th>
