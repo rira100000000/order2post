@@ -14,7 +14,7 @@
  *= require_self
  */
 @import './stylesheets/convertSheet.css';
-@import './stylesheets/output.css';
+@import './stylesheets/tailwind.css';
 @import './stylesheets/print.css';
 @import './stylesheets/spreadsheet.css';
 
