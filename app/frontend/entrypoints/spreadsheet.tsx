@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import SpreadSheet from './components/SpreadSheet';
+import SpreadSheet from '../components/SpreadSheet';
 
 const element: HTMLElement | null = document.getElementById('email');
 const current_user_email: string = element?.dataset.email || '';
