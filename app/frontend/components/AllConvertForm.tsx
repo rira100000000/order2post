@@ -41,7 +41,6 @@ export default function AllConvertForm(props: AllConvertFormProps) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setRowStyles();
     if (props.content !== '') {
       props.setShippingInfos(calcShippingInfos());
       updateConverteds(props.lines);
@@ -49,35 +48,6 @@ export default function AllConvertForm(props: AllConvertFormProps) {
       props.setshowConvertSheet(true);
     } else {
       alert('内容品を設定して下さい');
-    }
-  };
-
-  const setRowStyles = () => {
-    const spreadsheets = document.querySelectorAll('.jexcel_content');
-    for (const spreadsheet of spreadsheets) {
-      const rows = spreadsheet.querySelectorAll('tr');
-      rows.forEach((row, index) => {
-        const computedStyle = window.getComputedStyle(row);
-        if (computedStyle.display !== 'none') {
-          const cells = row.querySelectorAll('td');
-          cells.forEach((cell, cellIndex) => {
-            if (!(cellIndex % 9 === 1)) {
-              // checkbox以外編集不可にするため
-              cell.classList.add('readonly');
-            } else {
-              // checkboxのセル全体をクリック可能にするため
-              cell.classList.add('checkbox-cell');
-            }
-            if (index % 2 === 0) {
-              // 偶数行に色を付けるため
-              cell.classList.add('even-row');
-            } else {
-              // 奇数行に色を付けるため
-              cell.classList.add('odd-row');
-            }
-          });
-        }
-      });
     }
   };
 
