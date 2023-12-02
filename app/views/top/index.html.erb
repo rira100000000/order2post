@@ -6,7 +6,7 @@
 <div id="root" />
 <div id='email' data-email='<%= @current_user_email.to_json %>' />
 <% if user_signed_in?%>
-  <%= vite_javascript_tag 'spreadsheet.tsx' %>
+  <%= vite_javascript_tag 'convertPage.tsx' %>
 <% else %>
   <%= vite_javascript_tag 'top.tsx' %>
 <% end %>

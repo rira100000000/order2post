@@ -13,7 +13,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        spreadsheet: 'app/frontend/entrypoints/spreadsheet.tsx',
+        convertPage: 'app/frontend/entrypoints/convertPage.tsx',
         top: 'app/frontend/entrypoints/top.tsx'
       }
     }
