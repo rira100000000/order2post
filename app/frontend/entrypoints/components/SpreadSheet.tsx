@@ -77,7 +77,7 @@ export default function SpreadSheet(props: Props) {
                 <OrderSheet lines={lines} setLines={setLines} />
                 <br />
                 <button
-                  className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3'
+                  className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3 print_none'
                   onClick={handleClick}
                 >
                   クリックポスト変換
@@ -149,23 +149,43 @@ function OrderSheet(props: OrderSheetProps) {
     });
     return texts;
   };
+  const keyName = (index: number): string => {
+    switch (index) {
+      case 0:
+        return 'orderNum';
+      case 1:
+        return 'shipping';
+      case 2:
+        return 'item ';
+      case 3:
+        return 'itemNum';
+      case 4:
+        return 'address';
+      case 5:
+        return 'date';
+      case 6:
+        return 'remarks';
+      default:
+        return 'unknown';
+    }
+  };
 
   const classes = (index: number, oddOrEven: string): string => {
-    switch (index % 7) {
+    switch (index) {
       case 0:
-        return `min-120 ${oddOrEven} orderNum`;
+        return `min-120 ${oddOrEven} ${keyName(index)}`;
       case 1:
-        return `min-120 ${oddOrEven} shipping`;
+        return `min-120 ${oddOrEven} ${keyName(index)}`;
       case 2:
-        return `min-300 ${oddOrEven} item`;
+        return `min-300 ${oddOrEven} ${keyName(index)}`;
       case 3:
-        return `min-10 ${oddOrEven} itemNum`;
+        return `min-10 ${oddOrEven} ${keyName(index)}`;
       case 4:
-        return `min-300 ${oddOrEven} address`;
+        return `min-300 ${oddOrEven} ${keyName(index)}`;
       case 5:
-        return `min-100 ${oddOrEven} date`;
+        return `min-100 ${oddOrEven} ${keyName(index)}`;
       case 6:
-        return `min-300 ${oddOrEven} remarks`;
+        return `min-300 ${oddOrEven} ${keyName(index)}`;
       default:
         return 'unknown';
     }
@@ -214,7 +234,10 @@ function OrderSheet(props: OrderSheetProps) {
             </div>
           </td>
           {line.slice(1).map((item, dataIndex) => (
-            <td key={dataIndex} className={classes(dataIndex, oddOrEven)}>
+            <td
+              key={line[1] + keyName(dataIndex)}
+              className={classes(dataIndex, oddOrEven)}
+            >
               {addBr(item as string)}
             </td>
           ))}

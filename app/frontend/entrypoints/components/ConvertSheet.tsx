@@ -44,7 +44,6 @@ export default function ConvertSheet(props: ConvertSheetProps) {
 
   useEffect(() => {
     output.current = outputToConvertSheet(props.shippingInfos);
-    console.log(output.current);
   }, [props.shippingInfos]);
 
   return (
@@ -79,7 +78,7 @@ export default function ConvertSheet(props: ConvertSheetProps) {
 
 const Sheet = (props: shippingInfos) => {
   const classes = (index: number, oddOrEven: string): string => {
-    switch (index % 7) {
+    switch (index) {
       case 0:
         return `readonly min-130 ${oddOrEven}`;
       case 1:
@@ -101,6 +100,29 @@ const Sheet = (props: shippingInfos) => {
     }
   };
 
+  const keyName = (index: number): string => {
+    switch (index) {
+      case 0:
+        return 'postalcode';
+      case 1:
+        return 'name';
+      case 2:
+        return 'compellation ';
+      case 3:
+        return 'address1';
+      case 4:
+        return 'address2';
+      case 5:
+        return 'address3';
+      case 6:
+        return 'address4';
+      case 7:
+        return 'content';
+      default:
+        return 'unknown';
+    }
+  };
+
   const outputRows = outputToConvertSheet(props.shippingInfos).map(
     (line, index) => {
       let oddOrEven = '';
@@ -109,11 +131,13 @@ const Sheet = (props: shippingInfos) => {
       } else {
         oddOrEven = 'odd-row';
       }
-
       return (
-        <tr key={index}>
+        <tr key={line[0]}>
           {line.map((item, dataIndex) => (
-            <td key={dataIndex} className={classes(dataIndex, oddOrEven)}>
+            <td
+              key={line[0] + keyName(dataIndex)}
+              className={classes(dataIndex, oddOrEven)}
+            >
               {item}
             </td>
           ))}
