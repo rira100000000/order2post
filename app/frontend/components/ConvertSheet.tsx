@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import outputToConvertSheet from '../clickpost';
-import * as Encoding from 'encoding-japanese';
-import saveAs from 'file-saver';
+import useSaveCSV from '../hooks/useSaveCSV';
 
 interface ConvertSheetProps {
   shippingInfos: shippingInfo[];
@@ -20,32 +19,13 @@ interface shippingInfo {
 }
 
 export default function ConvertSheet(props: ConvertSheetProps) {
-  const saveCSV = (csvData: string[][]) => {
-    let csvString = '';
-    for (const line of csvData) {
-      csvString = csvString + line + '\n';
-    }
-
-    const unicodeList: number[] = csvString
-      .split('')
-      .map((char) => char.charCodeAt(0));
-
-    const shiftJisCodeList = Encoding.convert(unicodeList, {
-      to: 'SJIS',
-      from: 'UNICODE'
-    });
-    const uInt8List = new Uint8Array(shiftJisCodeList);
-
-    const writeData = new Blob([uInt8List], { type: 'text/csv' });
-    saveAs(writeData, 'clickpost.csv');
-  };
-
   const output = useRef<string[][]>([]);
 
   useEffect(() => {
     output.current = outputToConvertSheet(props.shippingInfos);
   }, [props.shippingInfos]);
 
+  const saveCSV = useSaveCSV();
   return (
     <>
       <button
