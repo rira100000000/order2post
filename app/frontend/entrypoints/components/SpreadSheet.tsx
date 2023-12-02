@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import jspreadsheet from 'jspreadsheet-ce';
 import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
@@ -36,23 +35,6 @@ export default function SpreadSheet(props: Props) {
     setshowSpreadSheet(false);
   };
 
-  const options: any = {
-    lines: [[]],
-    minDimensions: [0, 0] as [number, number],
-    wordWrap: true,
-    allowInsertRow: false,
-    columns: [
-      { title: '変換対象選択', type: 'checkbox' },
-      { title: '注文番号' },
-      { title: '発送方法' },
-      { title: '商品名' },
-      { title: '数量' },
-      { title: '発送先' },
-      { title: '注文日' },
-      { title: '備考' }
-    ]
-  };
-
   const isEmpty = () => {
     return lines.length === 0;
   };
@@ -67,102 +49,6 @@ export default function SpreadSheet(props: Props) {
     return lines.filter((line) => {
       return line[0] === true;
     }).length;
-  };
-
-  const table = useRef<ReturnType<typeof jspreadsheet> | null>(null);
-  const jRef = useRef<HTMLDivElement | null>(null);
-
-  const setRowStyles = () => {
-    const spreadsheetDivs = document.querySelectorAll('.spreadsheet');
-    for (const spreadsheetDiv of spreadsheetDivs) {
-      const spreadsheet = spreadsheetDiv.querySelector('.jexcel_content');
-
-      if (spreadsheet) {
-        const rows = spreadsheet.querySelectorAll('tr');
-        rows.forEach((row, index) => {
-          const cells = row.querySelectorAll('td');
-          cells.forEach((cell, cellIndex) => {
-            if (!(cellIndex % 9 === 1)) {
-              // checkbox以外編集不可にするため
-              cell.classList.add('readonly');
-            } else {
-              // checkboxのセル全体をクリック可能にするため
-              cell.classList.add('checkbox-cell');
-            }
-            const computedStyle = window.getComputedStyle(row);
-            if (computedStyle.display !== 'none') {
-              if (index % 2 === 0) {
-                // 偶数行に色を付けるため
-                cell.classList.add('even-row');
-              } else {
-                // 偶数行に色を付けるため
-                cell.classList.add('odd-row');
-              }
-            }
-          });
-        });
-      }
-    }
-  };
-
-  const setColStyle = () => {
-    const spreadsheets = document.querySelectorAll('.resizable');
-    for (const spreadsheet of spreadsheets) {
-      const cells = spreadsheet.querySelectorAll('td');
-      cells[0].classList.add('hide');
-      cells[1].classList.add('w-[120px]');
-      cells[2].classList.add('w-[120px]');
-      cells[3].classList.add('w-[120px]');
-      cells[4].classList.add('w-[300px]');
-      cells[5].classList.add('w-[10px]');
-      cells[6].classList.add('w-[300px]');
-      cells[7].classList.add('w-[100px]');
-      cells[8].classList.add('w-[300px]');
-    }
-  };
-
-  const setSmartphoneColStyle = () => {
-    const spreadsheets = document.querySelectorAll('.spreadsheet');
-    for (const spreadsheet of spreadsheets) {
-      const cells = spreadsheet.querySelectorAll('td');
-      if (cells[0]) {
-        cells[0].classList.add('hide');
-        cells[1].classList.add('min-120');
-        cells[2].classList.add('min-120');
-        cells[3].classList.add('min-120');
-        cells[4].classList.add('min-300');
-        cells[5].classList.add('min-10');
-        cells[6].classList.add('min-300');
-        cells[7].classList.add('min-100');
-        cells[8].classList.add('min-300');
-      }
-    }
-  };
-
-  const setCheckboxStyles = () => {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    let counter = 1;
-    for (const checkbox of checkboxes) {
-      checkbox.id = `checkbox-${counter}`;
-      const targetCheckbox = document.getElementById(`checkbox-${counter}`);
-      if (targetCheckbox) {
-        targetCheckbox.addEventListener('click', () => {
-          targetCheckbox.click();
-        });
-      }
-      counter++;
-    }
-
-    const checkboxCells = document.querySelectorAll('.checkbox-cell');
-    checkboxCells.forEach((cell, index) => {
-      cell.id = `checkboxCell-${index}`;
-      cell.addEventListener('click', () => {
-        const checkbox = document.getElementById(`checkbox-${index}`);
-        if (checkbox) {
-          checkbox.click();
-        }
-      });
-    });
   };
 
   const handleClick = () => {
@@ -180,33 +66,17 @@ export default function SpreadSheet(props: Props) {
     }
   };
 
-  useEffect(() => {
-    if (jRef.current && !table.current) {
-      table.current = jspreadsheet(jRef.current, options);
-      openSpreadSheet();
-    } else if (table.current) {
-      table.current.setData(lines);
-      setRowStyles();
-      setColStyle();
-      setSmartphoneColStyle();
-      setCheckboxStyles();
-    }
-  }, [options, lines]);
   return (
     <>
       <div className='app'>
         <div className='content'>
           <Header current_user_email={props.current_user_email} />
 
-          <div className='md:w-full'>
-            {!showSpreadSheet || isEmpty() ? (
-              <div ref={jRef} style={{ display: 'none' }} />
-            ) : (
-              <div ref={jRef} className='spreadsheet print_none w-max' />
-            )}
-            <br />
+          <div className='w-full'>
             {showSpreadSheet && !isEmpty() && (
               <div className='print_none'>
+                <OrderSheet lines={lines} setLines={setLines} />
+                <br />
                 <button
                   className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3'
                   onClick={handleClick}
@@ -227,6 +97,7 @@ export default function SpreadSheet(props: Props) {
 
             {showUploadButton && (
               <CSVReader
+                openSpreadSheet={openSpreadSheet}
                 setLines={setLines}
                 service={service}
                 setService={setService}
@@ -260,4 +131,117 @@ export default function SpreadSheet(props: Props) {
       </div>
     </>
   );
+}
+
+interface PrintProps {
+  lines: Array<Array<string | boolean>>;
+  setLines: React.Dispatch<
+    React.SetStateAction<Array<Array<string | boolean>>>
+  >;
+}
+
+function OrderSheet(props: PrintProps) {
+  const addBr = (msg: string) => {
+    const texts = msg.split(/(\n)/).map((item, index) => {
+      return (
+        <React.Fragment key={index}>
+          {item.match(/\n/) ? <br /> : item}
+        </React.Fragment>
+      );
+    });
+    return texts;
+  };
+
+  const classes = (index: number, oddOrEven: string): string => {
+    switch (index % 7) {
+      case 0:
+        return `min-120 ${oddOrEven}`;
+      case 1:
+        return `min-120 ${oddOrEven}`;
+      case 2:
+        return `min-300 ${oddOrEven}`;
+      case 3:
+        return `min-10 ${oddOrEven}`;
+      case 4:
+        return `min-300 ${oddOrEven}`;
+      case 5:
+        return `min-100 ${oddOrEven}`;
+      case 6:
+        return `min-300 ${oddOrEven}`;
+      default:
+        return 'unknown';
+    }
+  };
+
+  const outputToPrintSheet = () => {
+    const handleOnChange = (index) => {
+      const copyLines = [...props.lines];
+      copyLines[index][0] = !copyLines[index][0];
+      props.setLines(copyLines);
+    };
+
+    const handleOnClick = (index) => {
+      const checkbox = document.getElementById(`checkbox-${index}`);
+      if (checkbox) {
+        checkbox.click();
+      }
+    };
+
+    const outputRows = props.lines.map((line, index) => {
+      let oddOrEven = '';
+      if (index % 2 === 0) {
+        oddOrEven = 'even-row';
+      } else {
+        oddOrEven = 'odd-row';
+      }
+      return (
+        <tr key={index}>
+          <td
+            className={`min-120 ${oddOrEven} checkbox-cell`}
+            onClick={() => {
+              handleOnClick(index);
+            }}
+          >
+            <div className='flex justify-center items-center'>
+              <input
+                type='checkbox'
+                id={`checkbox-${index}`}
+                className='self-start'
+                onClick={(event) => {
+                  event.stopPropagation();
+                }}
+                onChange={() => handleOnChange(index)}
+                checked={line[0] ? true : false}
+              />
+            </div>
+          </td>
+          {line.slice(1).map((item, dataIndex) => (
+            <td key={dataIndex} className={classes(dataIndex, oddOrEven)}>
+              {addBr(item as string)}
+            </td>
+          ))}
+        </tr>
+      );
+    });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>変換対象選択</th>
+            <th>注文番号</th>
+            <th>発送方法</th>
+            <th>商品名</th>
+            <th>数量</th>
+            <th>発送先</th>
+            <th>注文日</th>
+            <th>備考</th>
+          </tr>
+        </thead>
+        <tbody>{outputRows}</tbody>
+      </table>
+    );
+  };
+
+  return <>{outputToPrintSheet()}</>;
 }

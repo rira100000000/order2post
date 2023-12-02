@@ -5,6 +5,7 @@ import { useCSVReader } from 'react-papaparse';
 import useModal from '../hooks/useModal';
 
 interface CSVReaderProps {
+  openSpreadSheet: VoidFunction;
   setLines: React.Dispatch<
     React.SetStateAction<Array<Array<string | boolean>>>
   >;
@@ -43,8 +44,10 @@ export default function CSVReader(props: CSVReaderProps) {
         onUploadAccepted={(results: any, file: any) => {
           if (file.name.startsWith('orders')) {
             setMinneData(results.data);
+            props.openSpreadSheet();
           } else if (file.name.startsWith('tradenavi-list')) {
             setCreemaData(results.data);
+            props.openSpreadSheet();
           } else {
             alert('minneまたはCreemaの注文情報を選択してください');
           }
@@ -65,7 +68,7 @@ export default function CSVReader(props: CSVReaderProps) {
               <div className='flex justify-center items-center w-full'>
                 <div
                   {...getRootProps()}
-                  className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer mt-4 lg:mt-0'
+                  className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer mt-4'
                   id='file_select_button'
                 >
                   ファイルを選択
