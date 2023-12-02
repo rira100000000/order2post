@@ -133,14 +133,14 @@ export default function SpreadSheet(props: Props) {
   );
 }
 
-interface PrintProps {
+interface OrderSheetProps {
   lines: Array<Array<string | boolean>>;
   setLines: React.Dispatch<
     React.SetStateAction<Array<Array<string | boolean>>>
   >;
 }
 
-function OrderSheet(props: PrintProps) {
+function OrderSheet(props: OrderSheetProps) {
   const addBr = (msg: string) => {
     const texts = msg.split(/(\n)/).map((item, index) => {
       return (
@@ -173,7 +173,7 @@ function OrderSheet(props: PrintProps) {
     }
   };
 
-  const outputToPrintSheet = () => {
+  const outputToOrderSheet = () => {
     const handleOnChange = (index) => {
       const copyLines = [...props.lines];
       copyLines[index][0] = !copyLines[index][0];
@@ -243,5 +243,5 @@ function OrderSheet(props: PrintProps) {
     );
   };
 
-  return <>{outputToPrintSheet()}</>;
+  return <>{outputToOrderSheet()}</>;
 }
