@@ -5,6 +5,7 @@ import CSVReader from './CSVReader';
 import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
 import { alertConverteds } from '../converteds';
+import type { ShippingInfo } from '../types.d.ts';
 
 type Props = {
   current_user_email?: string;
@@ -20,12 +21,7 @@ export default function SpreadSheet(props: Props) {
   const [lines, setLines] = useState<Array<Array<string | boolean>>>([]);
   const [shippingInfos, setShippingInfos] = useState([]);
 
-  type shippingInfo = {
-    addressInfo: string; //注文一覧の住所欄の情報
-    item: string; //商品
-    content: string; //内容品
-  };
-  type setShippingInfos = React.Dispatch<React.SetStateAction<shippingInfo[]>>;
+  type setShippingInfos = React.Dispatch<React.SetStateAction<ShippingInfo[]>>;
 
   const openSpreadSheet = () => {
     setshowSpreadSheet(true);

@@ -1,14 +1,10 @@
 import React from 'react';
 import { updateConverteds } from '../converteds';
 import useShippingInfos from '../hooks/useShippingInfos';
+import type { ShippingInfo } from '../types.d.ts';
 
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
-type ShippingInfo = {
-  addressInfo: string;
-  item: string;
-  content: string;
-};
 
 interface AllConvertFormProps {
   content: string;

@@ -1,21 +1,16 @@
 import React, { useRef, useEffect } from 'react';
 import outputToConvertSheet from '../clickpost';
 import useSaveCSV from '../hooks/useSaveCSV';
+import type { ShippingInfo } from '../types.d.ts';
 
 interface ConvertSheetProps {
-  shippingInfos: shippingInfo[];
+  shippingInfos: ShippingInfo[];
   setshowConvertMenu: React.Dispatch<React.SetStateAction<boolean>>;
   setshowConvertSheet: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface shippingInfos {
-  shippingInfos: shippingInfo[];
-}
-
-interface shippingInfo {
-  addressInfo: string;
-  item: string;
-  content: string;
+interface ShippingInfos {
+  shippingInfos: ShippingInfo[];
 }
 
 export default function ConvertSheet(props: ConvertSheetProps) {
@@ -56,7 +51,7 @@ export default function ConvertSheet(props: ConvertSheetProps) {
   );
 }
 
-const Sheet = (props: shippingInfos) => {
+const Sheet = (props: ShippingInfos) => {
   const classes = (index: number, oddOrEven: string): string => {
     switch (index) {
       case 0:

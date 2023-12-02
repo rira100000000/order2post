@@ -2,17 +2,13 @@ import React, { useState, useEffect } from 'react';
 import AllConvertForm from './AllConvertForm';
 import IndividualConvertForm from './IndividualConvertForm';
 import axios from 'axios';
+import type { ShippingInfo } from '../types.d.ts';
 
 type SetshowUploadButton = (value: boolean) => void;
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
 type setLines = (value: string[][]) => void;
-type shippingInfo = {
-  addressInfo: string;
-  item: string;
-  content: string;
-};
-type setShippingInfos = React.Dispatch<React.SetStateAction<shippingInfo[]>>;
+type setShippingInfos = React.Dispatch<React.SetStateAction<ShippingInfo[]>>;
 
 interface ConvertMenuProps {
   openSpreadSheet: () => void;
@@ -21,7 +17,7 @@ interface ConvertMenuProps {
   setshowUploadButton: SetshowUploadButton;
   setshowConvertMenu: SetshowConvertMenu;
   setshowConvertSheet: SetshowConvertSheet;
-  shippingInfos: shippingInfo[];
+  shippingInfos: ShippingInfo[];
   setShippingInfos: setShippingInfos;
   lines: Array<Array<string | boolean>>;
   setLines: setLines;

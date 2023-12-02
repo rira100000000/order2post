@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { updateConverteds } from '../converteds';
 import useShippingInfos from '../hooks/useShippingInfos';
+import type { ShippingInfo } from '../types.d.ts';
 
-type setShippingInfos = React.Dispatch<React.SetStateAction<shippingInfo[]>>;
+type setShippingInfos = React.Dispatch<React.SetStateAction<ShippingInfo[]>>;
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
 type Conversions = {
