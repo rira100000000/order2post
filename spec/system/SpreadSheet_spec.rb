@@ -24,8 +24,7 @@ RSpec.describe '変換する注文を選択できること' do
 
       expect(page).to have_content("Creema\n202302071459-zxPE")
       
-      find('#checkboxCell-2').click
-      find('#checkboxCell-2').click
+      find('#checkbox-2').click
 
       click_on 'クリックポスト変換'
 
@@ -74,7 +73,7 @@ RSpec.describe '変換する注文を選択できること' do
 
       expect(page).to have_content("Creema\n202302071459-zxPE")
       
-      find('#checkboxCell-1').click
+      find('#checkbox-0').click
 
       click_on 'クリックポスト変換'
       accept_alert
