@@ -1,5 +1,6 @@
 import React from 'react';
 import { updateConverteds } from '../converteds';
+import useShippingInfos from '../hooks/useShippingInfos';
 
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
@@ -19,30 +20,14 @@ interface AllConvertFormProps {
 }
 
 export default function AllConvertForm(props: AllConvertFormProps) {
-  const calcShippingInfos = () => {
-    const shippingInfos: ShippingInfo[] = [];
-
-    for (const line of props.lines) {
-      if (line[0] === true) {
-        let shippingInfo = {
-          addressInfo: line[5] as string,
-          item: 'any',
-          content: props.content
-        };
-        shippingInfos.push(shippingInfo);
-      }
-    }
-    return shippingInfos;
-  };
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.setContent(event.target.value);
   };
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (props.content !== '') {
-      props.setShippingInfos(calcShippingInfos());
+      const shippingInfos = useShippingInfos(props.content, props.lines);
+      props.setShippingInfos(shippingInfos);
       updateConverteds(props.lines);
       props.setshowConvertMenu(false);
       props.setshowConvertSheet(true);

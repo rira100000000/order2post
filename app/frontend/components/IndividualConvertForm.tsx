@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { updateConverteds } from '../converteds';
+import useShippingInfos from '../hooks/useShippingInfos';
 
-type shippingInfo = {
-  addressInfo: string;
-  item: string;
-  content: string;
-};
 type setShippingInfos = React.Dispatch<React.SetStateAction<shippingInfo[]>>;
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
@@ -25,9 +21,8 @@ interface IndividualConvertFormProps {
 export default function IndividualConvertForm(
   props: IndividualConvertFormProps
 ) {
-  const NEEDCONVERT = 0;
   const ITEM = 3;
-  const ADDRESS = 5;
+
   const [items, setItems] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -41,30 +36,13 @@ export default function IndividualConvertForm(
   };
 
   const [newConversions, setNewConversions] = useState({});
-
-  const calcShippingInfos = () => {
-    const shippingInfos: shippingInfo[] = [];
-    const conversions = currentConversions();
-
-    for (const line of props.lines) {
-      if (line[0] === true) {
-        const item = (line[ITEM] as string).split('\n')[NEEDCONVERT];
-        const content = conversions[line[ITEM] as string];
-        let shippingInfo = {
-          addressInfo: line[ADDRESS] as string,
-          item: item,
-          content: content
-        };
-
-        shippingInfos.push(shippingInfo);
-      }
-    }
-    return shippingInfos;
-  };
-
   const currentConversions = () => {
     return isMounted ? newConversions : props.conversions;
   };
+
+  const conversions = currentConversions();
+
+  const shippingInfos = useShippingInfos(conversions, props.lines);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -91,7 +69,7 @@ export default function IndividualConvertForm(
     );
     for (const input of contentInputs) {
       if (!input['value']) {
-        alert('個別設定を行う場合、全ての欄を入力してください error=2');
+        alert('個別設定を行う場合、全ての欄を入力してください');
         return;
       }
     }
@@ -111,7 +89,7 @@ export default function IndividualConvertForm(
       } else {
       }
     }
-    props.setShippingInfos(calcShippingInfos());
+    props.setShippingInfos(shippingInfos);
 
     axios
       .post('/conversions', { conversions: conversions })
