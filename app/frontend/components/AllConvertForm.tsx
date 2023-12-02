@@ -16,10 +16,10 @@ interface AllConvertFormProps {
 }
 
 export default function AllConvertForm(props: AllConvertFormProps) {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.setContent(event.target.value);
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (props.content !== '') {
       const shippingInfos = useShippingInfos(props.content, props.lines);
@@ -33,7 +33,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleOnSubmit}>
       <div className='flex justify-center items-center'>
         <label className='text-sm mt-3'>
           内容品 ※最大15文字
@@ -43,7 +43,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
             type='text'
             name='content'
             placeholder='ex)アクセサリー'
-            onChange={handleChange}
+            onChange={handleOnChange}
             className='inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0'
           />
         </label>

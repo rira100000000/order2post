@@ -46,7 +46,7 @@ export default function SpreadSheet(props: Props) {
     }).length;
   };
 
-  const handleClick = () => {
+  const handleOnClick = () => {
     if (ischecked()) {
       if (checkdNum() <= 40) {
         closeSpreadSheet();
@@ -74,7 +74,7 @@ export default function SpreadSheet(props: Props) {
                 <br />
                 <button
                   className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3 print_none'
-                  onClick={handleClick}
+                  onClick={handleOnClick}
                 >
                   クリックポスト変換
                 </button>

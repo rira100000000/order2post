@@ -45,7 +45,7 @@ export default function IndividualConvertForm(
 
   const shippingInfos = useShippingInfos(conversions, props.lines);
 
-  const handleChange = (
+  const handleOnChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     item: string
   ) => {
@@ -63,7 +63,7 @@ export default function IndividualConvertForm(
     setNewConversions(tmpNewConversions);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const contentInputs = document.querySelectorAll(
       'input[name="individual_content"]'
@@ -119,7 +119,7 @@ export default function IndividualConvertForm(
             className='text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-1 ml-auto'
             value={conversion[item] || ''}
             placeholder='ex)アクセサリー'
-            onChange={(event) => handleChange(event, item)}
+            onChange={(event) => handleOnChange(event, item)}
           />
         </div>
       );
@@ -155,7 +155,7 @@ export default function IndividualConvertForm(
   }, []);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleOnSubmit}>
       <div className='flex justify-center items-center'>
         <div>{convertform()}</div>
       </div>
