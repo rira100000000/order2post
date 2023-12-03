@@ -80,4 +80,17 @@ const ReadMinne = async (csvDatas: string[][]) => {
   return lines;
 };
 
+export const setMinneData = async (
+  data: string[][],
+  setLines,
+  setService,
+  anotherService,
+  serviceData
+) => {
+  const minneData: Array<Array<string | boolean>> = await ReadMinne(data);
+  setLines(minneData);
+  serviceData.current = minneData;
+  setService('minne');
+  anotherService.current = 'Creema';
+};
 export default ReadMinne;

@@ -78,4 +78,18 @@ const ReadCreema = async (csvDatas: string[][]) => {
   return lines;
 };
 
+export const setCreemaData = async (
+  data: string[][],
+  setLines,
+  setService,
+  anotherService,
+  serviceData
+) => {
+  const creemaData: Array<Array<string | boolean>> = await ReadCreema(data);
+  setLines(creemaData);
+  serviceData.current = creemaData;
+  setService('Creema');
+  anotherService.current = 'minne';
+};
+
 export default ReadCreema;

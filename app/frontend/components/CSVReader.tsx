@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import ReadMinne from '../minne';
-import ReadCreema from '../creema';
+import ReadMinne, { setMinneData } from '../minne';
+import ReadCreema, { setCreemaData } from '../creema';
 import { useCSVReader } from 'react-papaparse';
 import useModal from '../hooks/useModal';
 
@@ -20,34 +20,30 @@ export default function CSVReader(props: CSVReaderProps) {
   const anotherService = useRef<string>('');
   const serviceData = useRef<Array<Array<string | boolean>>>([]);
 
-  const setMinneData = async (data: string[][]) => {
-    openModal();
-    const minneData: Array<Array<string | boolean>> = await ReadMinne(data);
-    props.setLines(minneData);
-    serviceData.current = minneData;
-    props.setService('minne');
-    anotherService.current = 'Creema';
-  };
-
-  const setCreemaData = async (data: string[][]) => {
-    openModal();
-    const creemaData: Array<Array<string | boolean>> = await ReadCreema(data);
-    props.setLines(creemaData);
-    serviceData.current = creemaData;
-    props.setService('Creema');
-    anotherService.current = 'minne';
-  };
-
   return (
     <>
       <CSVReader
         onUploadAccepted={(results: any, file: any) => {
           if (file.name.startsWith('orders')) {
-            setMinneData(results.data);
+            setMinneData(
+              results.data,
+              props.setLines,
+              props.setService,
+              anotherService,
+              serviceData
+            );
             props.openSpreadSheet();
+            openModal();
           } else if (file.name.startsWith('tradenavi-list')) {
-            setCreemaData(results.data);
+            setCreemaData(
+              results.data,
+              props.setLines,
+              props.setService,
+              anotherService,
+              serviceData
+            );
             props.openSpreadSheet();
+            openModal();
           } else {
             alert('minneまたはCreemaの注文情報を選択してください');
           }
