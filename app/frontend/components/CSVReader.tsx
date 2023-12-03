@@ -1,8 +1,7 @@
 import React, { useRef } from 'react';
-import ReadMinne, { setMinneData } from '../minne';
-import ReadCreema, { setCreemaData } from '../creema';
 import { useCSVReader } from 'react-papaparse';
 import useModal from '../hooks/useModal';
+import { setData, setDataInModal } from '../setData';
 
 interface CSVReaderProps {
   openSpreadSheet: VoidFunction;
@@ -24,24 +23,15 @@ export default function CSVReader(props: CSVReaderProps) {
     <>
       <CSVReader
         onUploadAccepted={(results: any, file: any) => {
-          if (file.name.startsWith('orders')) {
-            setMinneData(
-              results.data,
-              props.setLines,
-              props.setService,
-              anotherService,
-              serviceData
-            );
-            props.openSpreadSheet();
-            openModal();
-          } else if (file.name.startsWith('tradenavi-list')) {
-            setCreemaData(
-              results.data,
-              props.setLines,
-              props.setService,
-              anotherService,
-              serviceData
-            );
+          const uploadResult = setData(
+            file,
+            results,
+            props.setLines,
+            props.setService,
+            anotherService,
+            serviceData
+          );
+          if (uploadResult !== 'unknown') {
             props.openSpreadSheet();
             openModal();
           } else {
@@ -83,15 +73,13 @@ export default function CSVReader(props: CSVReaderProps) {
           <div className='m-5'>
             <CSVReader
               onUploadAccepted={async (results: any, file: any) => {
-                if (file.name.includes('orders')) {
-                  props.setLines(
-                    serviceData.current.concat(await ReadMinne(results.data))
-                  );
-                  closeModal();
-                } else if (file.name.includes('tradenavi-list')) {
-                  props.setLines(
-                    serviceData.current.concat(await ReadCreema(results.data))
-                  );
+                const uploadResult = await setDataInModal(
+                  file,
+                  results,
+                  props.setLines,
+                  serviceData
+                );
+                if (uploadResult !== 'unknown') {
                   closeModal();
                 } else {
                   alert('minneまたはCreemaの注文情報を選択してください');
