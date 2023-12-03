@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { csrfTokenCheck } from '../csrfTokenCheck.ts';
 import { updateConverteds } from '../converteds';
 import useShippingInfos from '../hooks/useShippingInfos';
 import type { ShippingInfo } from '../types.d.ts';
@@ -145,13 +146,7 @@ export default function IndividualConvertForm(
     }
     setNewConversions(initialConversions);
 
-    const csrfTokenElement = document.querySelector('#csrf-token');
-    if (csrfTokenElement) {
-      const csrfToken = csrfTokenElement.getAttribute('data-token');
-      axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
-    } else {
-      console.error('CSRF Token element not found');
-    }
+    csrfTokenCheck();
   }, []);
 
   return (
