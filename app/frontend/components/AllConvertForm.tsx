@@ -1,6 +1,6 @@
 import React from 'react';
 import { updateConverteds } from '../converteds';
-import useShippingInfos from '../hooks/useShippingInfos';
+import makeShippingInfos from '../makeShippingInfos';
 import type { ShippingInfo } from '../types.d.ts';
 
 type SetshowConvertMenu = (value: boolean) => void;
@@ -22,7 +22,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
   const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (props.content !== '') {
-      const shippingInfos = useShippingInfos(props.content, props.lines);
+      const shippingInfos = makeShippingInfos(props.content, props.lines);
       props.setShippingInfos(shippingInfos);
       updateConverteds(props.lines);
       props.setshowConvertMenu(false);

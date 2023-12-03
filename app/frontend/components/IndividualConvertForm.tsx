@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { csrfTokenCheck } from '../csrfTokenCheck.ts';
 import { updateConverteds } from '../converteds';
-import useShippingInfos from '../hooks/useShippingInfos';
+import makeShippingInfos from '../makeShippingInfos';
 import type { ShippingInfo } from '../types.d.ts';
 
 type setShippingInfos = React.Dispatch<React.SetStateAction<ShippingInfo[]>>;
@@ -44,7 +44,7 @@ export default function IndividualConvertForm(
 
   const conversions = currentConversions();
 
-  const shippingInfos = useShippingInfos(conversions, props.lines);
+  const shippingInfos = makeShippingInfos(conversions, props.lines);
 
   const handleOnChange = (
     event: React.ChangeEvent<HTMLInputElement>,

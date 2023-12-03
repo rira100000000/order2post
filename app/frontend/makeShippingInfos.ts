@@ -1,15 +1,11 @@
-type shippingInfo = {
-  addressInfo: string;
-  item: string;
-  content: string;
-};
+import type { ShippingInfo } from './types.d.ts';
 
-const useShippingInfos = (conversion, lines) => {
+const makeShippingInfos = (conversion, lines) => {
   const NEEDCONVERT = 0;
   const ITEM = 3;
   const ADDRESS = 5;
 
-  const shippingInfos: shippingInfo[] = [];
+  const shippingInfos: ShippingInfo[] = [];
 
   for (const line of lines) {
     if (line[NEEDCONVERT] === true) {
@@ -36,4 +32,4 @@ const useShippingInfos = (conversion, lines) => {
   return shippingInfos;
 };
 
-export default useShippingInfos;
+export default makeShippingInfos;
