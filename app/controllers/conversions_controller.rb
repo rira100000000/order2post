@@ -4,7 +4,7 @@ class ConversionsController < ApplicationController
   protect_from_forgery
 
   def index
-    conversions = Conversion.get_conversions(current_user)
+    conversions = Conversion.content_per_item(current_user)
     render json: conversions
   end
 

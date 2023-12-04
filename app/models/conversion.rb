@@ -6,7 +6,7 @@ class Conversion < ApplicationRecord
   validates :item, presence: true, uniqueness: { scope: :user_id }
   validates :content, presence: true
 
-  def self.get_conversions(current_user)
+  def content_per_item(current_user)
     conversions = current_user.conversions
     result = {}
     conversions.each do |conversion|
