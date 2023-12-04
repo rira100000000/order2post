@@ -4,7 +4,7 @@ const updateConverteds = (lines) => {
   let converteds: string[] = [];
   for (const line of lines) {
     if (line['checked'] === true) {
-      converteds.push(line['order'][0] as string);
+      converteds.push(line['order'][0]);
     }
   }
 

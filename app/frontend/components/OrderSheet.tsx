@@ -106,7 +106,7 @@ function OrderSheet(props: OrderSheetProps) {
               key={line['order'][0] + keyName(dataIndex)}
               className={classes(dataIndex, oddOrEven)}
             >
-              {addBr(item as string)}
+              {addBr(item)}
             </td>
           ))}
         </tr>

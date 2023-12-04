@@ -92,9 +92,7 @@ export default function IndividualConvertForm(
     let orderedItem: string[] = [];
     props.lines.forEach((line) => {
       if (line['checked'] === true) {
-        orderedItem = orderedItem.concat(
-          (line['order'][ITEM] as string).split('\n')
-        );
+        orderedItem = orderedItem.concat(line['order'][ITEM].split('\n'));
       }
     });
 
