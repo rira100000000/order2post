@@ -10,7 +10,7 @@
     display: block !important;
   }
   .even-row {
-    background-color: #fdf5e6 !important;
+    background-color: #fdf5e6;
   }
 
   body {

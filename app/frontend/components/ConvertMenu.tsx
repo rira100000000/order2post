@@ -50,7 +50,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
 
   return (
     <>
-      <div className='h-12'>
+      <div className=''>
         <button
           className='left-0 top-0 text-md px-4 py-2 leading-none text-slate-400 hover:underline m-1'
           onClick={() => {
@@ -75,7 +75,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
           </p>
         </div>
       </div>
-      <div className='border border-slate-300 mx-auto mt-2 md:w-[50em] w-screen'>
+      <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] bg-white'>
         <details open={allConvertMenu}>
           <summary
             id='allConvertMenu'
@@ -104,7 +104,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
           />
         </details>
       </div>
-      <div className='border border-slate-300 mx-auto mt-2 md:w-[50em] w-screen'>
+      <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] bg-white'>
         <details open={individualConvertMenu}>
           <summary
             id='individualConvertMenu'

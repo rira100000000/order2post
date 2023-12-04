@@ -155,19 +155,21 @@ const Convertform = ({
 
   items.forEach((item, index) => {
     const conversion = currentConversions();
-    let oddOrEven = '';
+    let bgColor = '';
     if (index % 2 === 0) {
-      oddOrEven = 'even-row';
+      bgColor = 'bg-gray-white';
     } else {
-      oddOrEven = 'odd-row';
+      bgColor = 'gb-white';
     }
 
     result.push(
-      <tr key={`${item}`} className={`${oddOrEven}`}>
-        <td className={`${oddOrEven}`}>
-          <span className={`item_${index} flex flex-wrap`}>{item}</span>
+      <tr key={`${item}`} className={`${bgColor}`}>
+        <td className={`${bgColor}`}>
+          <span className={`item_${index} flex flex-wrap font-bold`}>
+            {item}
+          </span>
         </td>
-        <td className={`${oddOrEven}`}>
+        <td className={`${bgColor}`}>
           <input
             type='text'
             name='individual_content'
