@@ -55,21 +55,17 @@ const Sheet = (props: ShippingInfos) => {
   const classes = (index: number, oddOrEven: string): string => {
     switch (index) {
       case 0:
-        return `readonly min-130 ${oddOrEven}`;
+        return `min-130 ${oddOrEven}`;
       case 1:
-        return `readonly min-120 ${oddOrEven}`;
       case 2:
-        return `readonly min-120 ${oddOrEven}`;
+        return `min-120 ${oddOrEven}`;
       case 3:
-        return `readonly min-250 ${oddOrEven}`;
       case 4:
-        return `readonly min-250 ${oddOrEven}`;
       case 5:
-        return `readonly min-250 ${oddOrEven}`;
       case 6:
-        return `readonly min-250 ${oddOrEven}`;
+        return `min-250 ${oddOrEven}`;
       case 7:
-        return `readonly min-300 ${oddOrEven}`;
+        return `min-300 ${oddOrEven}`;
       default:
         return 'unknown';
     }
