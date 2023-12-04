@@ -51,9 +51,9 @@ export default function ConvertMenu(props: ConvertMenuProps) {
 
   return (
     <>
-      <div className='relative text-center h-12'>
+      <div className='h-12'>
         <button
-          className='absolute left-0 top-0 text-md px-4 py-2 leading-none text-slate-400 hover:underline m-1'
+          className='left-0 top-0 text-md px-4 py-2 leading-none text-slate-400 hover:underline m-1'
           onClick={() => {
             props.openSpreadSheet();
             props.setshowUploadButton(true);
@@ -62,7 +62,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
         >
           注文一覧に戻る
         </button>
-        <h1 className='left-1/2 top-0 text-xl font-bold m-3'>
+        <h1 className='text-center top-0 text-xl font-bold m-3'>
           クリックポスト変換設定
         </h1>
       </div>

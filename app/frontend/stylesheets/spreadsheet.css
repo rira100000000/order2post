@@ -3,12 +3,12 @@
   background-color: white;
 }
 
-td.even-row {
-  background-color: #fdf5e6 !important;
+.even-row {
+  background-color: #fdf5e6;
 }
 
-td.odd-row {
-  background-color: white !important;
+.odd-row {
+  background-color: white;
 }
 input[type='checkbox'] {
   transform: scale(1.5);

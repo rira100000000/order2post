@@ -45,25 +45,14 @@ export default function IndividualConvertForm(
   const conversions = currentConversions();
 
   const shippingInfos = makeShippingInfos(conversions, props.lines);
-
-  const handleOnChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    item: string
-  ) => {
-    let tmpNewConversions = {};
+  const calcConversions = () => {
     if (!isMounted) {
       setNewConversions(initNewConversions());
-      tmpNewConversions = initNewConversions();
+      return initNewConversions();
     } else {
-      tmpNewConversions = { ...newConversions };
+      return { ...newConversions };
     }
-
-    setIsMounted(true);
-
-    tmpNewConversions[item] = event.target.value;
-    setNewConversions(tmpNewConversions);
   };
-
   const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const contentInputs = document.querySelectorAll(
@@ -76,13 +65,7 @@ export default function IndividualConvertForm(
       }
     }
 
-    let conversions = {};
-    if (!isMounted) {
-      setNewConversions(initNewConversions());
-      conversions = initNewConversions();
-    } else {
-      conversions = { ...newConversions };
-    }
+    const conversions = calcConversions();
 
     for (const key in conversions) {
       if (!conversions[key]) {
@@ -103,30 +86,6 @@ export default function IndividualConvertForm(
     updateConverteds(props.lines);
     props.setshowConvertMenu(false);
     props.setshowConvertSheet(true);
-  };
-
-  const convertform = () => {
-    const result: React.JSX.Element[] = [];
-
-    items.forEach((item, index) => {
-      const conversion = currentConversions();
-      result.push(
-        <div key={`${item}`} className='w-full flex items-center'>
-          <span className={`item_${index} md:w-64 flex flex-wrap`}>{item}</span>
-          <input
-            type='text'
-            name='individual_content'
-            id={`content_${index}`}
-            className='text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-1 ml-auto'
-            value={conversion[item] || ''}
-            placeholder='ex)アクセサリー'
-            onChange={(event) => handleOnChange(event, item)}
-          />
-        </div>
-      );
-    });
-
-    return result;
   };
 
   useEffect(() => {
@@ -152,7 +111,15 @@ export default function IndividualConvertForm(
   return (
     <form onSubmit={handleOnSubmit}>
       <div className='flex justify-center items-center'>
-        <div>{convertform()}</div>
+        <div>
+          <Convertform
+            items={items}
+            currentConversions={currentConversions}
+            setNewConversions={setNewConversions}
+            setIsMounted={setIsMounted}
+            calcConversions={calcConversions}
+          />
+        </div>
       </div>
       <div className='flex justify-center items-center'>
         <input
@@ -164,3 +131,57 @@ export default function IndividualConvertForm(
     </form>
   );
 }
+
+const Convertform = ({
+  items,
+  currentConversions,
+  setNewConversions,
+  setIsMounted,
+  calcConversions
+}) => {
+  const result: React.JSX.Element[] = [];
+
+  const handleOnChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    item: string
+  ) => {
+    const tmpNewConversions = calcConversions();
+
+    setIsMounted(true);
+
+    tmpNewConversions[item] = event.target.value;
+    setNewConversions(tmpNewConversions);
+  };
+
+  items.forEach((item, index) => {
+    const conversion = currentConversions();
+    let oddOrEven = '';
+    if (index % 2 === 0) {
+      oddOrEven = 'even-row';
+    } else {
+      oddOrEven = 'odd-row';
+    }
+
+    result.push(
+      <tr key={`${item}`} className={`${oddOrEven}`}>
+        <td className={`${oddOrEven}`}>
+          <span className={`item_${index} flex flex-wrap`}>{item}</span>
+        </td>
+        <td className={`${oddOrEven}`}>
+          <input
+            type='text'
+            name='individual_content'
+            id={`content_${index}`}
+            className='text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-1 ml-auto'
+            value={conversion[item] || ''}
+            placeholder='ex)アクセサリー'
+            onChange={(event) => handleOnChange(event, item)}
+          />
+          <p className='text-xs'>入力例:アクセサリー、衣類,おもちゃ</p>
+        </td>
+      </tr>
+    );
+  });
+
+  return <>{result}</>;
+};
