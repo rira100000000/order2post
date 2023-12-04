@@ -1,14 +1,14 @@
 import React from 'react';
 import { updateConverteds } from '../converteds';
 import makeShippingInfos from '../makeShippingInfos';
-import type { ShippingInfo } from '../types.d.ts';
+import type { ShippingInfo, Line } from '../types.d.ts';
 
 type SetshowConvertMenu = (value: boolean) => void;
 type SetshowConvertSheet = (value: boolean) => void;
 
 interface AllConvertFormProps {
   content: string;
-  lines: Array<Array<string | boolean>>;
+  lines: Array<Line>;
   setContent: React.Dispatch<React.SetStateAction<string>>;
   setShippingInfos: React.Dispatch<React.SetStateAction<ShippingInfo[]>>;
   setshowConvertMenu: SetshowConvertMenu;

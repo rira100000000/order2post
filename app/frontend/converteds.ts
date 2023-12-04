@@ -3,8 +3,8 @@ import axios from 'axios';
 const updateConverteds = (lines) => {
   let converteds: string[] = [];
   for (const line of lines) {
-    if (line[0] === true) {
-      converteds.push(line[1] as string);
+    if (line['checked'] === true) {
+      converteds.push(line['order'][0] as string);
     }
   }
 
@@ -41,8 +41,8 @@ const checkConverteds = (lines): Promise<string[]> => {
     .then((response) => {
       const newOrderIds: string[] = [];
       for (const line of lines) {
-        if (line[0] === true) {
-          newOrderIds.push(line[1] as string);
+        if (line['checked'] === true) {
+          newOrderIds.push(line['order'][0]);
         }
       }
 

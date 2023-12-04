@@ -1,10 +1,9 @@
 import React from 'react';
+import type { Line } from '../types.d.ts';
 
 interface OrderSheetProps {
-  lines: Array<Array<string | boolean>>;
-  setLines: React.Dispatch<
-    React.SetStateAction<Array<Array<string | boolean>>>
-  >;
+  lines: Array<Line>;
+  setLines: React.Dispatch<React.SetStateAction<Array<Line>>>;
 }
 
 function OrderSheet(props: OrderSheetProps) {
@@ -63,7 +62,7 @@ function OrderSheet(props: OrderSheetProps) {
   const outputToOrderSheet = () => {
     const handleOnChange = (index) => {
       const copyLines = [...props.lines];
-      copyLines[index][0] = !copyLines[index][0];
+      copyLines[index]['checked'] = !copyLines[index]['checked'];
       props.setLines(copyLines);
     };
 
@@ -82,7 +81,7 @@ function OrderSheet(props: OrderSheetProps) {
         oddOrEven = 'odd-row';
       }
       return (
-        <tr key={line[1].toString()} className='print-friendly'>
+        <tr key={line['order'][0].toString()} className='print-friendly'>
           <td
             className={`min-120 ${oddOrEven} checkbox-cell print_none`}
             onClick={() => {
@@ -98,13 +97,13 @@ function OrderSheet(props: OrderSheetProps) {
                   event.stopPropagation();
                 }}
                 onChange={() => handleOnChange(index)}
-                checked={line[0] ? true : false}
+                checked={line['checked'] ? true : false}
               />
             </div>
           </td>
-          {line.slice(1).map((item, dataIndex) => (
+          {line['order'].map((item, dataIndex) => (
             <td
-              key={line[1] + keyName(dataIndex)}
+              key={line['order'][0] + keyName(dataIndex)}
               className={classes(dataIndex, oddOrEven)}
             >
               {addBr(item as string)}

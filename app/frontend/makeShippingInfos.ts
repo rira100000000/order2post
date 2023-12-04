@@ -1,27 +1,26 @@
 import type { ShippingInfo } from './types.d.ts';
 
 const makeShippingInfos = (conversion, lines) => {
-  const NEEDCONVERT = 0;
-  const ITEM = 3;
-  const ADDRESS = 5;
+  const ITEM = 2;
+  const ADDRESS = 4;
 
   const shippingInfos: ShippingInfo[] = [];
 
   for (const line of lines) {
-    if (line[NEEDCONVERT] === true) {
-      const item = (line[ITEM] as string).split('\n')[0]; // 先頭の商品を内容品の代表とする
+    if (line['checked'] === true) {
+      const item = line['order'][ITEM].split('\n')[0]; // 先頭の商品を内容品の代表とする
       let content;
 
       if (typeof conversion === 'string') {
         content = conversion;
       } else if (typeof conversion === 'object' && conversion !== null) {
-        content = conversion[line[ITEM] as string];
+        content = conversion[item];
       } else {
         console.log('Invalid conversion type');
       }
 
       let shippingInfo = {
-        addressInfo: line[ADDRESS] as string,
+        addressInfo: line['order'][ADDRESS],
         item: item,
         content: content
       };

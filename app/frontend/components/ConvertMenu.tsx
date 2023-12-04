@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AllConvertForm from './AllConvertForm';
 import IndividualConvertForm from './IndividualConvertForm';
 import axios from 'axios';
-import type { ShippingInfo } from '../types.d.ts';
+import type { ShippingInfo, Line } from '../types.d.ts';
 
 type SetshowUploadButton = (value: boolean) => void;
 type SetshowConvertMenu = (value: boolean) => void;
@@ -19,8 +19,8 @@ interface ConvertMenuProps {
   setshowConvertSheet: SetshowConvertSheet;
   shippingInfos: ShippingInfo[];
   setShippingInfos: setShippingInfos;
-  lines: Array<Array<string | boolean>>;
-  setLines: setLines;
+  lines: Array<Line>;
+  setLines: React.Dispatch<React.SetStateAction<Array<Line>>>;
 }
 
 type Conversions = {
@@ -44,7 +44,6 @@ export default function ConvertMenu(props: ConvertMenuProps) {
   }, [allConvertMenu, individualConvertMenu]);
 
   const detailsOnClick = (clickTarget, setClickTarget, setAnotherTaget) => {
-    console.log(clickTarget);
     setClickTarget(!clickTarget);
     setAnotherTaget(false);
   };
@@ -82,8 +81,6 @@ export default function ConvertMenu(props: ConvertMenuProps) {
             className='text-xl font-bold m-2 hover:cursor-pointer'
             onClick={(e) => {
               e.preventDefault();
-              console.log(allConvertMenu);
-
               detailsOnClick(
                 allConvertMenu,
                 setAllConvertMenu,

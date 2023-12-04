@@ -2,12 +2,11 @@ import React, { useRef } from 'react';
 import { useCSVReader } from 'react-papaparse';
 import useModal from '../hooks/useModal';
 import { setData, setDataInModal } from '../setData';
+import type { Line } from '../types.d.ts';
 
 interface CSVReaderProps {
   openSpreadSheet: VoidFunction;
-  setLines: React.Dispatch<
-    React.SetStateAction<Array<Array<string | boolean>>>
-  >;
+  setLines: React.Dispatch<React.SetStateAction<Array<Line>>>;
   service: string;
   setService: React.Dispatch<React.SetStateAction<string>>;
 }

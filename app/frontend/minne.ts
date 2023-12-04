@@ -1,4 +1,6 @@
+import { transformWithEsbuild } from 'vite';
 import { checkConverteds } from './converteds';
+import type { Line } from './types.d.ts';
 
 const ReadMinne = async (csvDatas: string[][]) => {
   const STATUS = 2;
@@ -14,33 +16,36 @@ const ReadMinne = async (csvDatas: string[][]) => {
   const DATE = 1;
   const REMARKS = 13;
 
-  const lines: Array<Array<string | boolean>> = [];
-  const conpareDatas: Array<Array<string | boolean>> = [];
+  const lines: Array<Line> = [];
+  const compareDatas: Array<Line> = [];
 
   for (const csvData of csvDatas) {
-    conpareDatas.push([true, 'minne\n' + csvData[ORDERNUM]]);
+    compareDatas.push({
+      checked: true,
+      order: ['minne\n' + csvData[ORDERNUM]]
+    });
   }
-  const converteds = await checkConverteds(conpareDatas);
+  const converteds = await checkConverteds(compareDatas);
 
   for (let i = 1; i < csvDatas.length; i++) {
     const csvData = csvDatas[i];
     if (csvData[STATUS] !== '発送準備中') {
       continue;
     }
-    const line: Array<string | boolean> = [];
+    const line: Line = { checked: false, order: [] };
 
     if (
       converteds.some((converted) => {
         return converted === `minne\n${csvData[ORDERNUM]}`;
       })
     ) {
-      line.push(false);
+      line['checked'] = false;
     } else {
-      line.push(csvData[SHIPPING] === 'クリックポスト' ? true : false);
+      line['checked'] = csvData[SHIPPING] === 'クリックポスト' ? true : false;
     }
 
-    line.push('minne\n' + csvData[ORDERNUM]);
-    line.push(csvData[SHIPPING]);
+    line['order'].push('minne\n' + csvData[ORDERNUM]);
+    line['order'].push(csvData[SHIPPING]);
 
     const items: string[] = [];
     const itemnums: string[] = [];
@@ -57,9 +62,9 @@ const ReadMinne = async (csvDatas: string[][]) => {
       i++;
     }
 
-    line.push(items.join('\n'));
-    line.push(itemnums.join('\n'));
-    line.push(
+    line['order'].push(items.join('\n'));
+    line['order'].push(itemnums.join('\n'));
+    line['order'].push(
       '〒' +
         csvData[POSTALCODE].slice(0, 3) +
         '-' +
@@ -73,8 +78,8 @@ const ReadMinne = async (csvDatas: string[][]) => {
         '\n' +
         csvData[TEL]
     );
-    line.push(csvData[DATE]);
-    line.push(remarks.join('\n'));
+    line['order'].push(csvData[DATE]);
+    line['order'].push(remarks.join('\n'));
     lines.push(line);
   }
   return lines;
@@ -87,7 +92,7 @@ export const setMinneData = async (
   anotherService,
   serviceData
 ) => {
-  const minneData: Array<Array<string | boolean>> = await ReadMinne(data);
+  const minneData: Array<Line> = await ReadMinne(data);
   setLines(minneData);
   serviceData.current = minneData;
   setService('minne');

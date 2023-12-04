@@ -3,7 +3,7 @@ import axios from 'axios';
 import { csrfTokenCheck } from '../csrfTokenCheck.ts';
 import { updateConverteds } from '../converteds';
 import makeShippingInfos from '../makeShippingInfos';
-import type { ShippingInfo } from '../types.d.ts';
+import type { ShippingInfo, Line } from '../types.d.ts';
 
 type setShippingInfos = React.Dispatch<React.SetStateAction<ShippingInfo[]>>;
 type SetshowConvertMenu = (value: boolean) => void;
@@ -13,7 +13,7 @@ type Conversions = {
 };
 
 interface IndividualConvertFormProps {
-  lines: Array<Array<string | boolean>>;
+  lines: Array<Line>;
   conversions: Conversions;
   setShippingInfos: setShippingInfos;
   setshowConvertMenu: SetshowConvertMenu;
@@ -23,7 +23,7 @@ interface IndividualConvertFormProps {
 export default function IndividualConvertForm(
   props: IndividualConvertFormProps
 ) {
-  const ITEM = 3;
+  const ITEM = 2;
 
   const [items, setItems] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
@@ -91,8 +91,10 @@ export default function IndividualConvertForm(
   useEffect(() => {
     let orderedItem: string[] = [];
     props.lines.forEach((line) => {
-      if (line[0] === true) {
-        orderedItem = orderedItem.concat((line[ITEM] as string).split('\n'));
+      if (line['checked'] === true) {
+        orderedItem = orderedItem.concat(
+          (line['order'][ITEM] as string).split('\n')
+        );
       }
     });
 
@@ -174,7 +176,6 @@ const Convertform = ({
             id={`content_${index}`}
             className='text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-1 ml-auto'
             value={conversion[item] || ''}
-            placeholder='ex)アクセサリー'
             onChange={(event) => handleOnChange(event, item)}
           />
           <p className='text-xs'>入力例:アクセサリー、衣類,おもちゃ</p>
@@ -183,5 +184,5 @@ const Convertform = ({
     );
   });
 
-  return <>{result}</>;
+  return <table>{result}</table>;
 };

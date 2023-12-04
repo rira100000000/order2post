@@ -6,7 +6,7 @@ import ConvertMenu from './ConvertMenu';
 import ConvertSheet from './ConvertSheet';
 import { alertConverteds } from '../converteds';
 import OrderSheet from './OrderSheet';
-import type { ShippingInfo } from '../types.d.ts';
+import type { ShippingInfo, Line } from '../types.d.ts';
 
 type Props = {
   current_user_email?: string;
@@ -19,7 +19,7 @@ export default function SpreadSheet(props: Props) {
   const [showConvertSheet, setshowConvertSheet] = useState(false);
   const [service, setService] = useState('');
   const [content, setContent] = useState('');
-  const [lines, setLines] = useState<Array<Array<string | boolean>>>([]);
+  const [lines, setLines] = useState<Array<Line>>([]);
   const [shippingInfos, setShippingInfos] = useState([]);
 
   type setShippingInfos = React.Dispatch<React.SetStateAction<ShippingInfo[]>>;
@@ -37,13 +37,13 @@ export default function SpreadSheet(props: Props) {
 
   const ischecked = () => {
     return lines.some((line) => {
-      return line[0] === true;
+      return line['checked'] === true;
     });
   };
 
   const checkdNum = () => {
     return lines.filter((line) => {
-      return line[0] === true;
+      return line['checked'] === true;
     }).length;
   };
 

@@ -3,3 +3,8 @@ export type ShippingInfo = {
   item: string;
   content: string;
 };
+
+export type Line = {
+  checked: boolean;
+  order: string[];
+};
