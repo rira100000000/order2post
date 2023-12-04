@@ -28,6 +28,7 @@ RSpec.describe '変換する注文を選択できること' do
 
       click_on 'クリックポスト変換'
 
+      find('#allConvertMenu').click
       fill_in 'convertForm', with: '変換された内容品'
 
       click_on 'クリックポスト変換'
@@ -77,6 +78,6 @@ RSpec.describe '変換する注文を選択できること' do
 
       click_on 'クリックポスト変換'
       accept_alert
-      expect(page).to have_content("クリックポストに表記する内容品を入力してください")
+      expect(page).to have_content("クリックポスト変換設定")
     end
   end

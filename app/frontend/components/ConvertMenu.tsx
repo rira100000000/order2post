@@ -78,6 +78,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
       <div className='border border-slate-300 mx-auto mt-2 md:w-[50em] w-screen'>
         <details open={allConvertMenu}>
           <summary
+            id='allConvertMenu'
             className='text-xl font-bold m-2 hover:cursor-pointer'
             onClick={(e) => {
               e.preventDefault();
@@ -106,6 +107,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
       <div className='border border-slate-300 mx-auto mt-2 md:w-[50em] w-screen'>
         <details open={individualConvertMenu}>
           <summary
+            id='individualConvertMenu'
             className='text-xl font-bold m-2 hover:cursor-pointer'
             onClick={(e) => {
               e.preventDefault();

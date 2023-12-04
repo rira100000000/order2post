@@ -24,7 +24,7 @@ RSpec.describe '内容品の設定ができること' do
         expect(page).to have_content("minne\n12345694")
         
         click_on 'クリックポスト変換'
-
+        find('#allConvertMenu').click
         fill_in 'convertForm', with: '変換された内容品'
 
         click_on 'クリックポスト変換'
@@ -51,6 +51,8 @@ RSpec.describe '内容品の設定ができること' do
         
         click_on 'クリックポスト変換'
 
+        find('#individualConvertMenu').click        
+
         expect(page).to have_xpath("//input[@id='content_0'][@value='スカート']")
         expect(page).to have_xpath("//input[@id='content_1'][@value='ラグランブラウス']")
         expect(page).to have_xpath("//input[@id='content_2'][@value='ブラウス']")
@@ -74,6 +76,8 @@ RSpec.describe '内容品の設定ができること' do
         expect(page).to have_content("Creema\n202302071459-zxPE")
         
         click_on 'クリックポスト変換'
+
+        find('#individualConvertMenu').click
         
         expect(page).to have_xpath("//input[@id='content_0'][@value='']")
     end
@@ -98,14 +102,12 @@ RSpec.describe '内容品の設定ができること' do
         all('input[type="checkbox"]').each do |checkbox|
             checkbox.set(true)
         end
-        
         click_on 'クリックポスト変換'
-
+        find('#individualConvertMenu').click
         expect(page).to have_xpath("//input[@id='content_0'][@value='スカート']")
         expect(page).to have_xpath("//input[@id='content_1'][@value='ラグランブラウス']")
         expect(page).to have_xpath("//input[@id='content_2'][@value='ブラウス']")
         fill_in 'content_3', with: '衣類'
-        sleep 5
 
         click_on '個別変換'
 
@@ -131,13 +133,13 @@ RSpec.describe '内容品の設定ができること' do
         expect(page).to have_content("Creema\n202302071459-zxPE")
         
         click_on 'クリックポスト変換'
-
+        find('#individualConvertMenu').click
         expect(page).to have_xpath("//input[@id='content_0'][@value='']")
 
         click_on '個別変換'
 
         accept_alert
-        expect(page).to have_content("内容品個別設定")
+        expect(page).to have_content("クリックポスト変換設定")
         expect(page).to have_no_content("ダウンロード")
     end
 end

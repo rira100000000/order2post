@@ -31,6 +31,8 @@ RSpec.describe 'クリックポスト用に正しくファイルが作成でき�
     
     click_on 'クリックポスト変換'
 
+    find('#allConvertMenu').click
+
     fill_in 'convertForm', with: '変換された内容品'
 
     click_on 'クリックポスト変換'
