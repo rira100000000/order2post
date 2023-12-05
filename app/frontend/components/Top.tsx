@@ -17,9 +17,12 @@ function Top() {
 
           <div className='flex flex-col items-center'>
             <div className='flex flex-col items-center mt-10 md:w-[760px] w-[300px]'>
-              <div className='flex justify-center items-center'>
-                <p className='md:text-xl border-b-8 border-amber-600 mb-4'>
-                  minne,Creemaの注文一覧データをクリックポストのまとめ申込用データへ変換します！
+              <div className='flex flex-col justify-center items-center'>
+                <p className='md:text-xl text-[15px] font-bold border-amber-600'>
+                  minne、Creemaの注文一覧データを
+                </p>
+                <p className='md:text-xl text-[15px] border-b-8 font-bold border-amber-600 mb-4'>
+                  クリックポストのまとめ申込用データへ変換します！
                 </p>
               </div>
               <div className='flex flex-col mt-1 items-center '>

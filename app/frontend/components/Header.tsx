@@ -4,10 +4,10 @@ import logo from '../images/logo_origin.png';
 const Header = ({ current_user_email }) => {
   const [openMenu, setOpenMenu] = useState(false);
   return (
-    <nav className='flex items-center p-3 border-b border-t-0 border-l-0 border-r-0 border-amber-600 print_none'>
+    <nav className='flex items-center pt-3 pr-3 pl-3 pb-1 border-b border-t-0 border-l-0 border-r-0 border-amber-600 print_none'>
       <div className='flex justify-center items-center w-full'>
         <div className='md:flex max-w-1325 w-full justify-between'>
-          <div className='flex justify-center md:justify-start flex-shrink-0 text-amber-600'>
+          <div className='flex justify-center md:justify-start text-amber-600 mt-5'>
             <a href='/'>
               <img src={logo} width='280' alt='ロゴ' />
             </a>
