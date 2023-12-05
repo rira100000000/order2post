@@ -32,6 +32,9 @@ body {
   flex: 1;
 }
 
+.max-w-1325 {
+  max-width: 1325px;
+}
 footer {
   flex-shrink: 0;
   width: 100%;
