@@ -6,12 +6,12 @@ const Footer = () => {
       <nav className='block p-3 bg-slate-800'>
         <div className='flex justify-center flex-wrap bg-slate-800'>
           <div className='flex text-white mr-6'>
-            <a href='/privacy_policy' className='hover:underline'>
+            <a href='/privacy_policy' className='hover:no-underline underline'>
               プライバシーポリシー
             </a>
           </div>
           <div className='flex text-white'>
-            <a href='/terms' className='hover:underline'>
+            <a href='/terms' className='hover:no-underline underline'>
               利用規約
             </a>
           </div>

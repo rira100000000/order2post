@@ -52,7 +52,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
     <>
       <div className=''>
         <button
-          className='left-0 top-0 text-md px-4 py-2 leading-none text-slate-400 hover:underline m-1'
+          className='left-0 top-0 text-md px-4 py-2 leading-none text-slate-400 hover:no-underline underline m-1'
           onClick={() => {
             props.openSpreadSheet();
             props.setshowUploadButton(true);

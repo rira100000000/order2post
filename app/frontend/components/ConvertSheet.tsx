@@ -24,7 +24,7 @@ export default function ConvertSheet(props: ConvertSheetProps) {
   return (
     <>
       <button
-        className='inline-block text-md px-4 py-2 leading-none text-slate-400  hover:underline m-1'
+        className='inline-block text-md px-4 py-2 leading-none text-slate-400  underline hover:no-underline m-1'
         onClick={() => {
           props.setshowConvertMenu(true);
           props.setshowConvertSheet(false);

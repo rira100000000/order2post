@@ -30,8 +30,8 @@
                         <%= f.submit "再設定メールを送信する",
                                     class: "button font-bold py-2 px-4 rounded w-full button py-2 px-4 rounded inline-block text-md h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer" %>
                     </div>
-                    <p><%= link_to "戻る", '/users/sign_in',
-                        class: "inline-block align-baseline text-sm text-slate-400  hover:underline"%></p>
+                    <p><%= link_to "トップページに戻る", '/users/sign_in',
+                        class: "inline-block align-baseline text-sm text-slate-400  hover:no-underline underline"%></p>
 
                 <% end %>
                 <%= render "devise/shared/form_footer" %>

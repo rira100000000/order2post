@@ -40,7 +40,7 @@ function Top() {
                 <a
                   href='/users/sign_in'
                   id='login_button'
-                  className='inline-block text-sm px-4 py-2 leading-none text-amber-600 border-amber-600 lg:mt-0 hover:underline'
+                  className='inline-block text-sm px-4 py-2 leading-none text-amber-600 border-amber-600 lg:mt-0 hover:no-underline underline'
                 >
                   登録済みの方はこちらからログインできます
                 </a>
