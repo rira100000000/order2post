@@ -42,7 +42,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
             id='convertForm'
             type='text'
             name='content'
-            placeholder='ex)アクセサリー'
+            placeholder='アクセサリー、衣類、おもちゃ'
             onChange={handleOnChange}
             className='inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0'
           />
