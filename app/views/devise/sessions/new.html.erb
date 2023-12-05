@@ -11,12 +11,12 @@
   <div class='content'>
     <div class="flex justify-center items-center mt-10">
       <div class="w-full max-w-xs">
-          <h1 class="font-hairline mb-6 text-center">ログイン</h1>
+          <h1 class="font-hairline mb-6 text-2xl font-bold text-center">ログイン</h1>
           <%= form_for(resource,
                       as: resource_name,
                       url: session_path(resource_name),
                       html: {
-                              class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600"
+                              class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600 bg-white"
                       }
               ) do |f| %>
 
@@ -35,7 +35,7 @@
             <div class="mb-4">
                 <%= f.label 'メールアドレス', class: "block text-gray-700 text-sm font-bold mb-2" %>
                 <%= f.email_field :email, autofocus: true, autocomplete: "email",id: "email_form",
-                                class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight foucs:outline-none focus:shadow-outline"
+                                class: "appearance-none border border-gray-300 borderrounded w-full py-2 px-3 text-gray-700 leading-tight foucs:outline-none"
                 %>
             </div>
 
@@ -43,8 +43,10 @@
               <%= f.label 'パスワード', class: "block text-gray-700 text-sm font-bold mb-2" %>
               <%= f.password_field :password,
                                     autocomplete: "current-password",
-                                    class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    class: "appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               %>
+              <p><%= link_to "パスワードを忘れた", new_user_password_path(resource_name),
+              class: "flex justify-end inline-block align-baseline text-sm text-amber-600 hover:no-underline underline"%></p>
             </div>
 
             <% if devise_mapping.rememberable? %>
@@ -61,8 +63,6 @@
             </div>
             <p><%= link_to "未登録の方はこちらからサインアップ", '/users/sign_up',
               class: "inline-block align-baseline text-sm text-amber-600  hover:no-underline underline"%></p>
-            <p><%= link_to "パスワードを忘れた", new_user_password_path(resource_name),
-              class: "inline-block align-baseline text-sm text-slate-400  hover:no-underline underline"%></p>
           <% end %>
           <%= render "devise/shared/form_footer" %>
       </div>

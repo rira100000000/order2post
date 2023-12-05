@@ -10,20 +10,20 @@
     <div class='content'>
         <div class="flex justify-center items-center mt-10">
             <div class="w-full max-w-xs">
-                <h1 class="font-hairline mb-6 text-center">パスワード再設定用のメールを送ります</h1>
+                <h1 class="font-hairline mb-6 text-2xl font-bold text-center">パスワード再設定用メールの送信</h1>
                 <%= form_for(resource,
                             as: resource_name,
                             url: password_path(resource_name),
                             html: {
                                     method: :post,
-                                    class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600"
+                                    class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600 bg-white"
                             }) do |f| %>
                     <%#= render "devise/shared/error_messages", resource: resource %>
                     <%= devise_error_messages! %>
                     <div class="mb-4">
                         <%= f.label 'メールアドレス', class: "block font-bold mb-2 text-gray-700 text-sm" %>
                         <%= f.email_field :email, autofocus: true, autocomplete: "email",
-                                        class: "appearance-none border leading-tight focus:outline-none px-3 py-2 rounded shadow focus:shadow-outline text-gray-700 w-full"
+                                        class: "appearance-none border border-gray-300 leading-tight focus:outline-none px-3 py-2 rounded text-gray-700 w-full"
                         %>
                     </div>
                     <div class="mb-4">

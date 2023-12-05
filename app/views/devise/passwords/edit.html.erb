@@ -10,13 +10,13 @@
     <div class='content'>
         <div class="flex justify-center items-center mt-10">
             <div class="w-full max-w-xs">
-                <h1 class="font-hairline mb-6 text-center">パスワード再設定</h2>
+                <h1 class="font-hairline mb-6 text-2xl font-bold text-center">パスワード再設定</h1>
 
                 <%= form_for(resource,
                             url: user_password_path(),
                             html: {
                                     method: :put,
-                                    class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600"
+                                    class: "mb-4 px-8 pt-6 pb-8 rounded leading-none border border-amber-600 bg-white"
                             }
                     ) do |f| %>
 
@@ -28,26 +28,26 @@
 
                     <div class="mb-4">
                         <%= f.label :password, "パスワード",
-                                    class: "block font-bold mb-2 text-gray-700 text-sm"
+                                    class: "block font-bold text-gray-700 text-sm"
                         %>
                         <% if @minimum_password_length %>
-                            <small><em class="text-gray-600">(<%= @minimum_password_length %> 文字以上で設定してください)</em></small>
+                            <p class="text-amber-600 text-sm"><%= @minimum_password_length %> 文字以上の英数字</p>
                         <% end %>
                         <%= f.password_field :password,
                                             autofocus: true,
                                             autocomplete: "new-password",
-                                            class: "appearance-none border leading-tight focus:outline-none px-3 py-2 rounded shadow focus:shadow-outline text-gray-700 w-full"
+                                            class: "appearance-none border border-gray-300 leading-tight focus:outline-none px-3 py-2 rounded text-gray-700 w-full"
                         %>
                     </div>
 
                     <div class="mb-4">
                         <%= f.label :password_confirmation,
                                     "パスワード(確認用)",
-                                    class: "block font-bold mb-2 text-gray-700 text-sm"
+                                    class: "block font-bold text-gray-700 text-sm"
                         %>
                         <%= f.password_field :password_confirmation,
                                             autocomplete: "off",
-                                            class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                                            class: "appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none"
                         %>
                     </div>
 
