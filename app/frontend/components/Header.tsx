@@ -12,7 +12,7 @@ const Header = ({ current_user_email }) => {
               <img src={logo} width='280' alt='ロゴ' />
             </a>
           </div>
-          <div className='flex justify-end items-end overflow-hidden'>
+          <div className='flex justify-end items-end overflow-hidden mr-[5px]'>
             <div
               id='menu'
               className='md:mt-10 mt-2 translate-y-[50px] transition-all'
