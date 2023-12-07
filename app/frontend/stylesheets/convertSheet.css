@@ -8,10 +8,15 @@
 }
 
 .content {
-  overflow: auto;
-  width: 100vw;
 }
 
+.sheet {
+  width: 100%;
+  overflow: auto;
+}
+.min-1670 {
+  min-width: 1670px;
+}
 .min-300 {
   min-width: 300px;
 }

@@ -49,7 +49,7 @@ function OrderSheet(props: OrderSheetProps) {
       case 3:
         return `min-10 ${oddOrEven} ${keyName(index)}`;
       case 4:
-        return `min-300 ${oddOrEven} ${keyName(index)}`;
+        return `min-300 max-w-100 ${oddOrEven} ${keyName(index)}`;
       case 5:
         return `min-100 ${oddOrEven} ${keyName(index)}`;
       case 6:
@@ -114,21 +114,23 @@ function OrderSheet(props: OrderSheetProps) {
     });
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th className='print_none'>変換対象選択</th>
-            <th>注文番号</th>
-            <th>発送方法</th>
-            <th>商品名</th>
-            <th>数量</th>
-            <th>発送先</th>
-            <th>注文日</th>
-            <th>備考</th>
-          </tr>
-        </thead>
-        <tbody>{outputRows}</tbody>
-      </table>
+      <div className='sheet'>
+        <table>
+          <thead>
+            <tr>
+              <th className='print_none'>変換対象選択</th>
+              <th>注文番号</th>
+              <th>発送方法</th>
+              <th>商品名</th>
+              <th>数量</th>
+              <th>発送先</th>
+              <th>注文日</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>{outputRows}</tbody>
+        </table>
+      </div>
     );
   };
 

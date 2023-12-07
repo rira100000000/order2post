@@ -49,89 +49,94 @@ export default function ConvertMenu(props: ConvertMenuProps) {
   };
 
   return (
-    <>
-      <div className=''>
-        <button
-          className='left-0 top-0 text-md px-4 py-2 leading-none text-slate-400 hover:no-underline underline m-1'
-          onClick={() => {
-            props.openSpreadSheet();
-            props.setshowUploadButton(true);
-            props.setshowConvertMenu(false);
-          }}
-        >
-          注文一覧に戻る
-        </button>
-        <h1 className='text-center top-0 text-xl font-bold m-3'>
+    <div className='flex justify-center'>
+      <div className='flex flex-col max-w-760'>
+        <div className='flex justify-center w-full max-w-760'>
+          <div className='flex justify-start max-w-760 w-full'>
+            <button
+              className='left-0 top-0 text-md px-4 py-2 leading-none text-slate-400 hover:no-underline underline m-1'
+              onClick={() => {
+                props.openSpreadSheet();
+                props.setshowUploadButton(true);
+                props.setshowConvertMenu(false);
+              }}
+            >
+              注文一覧に戻る
+            </button>
+          </div>
+        </div>
+        <h1 className='text-center top-0 text-xl font-bold m-3 mt-0'>
           クリックポスト変換設定
         </h1>
-      </div>
-      <div className='m-3 flex justify-center'>
-        <div>
-          <p>
-            全ての商品で同じ内容品を記入する場合は、『内容品を一括で設定する』フォームに記入してください。
-          </p>
-          <p>
-            商品毎に内容品を変更したい場合は『内容品を個別に設定する』フォームに記入してください。
-          </p>
+
+        <div className='m-3 flex justify-center'>
+          <div>
+            <p>
+              全ての商品で同じ内容品を記入する場合は、『内容品を一括で設定する』フォームに記入してください。
+            </p>
+            <p>
+              商品毎に内容品を変更したい場合は『内容品を個別に設定する』フォームに記入してください。
+            </p>
+          </div>
+        </div>
+        <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] bg-white'>
+          <details open={allConvertMenu}>
+            <summary
+              id='allConvertMenu'
+              className='text-xl font-bold m-2 hover:cursor-pointer'
+              onClick={(e) => {
+                e.preventDefault();
+                detailsOnClick(
+                  allConvertMenu,
+                  setAllConvertMenu,
+                  setIndividualConvertMenu
+                );
+              }}
+            >
+              内容品を一括で設定する
+            </summary>
+            <p className='text-md flex justify-center items-center'>
+              クリックポストに表記する内容品を入力してください
+            </p>
+            <AllConvertForm
+              content={props.content}
+              setContent={props.setContent}
+              setshowConvertMenu={props.setshowConvertMenu}
+              setshowConvertSheet={props.setshowConvertSheet}
+              setShippingInfos={props.setShippingInfos}
+              lines={props.lines}
+            />
+          </details>
+        </div>
+        <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] bg-white'>
+          <details open={individualConvertMenu}>
+            <summary
+              id='individualConvertMenu'
+              className='text-xl font-bold m-2 hover:cursor-pointer'
+              onClick={(e) => {
+                e.preventDefault();
+                detailsOnClick(
+                  individualConvertMenu,
+                  setIndividualConvertMenu,
+                  setAllConvertMenu
+                );
+              }}
+            >
+              内容品を個別に設定する
+            </summary>
+            <p className='text-md flex justify-center items-center'>
+              クリックポストに表記する内容品を入力してください
+            </p>
+            <IndividualConvertForm
+              lines={props.lines}
+              conversions={conversions}
+              setShippingInfos={props.setShippingInfos}
+              setshowConvertMenu={props.setshowConvertMenu}
+              setshowConvertSheet={props.setshowConvertSheet}
+            />
+          </details>
         </div>
       </div>
-      <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] bg-white'>
-        <details open={allConvertMenu}>
-          <summary
-            id='allConvertMenu'
-            className='text-xl font-bold m-2 hover:cursor-pointer'
-            onClick={(e) => {
-              e.preventDefault();
-              detailsOnClick(
-                allConvertMenu,
-                setAllConvertMenu,
-                setIndividualConvertMenu
-              );
-            }}
-          >
-            内容品を一括で設定する
-          </summary>
-          <p className='text-md flex justify-center items-center'>
-            クリックポストに表記する内容品を入力してください
-          </p>
-          <AllConvertForm
-            content={props.content}
-            setContent={props.setContent}
-            setshowConvertMenu={props.setshowConvertMenu}
-            setshowConvertSheet={props.setshowConvertSheet}
-            setShippingInfos={props.setShippingInfos}
-            lines={props.lines}
-          />
-        </details>
-      </div>
-      <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] bg-white'>
-        <details open={individualConvertMenu}>
-          <summary
-            id='individualConvertMenu'
-            className='text-xl font-bold m-2 hover:cursor-pointer'
-            onClick={(e) => {
-              e.preventDefault();
-              detailsOnClick(
-                individualConvertMenu,
-                setIndividualConvertMenu,
-                setAllConvertMenu
-              );
-            }}
-          >
-            内容品を個別に設定する
-          </summary>
-          <p className='text-md flex justify-center items-center'>
-            クリックポストに表記する内容品を入力してください
-          </p>
-          <IndividualConvertForm
-            lines={props.lines}
-            conversions={conversions}
-            setShippingInfos={props.setShippingInfos}
-            setshowConvertMenu={props.setshowConvertMenu}
-            setshowConvertSheet={props.setshowConvertSheet}
-          />
-        </details>
-      </div>
-    </>
+    </div>
   );
 }

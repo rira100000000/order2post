@@ -22,32 +22,36 @@ export default function ConvertSheet(props: ConvertSheetProps) {
 
   const saveCSV = useSaveCSV();
   return (
-    <>
-      <button
-        className='inline-block text-md px-4 py-2 leading-none text-slate-400  underline hover:no-underline m-1'
-        onClick={() => {
-          props.setshowConvertMenu(true);
-          props.setshowConvertSheet(false);
-        }}
-      >
-        内容品設定に戻る
-      </button>
-      <div>
-        <div className='content'>
-          <Sheet shippingInfos={props.shippingInfos} />
-        </div>
-        <div>
-          <button
-            className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer m-3'
-            onClick={() => {
-              saveCSV(output.current);
-            }}
-          >
-            ダウンロード
-          </button>
+    <div className='w-full flex justify-center '>
+      <div className='w-full max-w-1670'>
+        <div className='flex flex-col'>
+          <div className='max-w-1670'>
+            <button
+              className='inline-block text-md py-2 leading-none text-slate-400 underline hover:no-underline m-2'
+              onClick={() => {
+                props.setshowConvertMenu(true);
+                props.setshowConvertSheet(false);
+              }}
+            >
+              内容品設定に戻る
+            </button>
+            <div className='overflow-auto max-w-1670 m-2'>
+              <Sheet shippingInfos={props.shippingInfos} />
+            </div>
+            <div>
+              <button
+                className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer m-2'
+                onClick={() => {
+                  saveCSV(output.current);
+                }}
+              >
+                ダウンロード
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -65,7 +69,7 @@ const Sheet = (props: ShippingInfos) => {
       case 6:
         return `min-250 ${oddOrEven}`;
       case 7:
-        return `min-300 ${oddOrEven}`;
+        return `min-250 ${oddOrEven}`;
       default:
         return 'unknown';
     }

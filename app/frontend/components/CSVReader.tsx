@@ -46,7 +46,7 @@ export default function CSVReader(props: CSVReaderProps) {
                   {...getRootProps()}
                   className='print_none inline-block text-sm px-4 py-2 leading-none border rounded text-slate-400 border-slate-300 hover:border-transparent hover:text-white hover:bg-slate-500 hover:cursor-pointer m-3'
                 >
-                  最初からやり直す
+                  <p>最初からやり直す</p>
                 </div>
               </div>
             ) : (

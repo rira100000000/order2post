@@ -32,9 +32,20 @@ body {
   flex: 1;
 }
 
-.max-w-1325 {
-  max-width: 1325px;
+.max-w-1670 {
+  max-width: 1670px;
 }
+.max-w-1620 {
+  max-width: 1620px;
+}
+.max-w-760 {
+  max-width: 760px;
+}
+
+.max-w-100 {
+  max-width: 130px;
+}
+
 footer {
   flex-shrink: 0;
   width: 100%;

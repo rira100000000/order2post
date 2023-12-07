@@ -19,7 +19,7 @@
     -webkit-print-color-adjust: exact;
   }
 
-  td.orderNum {
+  .orderNum {
     min-width: 20mm;
     width: 20mm;
   }
@@ -28,24 +28,24 @@
     min-width: 25mm;
     width: 25mm;
   }
-  td.item {
+  .item {
     min-width: 80mm;
     width: 80mm;
   }
-  td.itemNum {
+  .itemNum {
     min-width: 10mm;
     width: 10mm;
   }
 
-  td.address {
+  .address {
     min-width: 70mm;
     width: 70mm;
   }
-  td.date {
+  .date {
     min-width: 20mm;
     width: 20mm;
   }
-  td.remarks {
+  .remarks {
     min-width: 61mm;
     width: 61mm;
   }

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className='print_none w-screen'>
+    <footer className='print_none'>
       <nav className='block p-3 bg-slate-800'>
         <div className='flex justify-center flex-wrap bg-slate-800'>
           <div className='flex text-white mr-6'>
