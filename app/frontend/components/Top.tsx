@@ -1,6 +1,7 @@
 import React from 'react';
 import '../declarations.d.ts';
 import toPost from '../images/toPost.png';
+import convertImage from '../images/convert_image.png';
 import logo from '../images/logo_origin.png';
 import Footer from './Footer.tsx';
 
@@ -26,11 +27,7 @@ function Top() {
                 </p>
               </div>
               <div className='flex flex-col mt-1 items-center '>
-                <img
-                  src={toPost}
-                  width='480'
-                  alt='注文がポストに入るイメージ'
-                ></img>
+                <img src={convertImage} width='1000' alt='変換のイメージ'></img>
               </div>
               <a
                 href='/users/sign_up'
