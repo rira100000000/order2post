@@ -10,9 +10,10 @@ RSpec.describe 'ログイン、ログアウトのテスト' do
 
     login(user)
 
+    find('#openButton').click
     find('#signout_button').click
     
-    expect(page).to have_content('minne,Creemaの注文一覧データをクリックポストのまとめ申込用データへ変換します！')
+    expect(page).to have_content('クリックポストのまとめ申込用データへ変換します！')
   end
 end
 
