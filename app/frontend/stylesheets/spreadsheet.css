@@ -23,7 +23,7 @@ input[type='checkbox'] {
   color: #ffffff;
   letter-spacing: 0.2em;
   font-size: 14px;
-  background-color: #ff9800;
+  background-color: #d97706;
 }
 .balloon::before {
   content: '';
@@ -33,7 +33,7 @@ input[type='checkbox'] {
   height: 0;
   right: 83px;
   top: -10px;
-  border-left: 20px solid #ff9800;
+  border-left: 20px solid #d97706;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   transform: rotate(-45deg);
