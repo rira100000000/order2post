@@ -62,18 +62,14 @@ export default function IndividualConvertForm(
       if (!input['value']) {
         alert('個別設定を行う場合、全ての欄を入力してください');
         return;
+      } else if (input['value'].length > 15) {
+        alert(`内容品は15文字以内で指定してください\n${input['value']}`);
+        return;
       }
     }
 
     const conversions = calcConversions();
 
-    for (const key in conversions) {
-      if (!conversions[key]) {
-        alert('個別設定を行う場合、全ての欄を入力してください error=3');
-        return;
-      } else {
-      }
-    }
     props.setShippingInfos(shippingInfos);
 
     axios

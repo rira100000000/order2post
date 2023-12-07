@@ -21,14 +21,16 @@ export default function AllConvertForm(props: AllConvertFormProps) {
   };
   const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (props.content !== '') {
+    if (props.content.length > 15) {
+      alert('内容品は15文字以内で指定してください');
+    } else if (!props.content) {
+      alert('内容品を設定して下さい');
+    } else {
       const shippingInfos = makeShippingInfos(props.content, props.lines);
       props.setShippingInfos(shippingInfos);
       updateConverteds(props.lines);
       props.setshowConvertMenu(false);
       props.setshowConvertSheet(true);
-    } else {
-      alert('内容品を設定して下さい');
     }
   };
 
@@ -44,6 +46,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
             name='content'
             placeholder='アクセサリー、衣類、おもちゃ'
             onChange={handleOnChange}
+            value={props.content}
             className='inline-block text-md w-60 px-2 py-2 leading-none border rounded border-slate-300 m-0'
           />
         </label>
