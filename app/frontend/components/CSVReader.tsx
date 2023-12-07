@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useCSVReader } from 'react-papaparse';
 import useModal from '../hooks/useModal';
 import { setData, setDataInModal } from '../setData';
+import discribe from '../images/discribe.png';
 import type { Line } from '../types.d.ts';
 
 interface CSVReaderProps {
@@ -50,13 +51,20 @@ export default function CSVReader(props: CSVReaderProps) {
                 </div>
               </div>
             ) : (
-              <div className='flex justify-center items-center w-full'>
+              <div className='flex flex-col justify-center items-center w-full'>
                 <div
                   {...getRootProps()}
                   className='inline-block w-40 text-lg text-center px-4 py-2 leading-none border rounded text-white bg-slate-800 border-slate-800 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer mt-4'
                   id='file_select_button'
                 >
                   ファイルを選択
+                </div>
+                <div className='balloon'>
+                  minne、Creemaで
+                  <br />
+                  ダウンロードした注文データを
+                  <br />
+                  選択してください
                 </div>
               </div>
             )}

@@ -9,3 +9,32 @@ input[type='checkbox'] {
   transform: scale(1.5);
   margin: 0 6px 0 0;
 }
+
+.balloon {
+  position: relative;
+  padding: 10px;
+  padding-top: 45px;
+  margin: 20px;
+  margin-right: 140px;
+  width: 250px;
+  height: 150px;
+  border-radius: 50%;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: 0.2em;
+  font-size: 14px;
+  background-color: #ff9800;
+}
+.balloon::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  right: 83px;
+  top: -10px;
+  border-left: 20px solid #ff9800;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  transform: rotate(-45deg);
+}
