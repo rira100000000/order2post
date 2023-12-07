@@ -26,6 +26,8 @@ const Header = ({ current_user_email }) => {
                     href='/usage'
                     id='usage_button'
                     className='inline-block text-center md:w-[110px] w-[80px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
+                    target='_blank'
+                    rel='noopener noreferrer'
                   >
                     使い方
                   </a>
