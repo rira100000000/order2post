@@ -35,7 +35,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
   return (
     <form onSubmit={handleOnSubmit}>
       <div className='flex justify-center items-center'>
-        <label className='text-sm mt-3'>
+        <label className='text-sm font-bold mt-3'>
           内容品 ※最大15文字
           <br />
           <input
@@ -52,7 +52,7 @@ export default function AllConvertForm(props: AllConvertFormProps) {
         <input
           type='submit'
           value='クリックポスト変換'
-          className='inline-block text-md px-4 py-2 h-10 leading-none border rounded bg-slate-800 text-white border-slate-800 hover:border-transparent hover:bg-amber-600 hover:cursor-pointer m-3'
+          className='inline-block text-md w-40 px-4 py-2 h-10 leading-none border rounded bg-slate-800 text-white border-slate-800 hover:border-transparent hover:bg-amber-600 hover:cursor-pointer m-3'
         />
       </div>
     </form>
