@@ -25,21 +25,21 @@ const Header = ({ current_user_email }) => {
                   <a
                     href='/usage'
                     id='usage_button'
-                    className='inline-block text-center w-[97px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center md:w-[110px] w-[80px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
                   >
                     使い方
                   </a>
                   <a
                     href='/users/edit'
                     id='setting_button'
-                    className='inline-block text-center w-[97px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center w-[110px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
                   >
-                    設定
+                    ユーザー情報
                   </a>
                   <a
                     href='/users/sign_out'
                     id='signout_button'
-                    className='inline-block text-center w-[97px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center md:w-[110px] w-[100px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
                   >
                     サインアウト
                   </a>
