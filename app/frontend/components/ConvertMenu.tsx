@@ -54,7 +54,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
         <div className='flex justify-center w-full max-w-760'>
           <div className='flex justify-start max-w-760 w-full'>
             <button
-              className='left-0 top-0 text-md px-4 py-2 leading-none text-slate-400 hover:no-underline underline m-1'
+              className='left-0 top-0 text-md px-4 py-2 leading-none text-slate-500 hover:no-underline underline m-1'
               onClick={() => {
                 props.openSpreadSheet();
                 props.setshowUploadButton(true);

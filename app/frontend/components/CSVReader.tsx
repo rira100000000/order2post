@@ -44,7 +44,7 @@ export default function CSVReader(props: CSVReaderProps) {
               <div className='flex items-center w-full'>
                 <div
                   {...getRootProps()}
-                  className='print_none inline-block text-sm px-4 py-2 leading-none border rounded text-slate-400 border-slate-300 hover:border-transparent hover:text-white hover:bg-slate-500 hover:cursor-pointer m-3'
+                  className='print_none inline-block text-sm px-1 leading-none text-slate-500 border-slate-300 underline hover:no-underline hover:cursor-pointer m-3'
                 >
                   <p>最初からやり直す</p>
                 </div>
@@ -53,7 +53,7 @@ export default function CSVReader(props: CSVReaderProps) {
               <div className='flex justify-center items-center w-full'>
                 <div
                   {...getRootProps()}
-                  className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer mt-4'
+                  className='inline-block w-40 text-lg text-center px-4 py-2 leading-none border rounded text-white bg-slate-800 border-slate-800 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer mt-4'
                   id='file_select_button'
                 >
                   ファイルを選択
@@ -91,12 +91,12 @@ export default function CSVReader(props: CSVReaderProps) {
                     <div
                       {...getRootProps()}
                       id='yes_button'
-                      className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer m-3'
+                      className='w-20 inline-block text-sm text-center px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 hover:cursor-pointer m-3'
                     >
                       はい
                     </div>
                     <button
-                      className='inline-block text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3'
+                      className='w-20 inline-block text-sm text-center px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 hover:cursor-pointer m-3'
                       onClick={closeModal}
                     >
                       いいえ

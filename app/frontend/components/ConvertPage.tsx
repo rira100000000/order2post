@@ -75,14 +75,14 @@ export default function SpreadSheet(props: Props) {
                     <OrderSheet lines={lines} setLines={setLines} />
                     <br />
                     <button
-                      className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3 print_none'
+                      className='inline-block w-[150px] text-md px-4 py-2 leading-none border rounded text-amber-600 border-slate-800 bg-slate-800 hover:border-transparent text-white hover:bg-amber-600 m-3 print_none'
                       onClick={handleOnClick}
                     >
                       クリックポスト変換
                     </button>
 
                     <button
-                      className='inline-block text-md px-4 py-2 h-20 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 m-3 print_none'
+                      className='inline-block w-[150px] text-md px-4 py-2 leading-none border rounded text-amber-600 border-slate-800 bg-slate-800 hover:border-transparent text-white hover:bg-amber-600 m-3 print_none'
                       onClick={() => {
                         window.print();
                       }}

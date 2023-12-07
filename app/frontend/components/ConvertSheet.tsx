@@ -40,7 +40,7 @@ export default function ConvertSheet(props: ConvertSheetProps) {
             </div>
             <div>
               <button
-                className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer m-2'
+                className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 hover:cursor-pointer m-2'
                 onClick={() => {
                   saveCSV(output.current);
                 }}

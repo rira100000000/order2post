@@ -35,7 +35,7 @@ function Top() {
               <a
                 href='/users/sign_up'
                 id='signup_button'
-                className='text-xl px-4 py-2 mt-4 mb-2 leading-none border rounded text-white border-black bg-black hover:border-transparent hover:text-white hover:bg-amber-600'
+                className='text-xl px-14 py-4 mt-4 mb-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:text-white hover:bg-amber-600'
               >
                 サインアップ
               </a>
@@ -43,7 +43,7 @@ function Top() {
                 <a
                   href='/users/sign_in'
                   id='login_button'
-                  className='inline-block text-base font-bold px-4 py-2 leading-none text-amber-600 border-amber-600 lg:mt-0 hover:no-underline underline'
+                  className='inline-block text-base font-bold px-10 py-2 leading-none text-amber-600 border-amber-600 lg:mt-0 hover:no-underline underline'
                 >
                   登録済みの方はこちらからログイン
                 </a>

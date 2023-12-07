@@ -7,7 +7,7 @@ const Header = ({ current_user_email }) => {
     <nav className='flex items-center pt-3 pr-3 pl-3 pb-1 border-b border-amber-600 print_none'>
       <div className='flex justify-center items-center w-full'>
         <div className='md:flex justify-between w-full max-w-1670'>
-          <div className='flex justify-center text-amber-600 mt-5 ml-8'>
+          <div className='flex justify-center mt-5 ml-8'>
             <a href='/'>
               <img src={logo} width='280' alt='ロゴ' />
             </a>
@@ -25,21 +25,21 @@ const Header = ({ current_user_email }) => {
                   <a
                     href='/usage'
                     id='usage_button'
-                    className='inline-block text-center w-[97px] text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center w-[97px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
                   >
                     使い方
                   </a>
                   <a
                     href='/users/edit'
                     id='setting_button'
-                    className='inline-block text-center w-[97px] text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center w-[97px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
                   >
                     設定
                   </a>
                   <a
                     href='/users/sign_out'
                     id='signout_button'
-                    className='inline-block text-center w-[97px] text-sm px-4 py-2 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center w-[97px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
                   >
                     サインアウト
                   </a>

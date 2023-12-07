@@ -125,7 +125,7 @@ export default function IndividualConvertForm(
         <input
           type='submit'
           value='個別変換'
-          className='inline-block text-md px-4 py-2 h-10 leading-none border rounded text-amber-600 border-amber-600 hover:border-transparent hover:text-white hover:bg-amber-600 hover:cursor-pointer m-3'
+          className='inline-block text-md px-4 py-2 h-10 leading-none border rounded bg-slate-800 border-slate-800 text-white hover:border-transparent hover:bg-amber-600 hover:cursor-pointer m-3'
         />
       </div>
     </form>
