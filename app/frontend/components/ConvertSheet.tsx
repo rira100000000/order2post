@@ -27,7 +27,7 @@ export default function ConvertSheet(props: ConvertSheetProps) {
         <div className='flex flex-col'>
           <div className='max-w-1670'>
             <button
-              className='inline-block text-md py-2 leading-none text-slate-400 underline hover:no-underline m-2'
+              className='inline-block text-md py-2 leading-none text-slate-500 underline hover:no-underline m-2'
               onClick={() => {
                 props.setshowConvertMenu(true);
                 props.setshowConvertSheet(false);
