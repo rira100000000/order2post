@@ -747,6 +747,18 @@ video {
   width: 100%;
 }
 
+.w-\[50em\] {
+  width: 50em;
+}
+
+.w-4\/5 {
+  width: 80%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
+}
+
 .max-w-xs {
   max-width: 20rem;
 }
@@ -1139,6 +1151,10 @@ video {
     display: flex;
   }
 
+  .md\:hidden {
+    display: none;
+  }
+
   .md\:w-\[110px\] {
     width: 110px;
   }
@@ -1153,6 +1169,10 @@ video {
 
   .md\:w-\[760px\] {
     width: 760px;
+  }
+
+  .md\:w-\[50\%\] {
+    width: 50%;
   }
 
   .md\:flex-row {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AllConvertForm from './AllConvertForm';
 import IndividualConvertForm from './IndividualConvertForm';
 import axios from 'axios';
+import label from '../images/label.png';
 import type { ShippingInfo, Line } from '../types.d.ts';
 
 type SetshowUploadButton = (value: boolean) => void;
@@ -69,17 +70,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
           クリックポスト変換設定
         </h1>
 
-        <div className='m-3 flex justify-center'>
-          <div>
-            <p>
-              全ての商品で同じ内容品を記入する場合は、『内容品を一括で設定する』フォームに記入してください。
-            </p>
-            <p>
-              商品毎に内容品を変更したい場合は『内容品を個別に設定する』フォームに記入してください。
-            </p>
-          </div>
-        </div>
-        <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] bg-white'>
+        <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] w-[90%] bg-white'>
           <details open={allConvertMenu}>
             <summary
               id='allConvertMenu'
@@ -96,7 +87,9 @@ export default function ConvertMenu(props: ConvertMenuProps) {
               内容品を一括で設定する
             </summary>
             <p className='text-md flex justify-center items-center'>
-              クリックポストに表記する内容品を入力してください
+              クリックポストのラベルに表記する、
+              <br className='md:hidden' />
+              内容品を入力してください
             </p>
             <AllConvertForm
               content={props.content}
@@ -108,7 +101,7 @@ export default function ConvertMenu(props: ConvertMenuProps) {
             />
           </details>
         </div>
-        <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] bg-white'>
+        <div className='border border-amber-600 mx-auto mt-2 md:w-[50em] w-[90%] bg-white'>
           <details open={individualConvertMenu}>
             <summary
               id='individualConvertMenu'
@@ -125,7 +118,9 @@ export default function ConvertMenu(props: ConvertMenuProps) {
               内容品を個別に設定する
             </summary>
             <p className='text-md flex justify-center items-center'>
-              クリックポストに表記する内容品を入力してください
+              クリックポストのラベルに表記する、
+              <br className='md:hidden' />
+              内容品を入力してください
             </p>
             <IndividualConvertForm
               lines={props.lines}
@@ -135,6 +130,22 @@ export default function ConvertMenu(props: ConvertMenuProps) {
               setshowConvertSheet={props.setshowConvertSheet}
             />
           </details>
+        </div>
+        <div className='m-3 flex justify-center items-center'>
+          <div>
+            <p>
+              全ての商品で同じ内容品を記入する場合は、
+              <br />
+              『内容品を一括で設定する』フォームに記入してください。
+            </p>
+            <br />{' '}
+            <p>
+              商品毎に内容品を変更したい場合は、
+              <br />
+              『内容品を個別に設定する』フォームに記入してください。
+            </p>
+          </div>
+          <img src={label} width='180' alt='ロゴ' />
         </div>
       </div>
     </div>
