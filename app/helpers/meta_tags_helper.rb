@@ -13,14 +13,14 @@ module MetaTagsHelper
         type: 'website',
         site_name: 'Order2Post',
         description: :description,
-        image: vite_asset_path('entrypoints/images/OGP.png'),
+        image: vite_asset_path('images/OGP.png'),
         url: 'https://order2post.fun'
       },
       twitter: {
         card: 'summary',
         site: '@rira100000000',
         description: :description,
-        image: vite_asset_path('entrypoints/images/OGP.png'),
+        image: vite_asset_path('images/OGP.png'),
         domain: 'https://order2post.fun'
       }
     }
