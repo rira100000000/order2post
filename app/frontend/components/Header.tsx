@@ -7,12 +7,12 @@ const Header = ({ current_user_email }) => {
     <nav className='flex items-center pt-3 pr-3 pl-3 pb-1 border-b border-amber-600 print_none'>
       <div className='flex justify-center items-center w-full'>
         <div className='md:flex justify-between w-full max-w-1670'>
-          <div className='flex justify-center mt-5 ml-8'>
+          <div className='flex justify-center mt-5 md:ml-8'>
             <a href='/'>
               <img src={logo} width='280' alt='ロゴ' />
             </a>
           </div>
-          <div className='flex justify-end items-end overflow-hidden mr-[10px]'>
+          <div className='flex justify-end items-end overflow-hidden'>
             <div
               id='menu'
               className='md:mt-10 mt-2 translate-y-[50px] transition-all'
@@ -25,7 +25,7 @@ const Header = ({ current_user_email }) => {
                   <a
                     href='/usage'
                     id='usage_button'
-                    className='inline-block text-center md:w-[110px] w-[80px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center md:w-[110px] w-[80px] text-xs px-1 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
                     target='_blank'
                     rel='noopener noreferrer'
                   >
@@ -34,14 +34,14 @@ const Header = ({ current_user_email }) => {
                   <a
                     href='/users/edit'
                     id='setting_button'
-                    className='inline-block text-center w-[110px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center md:w-[110px] w-[80px] text-xs px-1 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
                   >
                     ユーザー情報
                   </a>
                   <a
                     href='/users/sign_out'
                     id='signout_button'
-                    className='inline-block text-center md:w-[110px] w-[100px] text-sm px-4 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center md:w-[110px] w-[80px] text-xs px-1 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
                   >
                     サインアウト
                   </a>
