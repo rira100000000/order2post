@@ -631,10 +631,6 @@ video {
   margin-left: 1.25rem;
 }
 
-.ml-8 {
-  margin-left: 2rem;
-}
-
 .ml-auto {
   margin-left: auto;
 }
@@ -743,8 +739,16 @@ video {
   width: 80px;
 }
 
+.w-\[85px\] {
+  width: 85px;
+}
+
 .w-\[90\%\] {
   width: 90%;
+}
+
+.w-\[90px\] {
+  width: 90px;
 }
 
 .w-full {
@@ -816,6 +820,10 @@ video {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
 }
 
 .whitespace-pre-line {
@@ -1133,6 +1141,10 @@ video {
 @media (min-width: 768px) {
   .md\:ml-0 {
     margin-left: 0px;
+  }
+
+  .md\:ml-8 {
+    margin-left: 2rem;
   }
 
   .md\:mt-10 {

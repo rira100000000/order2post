@@ -34,14 +34,14 @@ const Header = ({ current_user_email }) => {
                   <a
                     href='/users/edit'
                     id='setting_button'
-                    className='inline-block text-center md:w-[110px] w-[80px] text-xs px-1 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center md:w-[110px] w-[80px] text-xs px-1 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2 whitespace-nowrap'
                   >
                     ユーザー情報
                   </a>
                   <a
                     href='/users/sign_out'
                     id='signout_button'
-                    className='inline-block text-center md:w-[110px] w-[80px] text-xs px-1 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2'
+                    className='inline-block text-center md:w-[110px] w-[80px] text-xs px-1 py-2 leading-none border rounded text-white border-slate-800 bg-slate-800 hover:border-transparent hover:bg-amber-600 lg:mt-0 mr-2 whitespace-nowrap'
                   >
                     サインアウト
                   </a>
