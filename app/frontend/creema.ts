@@ -17,6 +17,30 @@ const ReadCreema = async (csvDatas: string[][]) => {
 
   const lines: Array<Line> = [];
   const compareDatas: Array<Line> = [];
+  const extractPostalCode = (str: string): string | null => {
+    // パターン1: XXX-XXXX 形式（ハイフンあり）
+    // 文字列内のどこかに存在する3桁の数字-4桁の数字のパターンを検索
+    const hyphenPattern = /(?:^|[^\d])(\d{3})-(\d{4})(?:[^\d]|$)/;
+
+    // パターン2: XXXXXXX 形式（ハイフンなし）
+    // 文字列内のどこかに存在する連続した7桁の数字パターンを検索
+    const noHyphenPattern = /(?:^|[^\d])(\d{3})(\d{4})(?:[^\d]|$)/;
+
+    let matches: RegExpExecArray | null;
+
+    // ハイフンありパターンを優先的にチェック
+    matches = hyphenPattern.exec(str);
+    if (matches) {
+      return `${matches[1]}-${matches[2]}`;
+    }
+
+    // ハイフンなしパターンをチェック
+    matches = noHyphenPattern.exec(str);
+    if (matches) {
+      return `${matches[1]}-${matches[2]}`;
+    }
+    return '郵便番号エラー';
+  };
 
   for (const csvData of csvDatas) {
     compareDatas.push({
@@ -65,16 +89,14 @@ const ReadCreema = async (csvDatas: string[][]) => {
     line['order'].push(itemnums.join('\n'));
     line['order'].push(
       '〒' +
-        csvData[POSTALCODE].slice(0, 3) +
-        '-' +
-        csvData[POSTALCODE].slice(3, 7) +
+        extractPostalCode(csvData[POSTALCODE]) +
         '\n' +
         csvData[ADDRESS1] +
         '\n' +
         '\n' +
         csvData[NAME] +
         '\n' +
-        csvData[TEL]
+        csvData[TEL].replace(/[^\d]/g, '')
     );
     line['order'].push(csvData[DATE]);
     line['order'].push(remarks.join('\n'));
